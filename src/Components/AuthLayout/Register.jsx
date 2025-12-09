@@ -18,6 +18,7 @@ const Register = () => {
     const handleRegistration = async (data) => {
         try {
             const profileImg = data.photo?.[0];
+            const userPhone = data.userPhone || null;
             const userRole = data.userRole || 'student';
 
             await registerUser(data.email, data.password);
@@ -36,6 +37,7 @@ const Register = () => {
                 email: data.email,
                 displayName: data.name,
                 photoURL,
+                userPhone,
                 userRole
             };
             await axiosSecure.post('/users', userInfo);
@@ -78,8 +80,13 @@ const Register = () => {
                         placeholder="Your Name" />
                     {errors.name?.type === 'required' && <p className='text-red-500'>Name is required.</p>}
 
-                    <div className="flex">
+                    <label className="label">Phone Number</label>
+                    <input type="text"
+                        {...register('userPhone', { required: false })}
+                        className="input"
+                        placeholder="Your Number" />
 
+                    <div className="flex mt-2">
                         <label className="label mr-4">
                             <input type="radio" {...register('userRole')} value="student" className="radio" defaultChecked />
                             Student
@@ -90,9 +97,6 @@ const Register = () => {
                         </label>
                     </div>
 
-                    <label className="label">Photo</label>
-
-                    <input type="file" {...register('photo', { required: false })} className="file-input" placeholder="Your Photo" />
                     <label className="label">Email</label>
                     <input type="email" {...register('email', { required: true })} className="input" placeholder="Email" />
                     {errors.email?.type === 'required' && <p className='text-red-500'>Email is required.</p>}
@@ -114,6 +118,9 @@ const Register = () => {
                     {
                         errors.password?.type === 'pattern' && <p className='text-red-500'>Password must have at least one uppercase, at least one lowercase, at least one number, and at least one special characters</p>
                     }
+
+                    <label className="label">Photo</label>
+                    <input type="file" {...register('photo', { required: false })} className="file-input" placeholder="Your Photo" />
 
                     <div><a className="link link-hover flex justify-center mt-2">Forgot password?</a></div>
                     <button className="btn btn-neutral mt-4">Register</button>
