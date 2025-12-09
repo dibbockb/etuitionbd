@@ -5,6 +5,7 @@ import axios from 'axios';
 import useAuth from '../Hooks/useAuth';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import SocialLogin from './SocialLogin';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,58 +15,52 @@ const Register = () => {
     const axiosSecure = useAxiosSecure();
 
 
-    const handleRegistration = (data) => {
+    const handleRegistration = async (data) => {
+        try {
+            const profileImg = data.photo?.[0];
+            const userRole = data.userRole || 'student';
 
-        const profileImg = data.photo[0];
+            await registerUser(data.email, data.password);
 
-        registerUser(data.email, data.password)
-            .then(() => {
-
-                // 1. store the image in form data
+            let photoURL = '';
+            if (profileImg) {
                 const formData = new FormData();
                 formData.append('image', profileImg);
+                const image_API_URL = `https://api.imgbb.com/1/upload?expiration=2592000&key=${import.meta.env.VITE_image_host_key}`;
+                const uploadRes = await axios.post(image_API_URL, formData);
+                photoURL = uploadRes?.data?.data?.url || '';
+            }
 
-                // 2. send the photo to store and get the ul
-                const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`
+            // push to databsae
+            const userInfo = {
+                email: data.email,
+                displayName: data.name,
+                photoURL,
+                userRole
+            };
+            await axiosSecure.post('/users', userInfo);
 
-                axios.post(image_API_URL, formData)
-                    .then(res => {
-                        const photoURL = res.data.data.url;
+            const userProfile = { displayName: data.name };
+            if (photoURL) userProfile.photoURL = photoURL;
+            await updateUserProfile(userProfile);
 
-                        // create user in the database
-                        const userInfo = {
-                            email: data.email,
-                            displayName: data.name,
-                            photoURL: photoURL
-                        }
-                        axiosSecure.post('/users', userInfo)
-                            .then(res => {
-                                if (res.data.insertedId) {
-                                    console.log('user created in the database');
-                                }
-                            })
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Registration Successful!",
+                showConfirmButton: false,
+                timer: 1000
+            });
 
-
-                        // update user profile to firebase
-                        const userProfile = {
-                            displayName: data.name,
-                            photoURL: photoURL
-                        }
-
-                        updateUserProfile(userProfile)
-                            .then(() => {
-                                // console.log('user profile updated done.')
-                                navigate(location.state || '/');
-                            })
-                            .catch(error => console.log(error))
-                    })
-
-
-
-            })
-            .catch(error => {
-                console.log(error)
-            })
+            navigate("/");
+        } catch (error) {
+            console.error(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Registration failed',
+                text: error.response?.data?.error?.message || error.message || 'Please try again'
+            });
+        }
     }
 
     return (
@@ -85,7 +80,6 @@ const Register = () => {
 
                     <div className="flex">
 
-
                         <label className="label mr-4">
                             <input type="radio" {...register('userRole')} value="student" className="radio" defaultChecked />
                             Student
@@ -94,24 +88,15 @@ const Register = () => {
                             <input type="radio" {...register('userRole')} value="tutor" className="radio" />
                             Tutor
                         </label>
-
-
-
                     </div>
 
-                    {/* photo image field */}
                     <label className="label">Photo</label>
 
-                    <input type="file" {...register('photo', { required: true })} className="file-input" placeholder="Your Photo" />
-
-                    {errors.name?.type === 'required' && <p className='text-red-500'>Photo is required.</p>}
-
-                    {/* email field */}
+                    <input type="file" {...register('photo', { required: false })} className="file-input" placeholder="Your Photo" />
                     <label className="label">Email</label>
                     <input type="email" {...register('email', { required: true })} className="input" placeholder="Email" />
                     {errors.email?.type === 'required' && <p className='text-red-500'>Email is required.</p>}
 
-                    {/* password */}
                     <label className="label">Password</label>
                     <input type="password" {...register('password', {
                         required: true,
