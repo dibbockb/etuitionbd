@@ -1,11 +1,14 @@
 import React from 'react';
 import Home from '../Home/Home';
+import Footer from '../../Components/Footer/Footer';
+import Navbar from '../../Components/Navbar/Navbar';
 
 const RootLayout = () => {
     return (
         <div>
-            <p>this is root</p>
+            <Navbar></Navbar>
             <Home></Home>
+            <Footer></Footer>
         </div>
     );
 };
