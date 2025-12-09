@@ -1,8 +1,27 @@
 import React from 'react';
 import Logo from '../Logo/Logo';
 import { NavLink } from 'react-router';
+import useAuth from '../Hooks/useAuth';
+import Swal from 'sweetalert2';
+
+
 
 const Navbar = () => {
+    const { user, logOut } = useAuth();
+
+    const handleLogOut = () => {
+        logOut()
+            .then((result) => {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Logged Out",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+            })
+    }
+
     return (
         <div>
             <div className="navbar bg-base-100 shadow-sm flex justify-between px-50">
@@ -21,10 +40,10 @@ const Navbar = () => {
 
 
 
-                <div className="navbar-end gap-2">
+                {user ? <button onClick={handleLogOut}>logout</button> : <div className="navbar-end gap-2">
                     <NavLink className="btn btn-ghost" to={"/login"}>Login</NavLink>
                     <NavLink className="btn btn-ghost" to={"/register"}>Register</NavLink>
-                </div>
+                </div>}
 
             </div>
         </div>
