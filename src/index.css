@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
 
+
+.lexend-deca {
+  font-family: "Lexend Deca", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+
 @import "tailwindcss";
 @plugin "daisyui";
 @plugin "daisyui/theme" {

@@ -1,61 +1,30 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
 import { createBrowserRouter } from "react-router";
-import { RouterProvider } from "react-router/dom";
 import RootLayout from "../Layouts/RootLayout/RootLayout";
 import Home from "../Layouts/Home/Home";
 import Login from "../Components/AuthLayout/Login";
-import AuthLayout from "../Components/AuthLayout/AuthLayout";
 import Register from "../Components/AuthLayout/Register";
-import Tuitions from "../Components/Tuitions/Tuitions"
-import Tutors from "../Components/Tutors/Tutors"
-import Contact from "../Components/Contact/Contact"
+import AuthLayout from "../Components/AuthLayout/AuthLayout";
+import Tutors from "../Components/Tutors/Tutors";
+import Contact from "../Components/Contact/Contact";
+import Dashboard from "../Layouts/Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
-
-    // root pages
     {
         path: "/",
-        Component: RootLayout,
-        children: [{
-            index: true,
-            Component: Home,
-        },
-        {
-            path: "/tuitions",
-            Component: Tuitions,
-        },
-        {
-            path: "/tutors",
-            Component: Tutors,
-        },
-        {
-            path: "/contact",
-            Component: Contact,
-        },
-        ],
-
-    },
-
-    //auth pages
-    {
-        path: "/",
-        Component: AuthLayout,
+        element: <RootLayout />,
         children: [
-            {
-                path: 'login',
-                Component: Login
-            },
-            {
-                path: 'register',
-                Component: Register
-            }
-        ]
+            { index: true, element: <Home /> },
+            { path: "tutors", element: <Tutors /> },
+            { path: "contact", element: <Contact /> },
+            { path: "dashboard", element: <Dashboard /> },
+        ],
+    },
+    {
+        path: "/",
+        element: <AuthLayout />,
+        children: [
+            { path: "login", element: <Login /> },
+            { path: "register", element: <Register /> },
+        ],
     },
 ]);
-
-const root = document.getElementById("root");
-
-ReactDOM.createRoot(root).render(
-    <RouterProvider router={router} />,
-);
