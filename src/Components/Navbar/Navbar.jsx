@@ -38,7 +38,7 @@ const Navbar = () => {
                         <NavLink className="btn btn-ghost" to={"/"}>Home</NavLink>
                         <NavLink className="btn btn-ghost" to={"/dashboard"}>Dashboard</NavLink>
                         {!user && <NavLink className="btn btn-ghost" to={"/contact"}>Contact</NavLink>}
-                        {user && <NavLink className="btn btn-ghost" to={"/contact"}>Tutors</NavLink>}
+                        {user && <NavLink className="btn btn-ghost" to={"/tutors"}>Tutors</NavLink>}
                         {user && <NavLink className="btn btn-ghost" to={"/contact"}>Tuitions</NavLink>}
                     </ul>
                 </div>

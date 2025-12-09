@@ -1,9 +1,9 @@
 import React from 'react';
+import Loading from '../../Components/Loading/Loading';
 
 const Home = () => {
     return (
         <div>
-
             {/* hero section */}
             <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
                 {/* <img
