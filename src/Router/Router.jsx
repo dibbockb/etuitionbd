@@ -10,6 +10,8 @@ import Tuitions from "../Components/Tuitions/Tuitions";
 import PostTuition from "../Layouts/Dashboard/PostTuition";
 import BecomeTutor from "../Layouts/Dashboard/BecomeTutor";
 import Error from "../Components/Error/Error";
+import TuitionInfo from "../Components/Tuitions/TuitionInfo";
+import Tutorinfo from "../Components/Tutors/Tutorinfo";
 
 export const router = createBrowserRouter([
     {
@@ -18,7 +20,9 @@ export const router = createBrowserRouter([
         children: [
             { index: true, element: <Home /> },
             { path: "tutors", element: <Tutors /> },
+            { path: "tutors/:id", element: <Tutorinfo /> },
             { path: "tuitions", element: <Tuitions /> },
+            { path: "tuitions/:id", element: <TuitionInfo /> },
         ],
     },
     {
@@ -38,7 +42,7 @@ export const router = createBrowserRouter([
         ],
     },
     {
-        path: "/error",
+        path: "*",
         element: <Error></Error>
     },
     
