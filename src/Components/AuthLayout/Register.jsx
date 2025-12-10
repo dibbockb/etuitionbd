@@ -54,7 +54,7 @@ const Register = () => {
                 timer: 1000
             });
 
-            navigate("/");
+            navigate("/dashboard");
         } catch (error) {
             console.error(error);
             Swal.fire({

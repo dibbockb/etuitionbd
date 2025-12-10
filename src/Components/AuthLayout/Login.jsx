@@ -17,7 +17,7 @@ const Login = () => {
         signInUser(data.email, data.password)
             .then(result => {
                 console.log(result.user)
-                navigate(location?.state || '/')
+                navigate('/dashboard')
                 Swal.fire({
                     position: "center",
                     icon: "success",

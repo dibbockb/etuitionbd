@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import useAuth from '../Hooks/useAuth';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const SocialLogin = () => {
     const { signInGoogle } = useAuth();
@@ -22,10 +23,18 @@ const SocialLogin = () => {
                     userRole: "student"
                 }
 
+                navigate('/dashboard')
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Logged In!",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+
                 axiosSecure.post('/users', userInfo)
                     .then(res => {
                         console.log('user data has been stored to database...', res.data)
-                        navigate(location.state || '/');
                     })
 
             })
