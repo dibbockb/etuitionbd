@@ -9,6 +9,7 @@ import Dashboard from "../Layouts/Dashboard/Dashboard";
 import Tuitions from "../Components/Tuitions/Tuitions";
 import PostTuition from "../Layouts/Dashboard/PostTuition";
 import BecomeTutor from "../Layouts/Dashboard/BecomeTutor";
+import Error from "../Components/Error/Error";
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
             { path: "newtuition", element: <PostTuition /> },
             { path: "newtutor", element: <BecomeTutor /> },
         ],
+    },
+    {
+        path: "/error",
+        element: <Error></Error>
     }
 
 ]);

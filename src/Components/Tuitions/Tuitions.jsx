@@ -11,8 +11,8 @@ const Tuitions = () => {
 
     const handlePostTuition = () => {
         console.log(`clicked`);
-        
     }
+    
     useEffect(() => {
         setLoading(true)
         axiosSecure

@@ -32,7 +32,7 @@ const Register = () => {
                 photoURL = uploadRes?.data?.data?.url || '';
             }
 
-            // push to databsae
+            // >>> databsae
             const userInfo = {
                 email: data.email,
                 displayName: data.name,
@@ -53,8 +53,8 @@ const Register = () => {
                 showConfirmButton: false,
                 timer: 1000
             });
-
             navigate("/dashboard");
+            
         } catch (error) {
             console.error(error);
             Swal.fire({

@@ -29,7 +29,8 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="navbar bg-base-100 shadow-sm flex justify-between px-50">
+            {/* <div className="navbar bg-base-100 shadow-sm flex justify-between px-50"> */}
+            <div className="navbar bg-base-100 shadow-sm flex justify-between px-50 fixed top-0 z-50">
                 <div className="">
                     <Logo></Logo>
                 </div>

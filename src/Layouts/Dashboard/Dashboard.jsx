@@ -15,7 +15,7 @@ const Dashboard = () => {
         <div className="flex flex-col justify-center items-center  ">
             <br />
             <Logo className=""></Logo>
-            <h5 className="text-3xl flex text-center my-5">Dashboard</h5>
+            <h5 className="text-5xl flex text-center my-2 text-white">Dashboard</h5>
             <Outlet></Outlet>
         </div>
     );
