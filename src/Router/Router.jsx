@@ -12,6 +12,8 @@ import BecomeTutor from "../Layouts/Dashboard/BecomeTutor";
 import Error from "../Components/Error/Error";
 import TuitionInfo from "../Components/Tuitions/TuitionInfo";
 import Tutorinfo from "../Components/Tutors/Tutorinfo";
+import Private from "../Components/AuthLayout/Private";
+
 
 export const router = createBrowserRouter([
     {
@@ -19,10 +21,10 @@ export const router = createBrowserRouter([
         element: <RootLayout />,
         children: [
             { index: true, element: <Home /> },
-            { path: "tutors", element: <Tutors /> },
-            { path: "tutors/:id", element: <Tutorinfo /> },
-            { path: "tuitions", element: <Tuitions /> },
-            { path: "tuitions/:id", element: <TuitionInfo /> },
+            { path: "tutors", element: <Private> <Tutors /> </Private> },
+            { path: "tutors/:id", element: <Private> <Tutorinfo /> </Private> },
+            { path: "tuitions", element: <Private> <Tuitions /> </Private> },
+            { path: "tuitions/:id", element: <Private> <TuitionInfo /> </Private> },
         ],
     },
     {
@@ -35,10 +37,10 @@ export const router = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <Dashboard />,
+        element: <Private> <Dashboard /> </Private>,
         children: [
-            { path: "newtuition", element: <PostTuition /> },
-            { path: "newtutor", element: <BecomeTutor /> },
+            { path: "newtuition", element: <Private> <PostTuition /></Private> },
+            { path: "newtutor", element: <Private> <BecomeTutor /> </Private> },
         ],
     },
     {
