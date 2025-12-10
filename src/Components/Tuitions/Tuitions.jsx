@@ -1,0 +1,69 @@
+import React, { useEffect, useState } from "react";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import Loading from "../Loading/Loading";
+
+const Tuitions = () => {
+    const [tuitions, setTuitions] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const axiosSecure = useAxiosSecure();
+
+    useEffect(() => {
+        setLoading(true)
+        axiosSecure
+            .get(`/tuitions`)
+            .then((res) => {
+                setTuitions(res.data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+                setLoading(false);
+            });
+    }, [axiosSecure]);
+
+    if (loading) {
+        return <Loading />;
+    }
+
+    return (
+        <>
+            <div>
+                <h3 className="text-4xl text-white text-center pt-15">All Tuitions</h3>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-8">
+
+                    {tuitions.map((tuition) => (
+                        <div
+                            key={tuition._id}
+                            className="card bg-gray-800 shadow rounded-xl hover:scale-103 transition duration-300"
+                        >
+                            <div className="h-64 rounded-t-xl overflow-hidden">
+                                <img
+                                    src={tuition.image}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="card-body p-5">
+                                <p className="text-white font-medium text-xl">
+                                    {tuition.subject}
+                                </p>
+                                <p className="text-white text-sm">{tuition.location}</p>
+
+                                <div className="flex justify-between items-center mt-4">
+                                    <span className="text-2xl font-bold text-white">
+                                        ৳ {tuition.fee}
+                                    </span>
+                                    <span className="badge badge-accent badge-sm">
+                                        {tuition.mode}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default Tuitions;

@@ -16,7 +16,6 @@ const Login = () => {
         console.log('form data', data);
         signInUser(data.email, data.password)
             .then(result => {
-                console.log(result.user)
                 navigate('/dashboard')
                 Swal.fire({
                     position: "center",
@@ -27,7 +26,11 @@ const Login = () => {
                 });
             })
             .catch(error => {
-                console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login failed',
+                    text: error.response?.data?.error?.message || error.message || 'Please try again'
+                });
             })
     }
 

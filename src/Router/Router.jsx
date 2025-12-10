@@ -5,8 +5,8 @@ import Login from "../Components/AuthLayout/Login";
 import Register from "../Components/AuthLayout/Register";
 import AuthLayout from "../Components/AuthLayout/AuthLayout";
 import Tutors from "../Components/Tutors/Tutors";
-import Contact from "../Components/Contact/Contact";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
+import Tuitions from "../Components/Tuitions/Tuitions";
 
 export const router = createBrowserRouter([
     {
@@ -15,7 +15,7 @@ export const router = createBrowserRouter([
         children: [
             { index: true, element: <Home /> },
             { path: "tutors", element: <Tutors /> },
-            { path: "contact", element: <Contact /> },
+            { path: "tuitions", element: <Tuitions /> },
         ],
     },
     {
