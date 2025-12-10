@@ -3,15 +3,18 @@ import { useForm } from 'react-hook-form';
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useNavigate, useNavigation } from 'react-router';
+import useAuth from '../../Components/Hooks/useAuth';
 
 const PostTuition = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
+    const {user} = useAuth();
 
     const handleNewTuition = async (data) => {
         console.log(data);
         const newTuition = {
+            creatorEmail: user.email,
             subject: data.subject,
             location: data.location,
             mode: data.mode,
@@ -38,7 +41,9 @@ const PostTuition = () => {
 
             <div>
                 <form onSubmit={handleSubmit(handleNewTuition)}>
+                        <input {...register('user')} type="text" className="input cursor-not-allowed" placeholder={user.email} required readOnly />
                     <fieldset className="fieldset">
+
                         <legend className="fieldset-legend">Subject</legend>
                         <input {...register('subject')} type="text" className="input" placeholder="What do you want to learn?" required />
 

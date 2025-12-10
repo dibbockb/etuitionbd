@@ -8,6 +8,7 @@ const Tuitions = () => {
     const [tuitions, setTuitions] = useState([]);
     const [loading, setLoading] = useState(true);
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     const handlePostTuition = () => {
         console.log(`clicked`);
@@ -51,6 +52,7 @@ const Tuitions = () => {
                     {tuitions.map((tuition) => (
                         <div
                             key={tuition._id}
+                            onClick={() => {navigate(`/tuitions/${tuition._id}`)}}
                             className="card bg-gray-800 shadow rounded-xl hover:scale-103 transition duration-300"
                         >
                             <div className="h-64 rounded-t-xl overflow-hidden">

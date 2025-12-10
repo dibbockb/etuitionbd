@@ -9,7 +9,7 @@ import { PiPhoneFill } from "react-icons/pi";
 const Footer = () => {
     return (
         <>
-            <footer className="footer-container bg-black pt-10 pb-3 flex flex-col w-full text-center rounded-[3.125rem] rounded-b-none">
+            <footer className="footer-container bg-black pt-20 pb-3 flex flex-col w-full text-center rounded-[3.125rem] rounded-b-none">
                 <div className="flex justify-evenly items-center text-center">
                     <div className="footer-left flex flex-col justify-center items-center text-center gap-2">
                         <img className="w-20" src="/icon.png" alt="" />

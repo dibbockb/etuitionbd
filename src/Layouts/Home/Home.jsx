@@ -1,13 +1,16 @@
 import React from 'react';
 import Loading from '../../Components/Loading/Loading';
 import { Link } from 'react-router';
+import Navbar from '../../Components/Navbar/Navbar';
 
 const Home = () => {
 
     return (
 
         <div>
-
+<div className="fixed top-0 left-0 right-0 z-50 bg-base-100 shadow-sm">
+         <Navbar /> 
+      </div>
             {/* hero section */}
             <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
                 {/* <img

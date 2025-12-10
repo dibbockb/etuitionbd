@@ -19,7 +19,7 @@ const Register = () => {
         try {
             const profileImg = data.photo?.[0];
             const userPhone = data.userPhone || null;
-            const userRole = data.userRole || 'student';
+            const userRole = data.userRole;
 
             await registerUser(data.email, data.password);
 
