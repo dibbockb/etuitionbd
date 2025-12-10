@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+input:focus {
+  outline: 1px
+}
+
 a {
   position: relative;
   background-image: linear-gradient(currentColor, currentColor);

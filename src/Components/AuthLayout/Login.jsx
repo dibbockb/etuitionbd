@@ -53,7 +53,7 @@ const Login = () => {
                     }
 
 
-                    <div><a className="link link-hover flex justify-center mt-2">Forgot password?</a></div>
+                    <a className="link link-hover flex justify-center mt-2">Forgot password?</a>
                     <button className="btn btn-neutral mt-4 rounded-2xl">Login</button>
                 </fieldset>
                 <p className="flex justify-center gap-1.5">New here? <Link

@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Loading from "../Loading/Loading";
+import { IoMdAdd } from "react-icons/io";
+import { Link, useNavigate } from "react-router";
 
 const Tuitions = () => {
     const [tuitions, setTuitions] = useState([]);
     const [loading, setLoading] = useState(true);
     const axiosSecure = useAxiosSecure();
 
+    const handlePostTuition = () => {
+        console.log(`clicked`);
+        
+    }
     useEffect(() => {
         setLoading(true)
         axiosSecure
@@ -28,7 +34,17 @@ const Tuitions = () => {
     return (
         <>
             <div>
-                <h3 className="text-4xl text-white text-center pt-15">All Tuitions</h3>
+                
+                <div className="flex justify-center items-center text-center flex-col">
+                        <h3 className="text-4xl text-white text-center pt-15">All Tuitions</h3>
+
+      <Link 
+      className="btn btn-ghost w-[20rem] h-20 mt-5 rounded-2xl bg-gray-900 text-2xl hover:scale-103" 
+      to={'/dashboard/newtuition'}
+      >
+    <IoMdAdd className="scale-120" /> Post a Tuition</Link>
+
+      </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-8">
 

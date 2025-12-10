@@ -7,6 +7,8 @@ import AuthLayout from "../Components/AuthLayout/AuthLayout";
 import Tutors from "../Components/Tutors/Tutors";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import Tuitions from "../Components/Tuitions/Tuitions";
+import PostTuition from "../Layouts/Dashboard/PostTuition";
+import BecomeTutor from "../Layouts/Dashboard/BecomeTutor";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +28,13 @@ export const router = createBrowserRouter([
             { path: "register", element: <Register /> },
         ],
     },
-    { path: "dashboard", element: <Dashboard /> },
+    {
+        path: "dashboard",
+        element: <Dashboard />,
+        children: [
+            { path: "newtuition", element: <PostTuition /> },
+            { path: "newtutor", element: <BecomeTutor /> },
+        ],
+    }
 
 ]);

@@ -1,5 +1,6 @@
 import React from 'react';
 import Loading from '../../Components/Loading/Loading';
+import { Link } from 'react-router';
 
 const Home = () => {
 
@@ -24,12 +25,12 @@ const Home = () => {
                         1000+ verified tutors • 10+ countries • From ৳6,000/month
                     </p>
                     <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                        <button className="px-10 py-4 bg-teal-500 hover:bg-teal-400 text-black font-bold text-lg rounded-2xl shadow-xl transition transform hover:scale-105">
+                        <Link to={'/tutors'} className=" h-15 px-10 py-4 bg-teal-500 hover:bg-teal-400 text-black font-bold text-lg rounded-2xl shadow-xl transition transform hover:scale-105">
                             Find a Tutor Now
-                        </button>
-                        <button className="px-10 py-4 bg-white bg-opacity-20 backdrop-blur-md hover:bg-opacity-30 text-black font-semibold text-lg rounded-2xl border border-white border-opacity-40 transition">
-                            Become a Tutor
-                        </button>
+                        </Link>
+                        <Link to={'/dashboard/newtuition'} className=" h-15 px-10 py-4 bg-white bg-opacity-20 backdrop-blur-md hover:bg-opacity-30 text-black font-semibold text-lg rounded-2xl border border-white border-opacity-40 transition hover:scale-105">
+                            Add a Tuition
+                        </Link>
                     </div>
                 </div>
             </section>
