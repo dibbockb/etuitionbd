@@ -17,33 +17,33 @@
   prefersdark: true; 
   color-scheme: light;
 
---color-base-100: oklch(18% 0.02 240);     /* almost black */
+--color-base-100: oklch(18% 0.02 240); 
 --color-base-200: oklch(22% 0.03 240);     
 --color-base-300: oklch(28% 0.04 240);     
---color-base-content: oklch(90% 0.02 240); /* near-white text */
+--color-base-content: oklch(90% 0.02 240); 
 
---color-primary: #00d4aa;                  /* toxic teal */
+--color-primary: #00d4aa;                 
 --color-primary-content: oklch(20% 0.02 180);
 
---color-secondary: #ff2d92;                /* hot magenta */
+--color-secondary: #ff2d92;               
 --color-secondary-content: oklch(95% 0.01 340);
 
---color-accent: #7c3aed;                   /* violet punch */
+--color-accent: #7c3aed;                   
 --color-accent-content: oklch(95% 0.01 280);
 
 --color-neutral: oklch(30% 0.04 240);
 --color-neutral-content: oklch(85% 0.01 240);
 
---color-info: #0ea5e9;                     /* bright sky */
+--color-info: #0ea5e9;                     
 --color-info-content: oklch(20% 0.01 220);
 
---color-success: #22c55e;                  /* real green */
+--color-success: #22c55e;                  
 --color-success-content: oklch(20% 0.01 140);
 
---color-warning: #f59e0b;                  /* amber fire */
+--color-warning: #f59e0b;                 
 --color-warning-content: oklch(20% 0.05 80);
 
---color-error: #ef4444;                    /* blood red */
+--color-error: #ef4444;                    
 --color-error-content: oklch(95% 0.01 30);
 
   /* border radius */

@@ -40,13 +40,14 @@ export const router = createBrowserRouter([
         element: <Private> <Dashboard /> </Private>,
         children: [
             { path: "newtuition", element: <Private> <PostTuition /></Private> },
-            { path: "newtutor", element: <Private> <BecomeTutor /> </Private> },
+            
         ],
     },
     {
         path: "*",
         element: <Error></Error>
     },
+    { path: "newtutor", element: <Private> <BecomeTutor /> </Private> },
     
 
 ]);

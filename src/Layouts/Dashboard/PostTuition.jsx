@@ -61,7 +61,7 @@ const PostTuition = () => {
                         <legend className="fieldset-legend">Location</legend>
                         <input {...register('location')} type="text" className="input" placeholder="Enter your location" />
 
-                        <legend className="fieldset-legend">Allowance</legend>
+                        <legend className="fieldset-legend">Budget</legend>
                         <input {...register('fee')} type="text" className="input" placeholder="How much do you want to pay?" required />
 
                         <button type="submit" className="btn btn-ghost text-xl h-15 mt-5 bg-gray-700 hover:bg-gray-900">Submit</button>

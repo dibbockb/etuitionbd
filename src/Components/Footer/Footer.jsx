@@ -24,8 +24,8 @@ const Footer = () => {
                         <a className="w-9.375rem font-light text-gray-300">Services</a>
                         <a className="w-9.375rem font-light text-gray-300">Carrers</a>
                         <div className="flex flex-col">
-                            <p className="font-light text-gray-300 flex items-center gap-2"> <IoMail /> Email : eTuition@web.com</p>
-                            <p className="font-light text-gray-300 flex items-center gap-2"><PiPhoneFill /> Phone No: 01xxx xxx xxx</p>
+                            <p className="font-light text-gray-300 flex items-center gap-2"> <IoMail /> Email : eTuition@demo.com</p>
+                            <p className="font-light text-gray-300 flex items-center gap-2"><PiPhoneFill /> Phone No: 01 234 567 890</p>
                         </div>
                     </div>
 

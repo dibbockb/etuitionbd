@@ -29,7 +29,6 @@ const Navbar = () => {
 
     return (
         <div>
-            {/* <div className="navbar bg-base-100 shadow-sm flex justify-between px-50"> */}
             <div className="navbar bg-base-100 shadow-sm flex justify-between px-50">
                 <div className="">
                     <Logo></Logo>
@@ -62,16 +61,16 @@ const Navbar = () => {
                 </div>
 
                 {user ? (
-                    <div>
+                    <div >
                         <div className="dropdown dropdown-bottom dropdown-center rounded-full flex justify-center items-center ">
                             <div
                                 tabIndex={0}
                                 role="button"
-                                className="btn btn-ghost rounded-full"
+                                className="btn btn-ghost rounded-full "
                             >
                                 {user.photoURL ? (
                                     <img
-                                        className="w-9 h-9 rounded-full"
+                                        className="w-9 h-9 rounded-full "
                                         src={user.photoURL}
                                         alt="User Profile"
                                         title={user.displayName}

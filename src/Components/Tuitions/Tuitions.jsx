@@ -13,7 +13,7 @@ const Tuitions = () => {
     const handlePostTuition = () => {
         console.log(`clicked`);
     }
-    
+
     useEffect(() => {
         setLoading(true)
         axiosSecure
@@ -35,24 +35,25 @@ const Tuitions = () => {
     return (
         <>
             <div>
-                
+                    
+
                 <div className="flex justify-center items-center text-center flex-col">
-                        <h3 className="text-4xl text-white text-center pt-15">All Tuitions</h3>
+                    <h3 className="text-4xl text-white text-center pt-15">All Tuitions</h3>
 
-      <Link 
-      className="btn btn-ghost w-[20rem] h-20 mt-5 rounded-2xl bg-gray-900 text-2xl hover:scale-103" 
-      to={'/dashboard/newtuition'}
-      >
-    <IoMdAdd className="scale-120" /> Post a Tuition</Link>
+                    <Link
+                        className="btn btn-ghost w-[20rem] h-20 mt-5 rounded-2xl bg-gray-900 text-2xl hover:scale-103"
+                        to={'/dashboard/newtuition'}
+                    >
+                        <IoMdAdd className="scale-120" /> Post a Tuition</Link>
 
-      </div>
+                </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-8">
 
                     {tuitions.map((tuition) => (
                         <div
                             key={tuition._id}
-                            onClick={() => {navigate(`/tuitions/${tuition._id}`)}}
+                            onClick={() => { navigate(`/tuitions/${tuition._id}`) }}
                             className="card bg-gray-800 shadow rounded-xl hover:scale-103 transition duration-300"
                         >
                             <div className="h-64 rounded-t-xl overflow-hidden">

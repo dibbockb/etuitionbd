@@ -169,7 +169,7 @@ const TuitionInfo = () => {
           const application = {
             tuitionId: tuition._id,
             tuitionTitle: tuition.title,
-            applicationStatus: 'pending',
+            applicationStatus: 'Pending',
             tutorName: currentDBUser?.displayName || "N/A",
             tutorEmail: user?.email || "N/A",
             tutorQualifications: tutorQual,
@@ -273,7 +273,9 @@ const TuitionInfo = () => {
               Apply as Tutor
             </button>
 
-            <button
+            
+
+            {isCreator && <button
               onClick={handleDeleteTuition}
               disabled={!isCreator}
               className={`btn btn-lg rounded-full ${isCreator
@@ -282,7 +284,7 @@ const TuitionInfo = () => {
                 }`}
             >
               <MdDelete />
-            </button>
+            </button>}
 
           </div>
         </div>

@@ -32,6 +32,28 @@ const Register = () => {
                 photoURL = uploadRes?.data?.data?.url || '';
             }
 
+            if (data.userRole === "tutor") {
+                const tutorProfile = {
+                    userId: data.insertedId,
+                    email: data.email,
+                    displayName: data.name || data.email,
+                    photoURL: `https://dummyimage.com/600x800/1a1a2e/ffffff.png&text=${data.name}`,
+                    userPhone: userPhone,
+                    salary: 5000,
+                    subject: data.subject || "",
+                    mode: "online",
+                    userRole: "tutor",
+                    isAdmin: false,
+                    createdAt: new Date(),
+                };
+
+                try {
+                    await axiosSecure.post("/tutors", tutorProfile);
+                } catch (err) {
+                    console.error("Failed", err);
+                }
+            }
+
             // >>> databsae
             const userInfo = {
                 email: data.email,
@@ -54,7 +76,7 @@ const Register = () => {
                 timer: 1000
             });
             navigate("/dashboard");
-            
+
         } catch (error) {
             console.error(error);
             Swal.fire({

@@ -7,7 +7,9 @@ import { Outlet } from "react-router";
 const RootLayout = () => {
   return (
     <div>
-      <Navbar></Navbar>
+      <div className="sticky top-0 z-50 bg-base-100 shadow-md">
+        <Navbar />
+      </div>
       <Outlet></Outlet>
       <Footer></Footer>
     </div>
