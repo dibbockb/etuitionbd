@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loading from "../Loading/Loading";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { MdDelete } from "react-icons/md";
 
 const TuitionInfo = () => {
   const { id } = useParams();
@@ -49,14 +50,11 @@ const TuitionInfo = () => {
     Swal.fire({
       title: "Edit Tuition Information",
       html: `
-        <input id="subject" class="swal2-input" placeholder="Subject" value="${
-          tuition?.subject || ""
+        <input id="subject" class="swal2-input" placeholder="Subject" value="${tuition?.subject || ""
         }">
-        <input id="location" class="swal2-input" placeholder="Location" value="${
-          tuition?.location || ""
+        <input id="location" class="swal2-input" placeholder="Location" value="${tuition?.location || ""
         }">
-        <input id="fee" type="number" class="swal2-input" placeholder="Fee" value="${
-          tuition?.fee || ""
+        <input id="fee" type="number" class="swal2-input" placeholder="Fee" value="${tuition?.fee || ""
         }">
       `,
       showCancelButton: true,
@@ -69,22 +67,134 @@ const TuitionInfo = () => {
           image: `https://dummyimage.com/600x400/000/fff.png&text=${subject.value}`,
         };
         return updatedValues;
-      },
+      }
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          const updatedValues = result.value;
+          axiosSecure
+            .patch(`/tuitions/${tuition._id}`, updatedValues)
+            .then(() => {
+              Swal.fire("Updated!", "Tuition updated successfully.", "success");
+              refetch();
+            })
+            .catch(() => {
+              Swal.fire("Error", "Failed to update tuition.", "error");
+            });
+        }
+      });
+  };
+
+  //handle payment
+  const handlePayment = async () => {
+    const paymentInfo = {
+      fee: tuition.fee * 100,
+      tuitionId: tuition._id,
+      creatorEmail: tuition.creatorEmail,
+      subject: tuition.subject,
+    }
+    const res = await axiosSecure.post(`/checkout`, paymentInfo)
+
+    if (res.data.url) {
+      window.location.href = res.data.url;
+    }
+    else {
+      Swal.fire("Error", "Failed to initiate payment.", "error");
+    }
+
+  }
+
+  //delete tuition
+  const handleDeleteTuition = () => {
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        const updatedValues = result.value;
-        axiosSecure
-          .patch(`/tuitions/${tuition._id}`, updatedValues)
+        axiosSecure.delete(`/tuitions/delete/${tuition._id}`)
           .then(() => {
-            Swal.fire("Updated!", "Tuition updated successfully.", "success");
-            refetch();
+            Swal.fire(
+              'Deleted!',
+              'Your tuition has been deleted.',
+              'success'
+            );
+            navigate('/tuitions');
           })
           .catch(() => {
-            Swal.fire("Error", "Failed to update tuition.", "error");
+            Swal.fire("Error", "Failed to delete tuition.", "error");
           });
       }
     });
-  };
+
+    //apply as tutor
+    const handleApplyasTutor = () => {
+
+
+
+    }
+
+  }
+
+  //apply as tutor
+  const handleApplyasTutor = async () => {
+
+    const result = await Swal.fire( 
+      {
+        title: "Apply for this Tuition",
+        html:
+          `<input readOnly id="tutorname" class="swal2-input font-medium bg-gray-900 border border-gray-600 text-white" placeholder="name" value="${currentDBUser?.displayName || ""}">
+        <input readOnly id="tutoremail" class="swal2-input font-medium bg-gray-900 border border-gray-600 text-white" placeholder="email" value="${user?.email || ""}">
+        <input required id="tutorqual" class="swal2-input bg-gray-900 border border-gray-600 text-white" placeholder="Qualification">
+        <input required id="tutorexperience" class="swal2-input bg-gray-900 border border-gray-600 text-white" placeholder="Experience">
+        <input required id="tutorsalary" type="number" class="swal2-input bg-gray-900 border border-gray-600 text-white" placeholder="Expected Salary" ">`,
+        showCancelButton: true,
+        confirmButtonText: "Apply",
+
+        preConfirm: () => {
+          const tutorQual = document.getElementById("tutorqual").value.trim();
+          const tutorExp = document.getElementById("tutorexperience").value.trim();
+          const tutorSalaryInput = document.getElementById("tutorsalary").value;
+
+          if (!tutorQual || !tutorExp || !tutorSalaryInput) {
+            Swal.showValidationMessage('Please enter all fields');
+            return false;
+          }
+
+          const application = {
+            tuitionId: tuition._id,
+            tuitionTitle: tuition.title,
+            applicationStatus: 'pending',
+            tutorName: currentDBUser?.displayName || "N/A",
+            tutorEmail: user?.email || "N/A",
+            tutorQualifications: tutorQual,
+            tutorExperience: tutorExp,
+            tutorSalary: Number(tutorSalaryInput),
+            appliedAt: new Date(),
+          };
+
+          return application;
+        }
+      }
+    ); 
+
+    if (result.isConfirmed) {
+      try {
+        await axiosSecure.post(`/apply`, result.value);
+        Swal.fire("Success!", "Your application has been submitted!", "success");
+        refetch
+      } catch (error) {
+        const msg = error.response?.data?.message || "Failed to submit application.";
+        Swal.fire("Error", msg, "error");
+      }
+    }
+};
+
 
   return (
     <div className="flex justify-center py-10 bg-gray-900">
@@ -111,7 +221,7 @@ const TuitionInfo = () => {
               </div>
             </div>
             <div className="bg-gray-700 rounded-lg p-4">
-              <div className="text-gray-400 text-xl">Approval Status</div>
+              <div className="text-gray-400 text-xl">Status</div>
               <div className="text-2xl text-white">
                 {tuition.approvalStatus || "Pending"}
               </div>
@@ -137,29 +247,43 @@ const TuitionInfo = () => {
             <button
               onClick={handleTuitionEdit}
               disabled={!isCreator}
-              className={`btn btn-lg rounded-l-3xl ${
-                isCreator
-                  ? "bg-green-600 hover:bg-green-700 text-black"
-                  : "bg-gray-600 cursor-not-allowed"
-              }`}
+              className={`btn btn-lg rounded-l-3xl ${isCreator
+                ? "bg-green-600 hover:bg-green-700 text-black"
+                : "bg-gray-600 cursor-not-allowed"
+                }`}
             >
               Edit Tuition
             </button>
 
-            <button className="btn btn-lg rounded bg-green-600 hover:bg-green-700 text-black">
+
+            <button
+              onClick={handlePayment}
+              className="btn btn-lg rounded bg-green-600 hover:bg-green-700 text-black">
               Pay Now
             </button>
 
             <button
+              onClick={handleApplyasTutor}
               disabled={!isTutor}
-              className={`btn btn-lg rounded-r-3xl ${
-                isTutor
-                  ? "bg-purple-500 hover:bg-purple-700 text-white"
-                  : "bg-gray-600 cursor-not-allowed"
-              }`}
+              className={`btn btn-lg rounded-r-3xl ${isTutor
+                ? "bg-purple-500 hover:bg-purple-700 text-white"
+                : "bg-gray-600 cursor-not-allowed"
+                }`}
             >
               Apply as Tutor
             </button>
+
+            <button
+              onClick={handleDeleteTuition}
+              disabled={!isCreator}
+              className={`btn btn-lg rounded-full ${isCreator
+                ? "bg-red-400 hover:bg-red-700 text-black"
+                : "bg-gray-600 cursor-not-allowed"
+                }`}
+            >
+              <MdDelete />
+            </button>
+
           </div>
         </div>
       </div>
