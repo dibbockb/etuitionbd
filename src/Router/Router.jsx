@@ -13,6 +13,10 @@ import Error from "../Components/Error/Error";
 import TuitionInfo from "../Components/Tuitions/TuitionInfo";
 import Tutorinfo from "../Components/Tutors/Tutorinfo";
 import Private from "../Components/AuthLayout/Private";
+import MyProfile from "../Layouts/Dashboard/MyProfile";
+import MyTuitions from "../Layouts/Dashboard/MyTuitions";
+import MyPayments from "../Layouts/Dashboard/MyPayments";
+import MyTutors from "../Layouts/Dashboard/MyTutors";
 
 
 export const router = createBrowserRouter([
@@ -39,7 +43,11 @@ export const router = createBrowserRouter([
         path: "dashboard",
         element: <Private> <Dashboard /> </Private>,
         children: [
-            { path: "newtuition", element: <Private> <PostTuition /></Private> },
+            { path: "profile", element: <Private> <MyProfile /></Private> },
+            { path: "my-tuitions", element: <Private> <MyTuitions /></Private> },
+            { path: "new-tuition", element: <Private> <PostTuition /></Private> },
+            { path: "my-tutors", element: <Private> <MyTutors /></Private> },
+            { path: "my-payments", element: <Private> <MyPayments /></Private> },
             
         ],
     },

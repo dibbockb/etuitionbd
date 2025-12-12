@@ -31,10 +31,10 @@ const TutorInfo = () => {
             className="w-80 h-80 object-cover rounded-full mx-auto shadow-2xl border-2 border-white"
           />
           <h1 className="text-5xl font-bold text-white mt-8">{tutor.displayName}</h1>
-          <p className="text-teal-400 text-2xl mt-2">{tutor.subject || "Private Tutor"}</p>
-          <div className="flex justify-center gap-2 mt-4">
+          <p className="text-gray-400 text-2xl mt-2">{tutor.email || "Private Tutor"}</p>
+          <div className=" gap-2 mt-4 flex justify-center items-center">
             <span className="text-yellow-400 text-3xl">★★★★★</span>
-            <span className="text-white text-xl">4.9 (87 reviews)</span>
+            <span className="text-white text-xl flex justify-center items-center gap-2">4.9 <span className="text-gray-400">(87 reviews)</span></span>
           </div>
         </div>
 

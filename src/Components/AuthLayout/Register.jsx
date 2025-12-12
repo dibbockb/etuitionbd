@@ -97,7 +97,7 @@ const Register = () => {
                     {/* name field */}
                     <label className="label">Name</label>
                     <input type="text"
-                        {...register('name', { required: true })}
+                        {...register('name', { rekquired: true })}
                         className="input"
                         placeholder="Your Name" />
                     {errors.name?.type === 'required' && <p className='text-red-500'>Name is required.</p>}

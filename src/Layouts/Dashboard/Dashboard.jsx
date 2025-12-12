@@ -1,24 +1,177 @@
 import React from 'react';
 import useAuth from '../../Components/Hooks/useAuth';
+import useRole from '../../Components/Hooks/useRole';
 import Logo from '../../Components/Logo/Logo';
-import PostTuition from './PostTuition';
-import BecomeTutor from './BecomeTutor';
-import { Outlet } from 'react-router';
-
+import { Outlet, NavLink } from 'react-router';
+import { FaListUl, FaChalkboardTeacher } from 'react-icons/fa';
+import { RiGraduationCapFill, RiHome7Fill } from 'react-icons/ri';
+import { MdAdminPanelSettings } from 'react-icons/md';
+import { MdOutlineAttachMoney } from "react-icons/md";
+import { IoIosSettings } from "react-icons/io";
+import { IoAddOutline } from 'react-icons/io5';
+import { FaUserGraduate } from 'react-icons/fa6';
 
 const Dashboard = () => {
+  const { user } = useAuth();
+  const { role } = useRole();
 
-    const { user } = useAuth();
+  const isAdmin = role === "Admin";
+  const isTutor = role === "Tutor";
+  const isStudent = role === "Student";
 
+  return (
+    <div className="bg-linear-to-l bg-[#101828] min-h-screen">
+      <div className="flex flex-col md:flex-row max-w-7xl mx-auto h-screen">
 
-    return (
-        <div className="flex flex-col justify-center items-center  ">
+    {/* //panel  */}
+        <aside className="w-full md:w-80  border-r border-black/30">
+          <div className="p-8 text-center border-b border-black/30">
+            <Logo/>
             <br />
-            <Logo className=""></Logo>
-            <h5 className="text-5xl flex text-center my-2 text-white">Dashboard</h5>
-            <Outlet></Outlet>
-        </div>
-    );
+            <h2 className="text-2xl font-bold text-white">{user?.displayName}</h2>
+            <p className="text-gray-200 text-lg mt-2 flex items-center justify-center gap-2">
+              {isAdmin && <><MdAdminPanelSettings /> Admin</>}
+              {isTutor && <><FaChalkboardTeacher /> Tutor</>}
+              {isStudent && <><FaUserGraduate /> Student</>}
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 mt-3 px-3">
+            <NavLink
+              to="/dashboard"
+              end
+              className={({ isActive }) =>
+                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+              }
+            >
+              <RiHome7Fill className="text-2xl" />
+              <span className="text-lg font-medium">Dashboard</span>
+            </NavLink>
+
+
+              {/* //student dashboard buttons */}
+
+              {isStudent && (
+              <NavLink
+                to="/dashboard/new-tuition"
+                className={({ isActive }) =>
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                }
+              >
+                <IoAddOutline className="text-3xl" />
+                <span className="text-lg font-medium">Post Tuition</span>
+              </NavLink>
+            )}
+            
+            {isStudent && (
+              <NavLink
+                to="/dashboard/my-tuitions"
+                className={({ isActive }) =>
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                }
+              >
+                <FaListUl className="text-2xl shrink-0" />
+                <span className="text-lg font-medium">My Tuitions</span>
+              </NavLink>
+            )}
+
+            {isStudent && (
+              <NavLink
+                to="/dashboard/my-tutors"
+                className={({ isActive }) =>
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                }
+              >
+                <RiGraduationCapFill className="text-2xl" />
+                <span className="text-lg font-medium">Tutors</span>
+              </NavLink>
+            )}
+            {isStudent && (
+              <NavLink
+                to="/dashboard/my-payments"
+                className={({ isActive }) =>
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all  ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                }
+              >
+                <MdOutlineAttachMoney className="text-2xl" />
+                <span className="text-lg font-medium">Payments</span>
+              </NavLink>
+            )}
+            {isStudent && (
+              <NavLink
+                to="/dashboard/profile"
+                className={({ isActive }) =>
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                }
+              >
+                <IoIosSettings className="text-2xl" />
+                <span className="text-lg font-medium">Profile</span>
+              </NavLink>
+            )}
+
+
+
+
+
+
+              {/* //tutor dashboard buttons */}
+            {isTutor && (
+              <>
+                <NavLink
+                  to="/dashboard/post-tuition"
+                  className={({ isActive }) =>
+                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                  }
+                >
+                  <FaChalkboardTeacher className="text-2xl" />
+                  <span className="text-lg font-medium">Post Tuition</span>
+                </NavLink>
+                <NavLink
+                  to="/dashboard/my-tuitions"
+                  className={({ isActive }) =>
+                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                  }
+                >
+                  <FaListUl className="text-2xl" />
+                  <span className="text-lg font-medium">My Tuitions</span>
+                </NavLink>
+              </>
+            )}
+              {/* //admin dashboard buttons */}
+            {isAdmin && (
+              <>
+                <NavLink
+                  to="/dashboard/manage-users"
+                  className={({ isActive }) =>
+                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                  }
+                >
+                  <FaUsersCog className="text-2xl" />
+                  <span className="text-lg font-medium">Manage Users</span>
+                </NavLink>
+                <NavLink
+                  to="/dashboard/all-tuitions"
+                  className={({ isActive }) =>
+                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                  }
+                >
+                  <FaListUl className="text-2xl" />
+                  <span className="text-lg font-medium">All Tuitions</span>
+                </NavLink>
+              </>
+            )}
+          </div>
+        </aside>
+
+{/* //outlet */}
+        <main className="flex-1 w-full p-2 md:p-10  overflow-y-auto">
+          <div className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 p-10 min-h-screen">
+            <Outlet />
+          </div>
+        </main>
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;
