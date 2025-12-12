@@ -10,6 +10,10 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import { IoIosSettings } from "react-icons/io";
 import { IoAddOutline } from 'react-icons/io5';
 import { FaUserGraduate } from 'react-icons/fa6';
+import { BiSolidDashboard } from "react-icons/bi";
+import { PiListDashesFill } from "react-icons/pi";
+import { BsCheckAll } from "react-icons/bs";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -31,7 +35,7 @@ const Dashboard = () => {
             <h2 className="text-2xl font-bold text-white">{user?.displayName}</h2>
             <p className="text-gray-200 text-lg mt-2 flex items-center justify-center gap-2">
               {isAdmin && <><MdAdminPanelSettings /> Admin</>}
-              {isTutor && <><FaChalkboardTeacher /> Tutor</>}
+              {isTutor && <><FaUserGraduate /> Tutor</>}
               {isStudent && <><FaUserGraduate /> Student</>}
             </p>
           </div>
@@ -44,7 +48,7 @@ const Dashboard = () => {
                 `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
               }
             >
-              <RiHome7Fill className="text-2xl" />
+              <BiSolidDashboard className="text-2xl" />
               <span className="text-lg font-medium">Dashboard</span>
             </NavLink>
 
@@ -59,10 +63,10 @@ const Dashboard = () => {
                 }
               >
                 <IoAddOutline className="text-3xl" />
-                <span className="text-lg font-medium">Post Tuition</span>
+                <span className="text-lg font-medium">Add Tuition</span>
               </NavLink>
             )}
-            
+
             {isStudent && (
               <NavLink
                 to="/dashboard/my-tuitions"
@@ -86,6 +90,7 @@ const Dashboard = () => {
                 <span className="text-lg font-medium">Tutors</span>
               </NavLink>
             )}
+
             {isStudent && (
               <NavLink
                 to="/dashboard/my-payments"
@@ -97,6 +102,7 @@ const Dashboard = () => {
                 <span className="text-lg font-medium">Payments</span>
               </NavLink>
             )}
+
             {isStudent && (
               <NavLink
                 to="/dashboard/profile"
@@ -110,33 +116,44 @@ const Dashboard = () => {
             )}
 
 
-
-
-
-
               {/* //tutor dashboard buttons */}
-            {isTutor && (
-              <>
-                <NavLink
-                  to="/dashboard/post-tuition"
-                  className={({ isActive }) =>
-                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
-                  }
-                >
-                  <FaChalkboardTeacher className="text-2xl" />
-                  <span className="text-lg font-medium">Post Tuition</span>
-                </NavLink>
-                <NavLink
-                  to="/dashboard/my-tuitions"
-                  className={({ isActive }) =>
-                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
-                  }
-                >
-                  <FaListUl className="text-2xl" />
-                  <span className="text-lg font-medium">My Tuitions</span>
-                </NavLink>
-              </>
+              {isTutor && (
+              <NavLink
+                to="/dashboard/applied-tuitions"
+                className={({ isActive }) =>
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                }
+              >
+                <PiListDashesFill className="text-2xl" />
+                <span className="text-lg font-medium">Applications</span>
+              </NavLink>
             )}
+
+              {isTutor && (
+              <NavLink
+                to="/dashboard/approved-tuitions"
+                className={({ isActive }) =>
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                }
+              >
+                <BsCheckAll className="text-2xl" />
+                <span className="text-lg font-medium">Approved Tuitions</span>
+              </NavLink>
+            )}
+
+              {isTutor && (
+              <NavLink
+                to="/dashboard/revenue"
+                className={({ isActive }) =>
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                }
+              >
+                <RiMoneyDollarCircleLine className="text-2xl" />
+                <span className="text-lg font-medium">Revenue</span>
+              </NavLink>
+            )}
+
+            
               {/* //admin dashboard buttons */}
             {isAdmin && (
               <>

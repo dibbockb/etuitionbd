@@ -17,6 +17,9 @@ import MyProfile from "../Layouts/Dashboard/MyProfile";
 import MyTuitions from "../Layouts/Dashboard/MyTuitions";
 import MyPayments from "../Layouts/Dashboard/MyPayments";
 import MyTutors from "../Layouts/Dashboard/MyTutors";
+import AppliedTuitions from "../Layouts/Dashboard/AppliedTuitions";
+import ApprovedTuitoins from "../Layouts/Dashboard/ApprovedTuitoins";
+import Revenue from "../Layouts/Dashboard/Revenue";
 
 
 export const router = createBrowserRouter([
@@ -48,6 +51,9 @@ export const router = createBrowserRouter([
             { path: "new-tuition", element: <Private> <PostTuition /></Private> },
             { path: "my-tutors", element: <Private> <MyTutors /></Private> },
             { path: "my-payments", element: <Private> <MyPayments /></Private> },
+            { path: "applied-tuitions", element: <Private> <AppliedTuitions /></Private> },
+            { path: "approved-tuitions", element: <Private> <ApprovedTuitoins /></Private> },
+            { path: "revenue", element: <Private> <Revenue /></Private> },
             
         ],
     },
