@@ -35,7 +35,7 @@ const Tutors = () => {
       <div className="flex justify-center items-center text-center flex-col">
         <h3 className="text-4xl text-white text-center pt-15">All Tutors</h3>
       <Link 
-      className="btn btn-ghost w-[20rem] h-20 mt-5 rounded-2xl bg-gray-900 text-2xl hover:scale-103"
+      className="btn w-[20rem] h-20 mt-5 rounded-4xl text-2xl hover:scale-103  btn-neutral bg-teal-500 text-black hover:bg-teal-300/50"
     to={'/newtutor'}>
         <IoPersonAdd className="scale-105 mr-2" /> Become a Tutor!</Link>
       </div>

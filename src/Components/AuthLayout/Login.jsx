@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../Hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from './SocialLogin';
 import Swal from 'sweetalert2';
+import { Fade } from "react-awesome-reveal";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { signInUser } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
-
-
+    const [isClicked, setIsClicked] = useState(false);
+    
+    
+    
     const handleLogin = (data) => {
-        console.log('form data', data);
+        setIsClicked(true);
         signInUser(data.email, data.password)
             .then(result => {
                 navigate('/dashboard')
@@ -31,11 +34,12 @@ const Login = () => {
                     title: 'Login failed',
                     text: error.response?.data?.error?.message || error.message || 'Please try again'
                 });
+                setIsClicked(false);
             })
     }
 
-    return (
-        <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
+    return ( <Fade className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
+        <div className="">
             <h3 className="text-3xl text-center">Welcome back!</h3>
             <p className='text-center'>Please Login</p>
             <form className="card-body" onSubmit={handleSubmit(handleLogin)}>
@@ -54,15 +58,29 @@ const Login = () => {
 
 
                     <a className="link link-hover flex justify-center mt-2">Forgot password?</a>
-                    <button className="btn btn-neutral mt-4 rounded-2xl">Login</button>
+
+                    <button
+                        className="btn btn-neutral mt-4 rounded-2xl bg-teal-500 text-black hover:bg-teal-300/50"
+                        disabled={isClicked} 
+                    >
+                        {isClicked ? (
+                            <span className="loading loading-spinner loading-xs"></span>
+                        ) : (
+                            'Login'
+                        )}
+                    </button>
+
+                    
                 </fieldset>
                 <p className="flex justify-center gap-1.5">New here? <Link
                     state={location.state}
                     className='text-blue-400 link link-hover'
                     to="/register">Register</Link></p>
             </form>
+            
             <SocialLogin></SocialLogin>
-        </div>
+        </div></Fade>
+       
     );
 };
 

@@ -6,12 +6,20 @@ import Loading from "../Loading/Loading";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { MdDelete } from "react-icons/md";
+import useRole from "../Hooks/useRole";
+import { FiEdit } from "react-icons/fi";
+import { IoArrowForward } from "react-icons/io5";
+import { GrFormNext } from "react-icons/gr";
 
 const TuitionInfo = () => {
   const { id } = useParams();
   const { user } = useAuth();
+  const { role } = useRole();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+  const isAdmin = role === "Admin";
+  const isTutor = role === "Tutor";
+  const isStudent = role === "Student";
 
   const { data: users = [], isLoading: usersLoading } = useQuery({
     queryKey: ["users"],
@@ -39,11 +47,6 @@ const TuitionInfo = () => {
     navigate("/tuitionnotfound");
     return null;
   }
-
-  const toUSD = (tuition.fee / 125).toFixed(2);
-  const currentDBUser = users.find((u) => u.email === user?.email);
-  const isCreator = user?.email === tuition?.creatorEmail;
-  const isTutor = currentDBUser?.userRole === "tutor";
 
   //edit tuition
   const handleTuitionEdit = () => {
@@ -144,7 +147,7 @@ const TuitionInfo = () => {
   //apply as tutor
   const handleApplyasTutor = async () => {
 
-    const result = await Swal.fire( 
+    const result = await Swal.fire(
       {
         title: "Apply for this Tuition",
         html:
@@ -181,7 +184,7 @@ const TuitionInfo = () => {
           return application;
         }
       }
-    ); 
+    );
 
     if (result.isConfirmed) {
       try {
@@ -193,46 +196,51 @@ const TuitionInfo = () => {
         Swal.fire("Error", msg, "error");
       }
     }
-};
+  };
 
+  const toUSD = (tuition.fee / 125).toFixed(2);
+  const isCreator = user?.email === tuition?.creatorEmail;
+  const currentDBUser = users.find((u) => u.email === user?.email);
 
   return (
-    <div className="flex justify-center py-10 bg-gray-900">
-      <div className="card w-full max-w-4xl shadow-2xl bg-gray-800 text-white border border-gray-700">
-        <figure>
+    <div className="flex justify-center py-10 bg-gray-900 ">
+      <div className="card w-full max-w-4xl shadow-2xl bg-gray-800 text-white ">
+        <div>
           <img
             src={tuition.image}
             alt={tuition.title}
-            className="w-full h-96 object-cover"
+            className="w-full h-50 object-cover"
           />
-        </figure>
+        </div>
+        
         <div className="card-body p-8">
-          <h2 className="card-title text-6xl font-extrabold mb-2 text-white">
-            {tuition.title}
-            <div className="text-3xl text-white">{tuition.subject}</div>
+          <h2 className="card-title text-6xl font-bold mb-2 text-white flex flex-col">
+            {tuition.subject}
+            <div className="text-xl text-gray-400 font-normal ">Created By : </div>
+            <div className="text-3xl text-white font-normal">{tuition?.creatorEmail}</div>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-gray-700 rounded-lg p-4">
+            <div className="bg-gray-700 rounded p-4">
               <div className="text-gray-400 text-xl">Payment Status</div>
               <div className="text-2xl text-white">
                 {tuition.paymentStatus?.charAt(0).toUpperCase() +
                   tuition.paymentStatus?.slice(1)}
               </div>
             </div>
-            <div className="bg-gray-700 rounded-lg p-4">
+            <div className="bg-gray-700 rounded p-4">
               <div className="text-gray-400 text-xl">Status</div>
               <div className="text-2xl text-white">
                 {tuition.approvalStatus || "Pending"}
               </div>
             </div>
-            <div className="bg-gray-700 rounded-lg p-4">
+            <div className="bg-gray-700 rounded p-4">
               <div className="text-gray-400 text-xl">Location</div>
               <div className="text-2xl">
                 {tuition.mode} : {tuition.location}
               </div>
             </div>
-            <div className="bg-gray-700 rounded-lg p-4">
+            <div className="bg-gray-700 rounded p-4">
               <div className="text-gray-400 text-xl">Fee</div>
               <div className="flex gap-2 items-center">
                 <div className="text-green-400 font-bold text-3xl">
@@ -244,44 +252,40 @@ const TuitionInfo = () => {
           </div>
 
           <div className="card-actions justify-center gap-2 mt-8">
-            <button
+
+            {isCreator && <button
               onClick={handleTuitionEdit}
               disabled={!isCreator}
-              className={`btn btn-lg rounded-l-3xl ${isCreator
-                ? "bg-green-600 hover:bg-green-700 text-black"
-                : "bg-gray-600 cursor-not-allowed"
-                }`}
+              className="btn btn-neutral rounded-2xl bg-teal-500 text-black hover:bg-teal-300/50 w-1/3 h-12 text-xl"
             >
+              <FiEdit></FiEdit>
               Edit Tuition
-            </button>
+            </button>}
+            
 
 
-            <button
+            {isCreator && <button
               onClick={handlePayment}
-              className="btn btn-lg rounded bg-green-600 hover:bg-green-700 text-black">
+              className="btn btn-neutral rounded-2xl bg-teal-500 text-black hover:bg-teal-300/50 w-1/3 h-12 text-xl">
               Pay Now
-            </button>
+              <IoArrowForward></IoArrowForward>
+            </button>}
 
+            {isTutor && 
             <button
               onClick={handleApplyasTutor}
               disabled={!isTutor}
-              className={`btn btn-lg rounded-r-3xl ${isTutor
-                ? "bg-purple-500 hover:bg-purple-700 text-white"
-                : "bg-gray-600 cursor-not-allowed"
-                }`}
+              className="btn btn-neutral rounded-2xl bg-teal-500 text-black hover:bg-teal-300/50 w-1/3 h-12 text-xl"
             >
               Apply as Tutor
-            </button>
+              <GrFormNext></GrFormNext>
+            </button>}
 
-            
+
 
             {isCreator && <button
               onClick={handleDeleteTuition}
-              disabled={!isCreator}
-              className={`btn btn-lg rounded-full ${isCreator
-                ? "bg-red-400 hover:bg-red-700 text-black"
-                : "bg-gray-600 cursor-not-allowed"
-                }`}
+              className="btn btn-neutral rounded-full bg-teal-500 text-black h-12 text-xl hover:bg-red-500/85"
             >
               <MdDelete />
             </button>}

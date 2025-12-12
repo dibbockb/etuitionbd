@@ -15,6 +15,7 @@ import { PiListDashesFill } from "react-icons/pi";
 import { BsCheckAll } from "react-icons/bs";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { HiMiniListBullet } from "react-icons/hi2";
+import { Fade } from "react-awesome-reveal";
 
 const Dashboard = () => {
     const { user } = useAuth();
@@ -25,7 +26,7 @@ const Dashboard = () => {
     const isStudent = role === "Student";
 
     return (
-        <div className="bg-linear-to-l bg-[#101828] min-h-screen">
+        <div className="bg-linear-to-br from-[#0f172a] via-[#101828] to-[#1e293b] min-h-screen">
             <div className="flex flex-col md:flex-row max-w-7xl mx-auto h-screen">
 
                 {/* //panel  */}
@@ -49,7 +50,7 @@ const Dashboard = () => {
                             to="/dashboard"
                             end
                             className={({ isActive }) =>
-                                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
                             }
                         >
                             <BiSolidDashboard className="text-2xl" />
@@ -63,7 +64,7 @@ const Dashboard = () => {
                             <NavLink
                                 to="/dashboard/new-tuition"
                                 className={({ isActive }) =>
-                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
                                 }
                             >
                                 <IoAddOutline className="text-3xl" />
@@ -75,7 +76,7 @@ const Dashboard = () => {
                             <NavLink
                                 to="/dashboard/my-tuitions"
                                 className={({ isActive }) =>
-                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
                                 }
                             >
                                 <FaListUl className="text-2xl shrink-0" />
@@ -87,7 +88,7 @@ const Dashboard = () => {
                             <NavLink
                                 to="/dashboard/my-tutors"
                                 className={({ isActive }) =>
-                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
                                 }
                             >
                                 <RiGraduationCapFill className="text-2xl" />
@@ -99,7 +100,7 @@ const Dashboard = () => {
                             <NavLink
                                 to="/dashboard/my-payments"
                                 className={({ isActive }) =>
-                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all  ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all  ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
                                 }
                             >
                                 <MdOutlineAttachMoney className="text-2xl" />
@@ -111,7 +112,7 @@ const Dashboard = () => {
                             <NavLink
                                 to="/dashboard/profile"
                                 className={({ isActive }) =>
-                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
                                 }
                             >
                                 <IoIosSettings className="text-2xl" />
@@ -125,7 +126,7 @@ const Dashboard = () => {
                             <NavLink
                                 to="/dashboard/applied-tuitions"
                                 className={({ isActive }) =>
-                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
                                 }
                             >
                                 <PiListDashesFill className="text-2xl" />
@@ -137,7 +138,7 @@ const Dashboard = () => {
                             <NavLink
                                 to="/dashboard/approved-tuitions"
                                 className={({ isActive }) =>
-                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
                                 }
                             >
                                 <BsCheckAll className="text-2xl" />
@@ -149,7 +150,7 @@ const Dashboard = () => {
                             <NavLink
                                 to="/dashboard/revenue"
                                 className={({ isActive }) =>
-                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
                                 }
                             >
                                 <RiMoneyDollarCircleLine className="text-2xl" />
@@ -164,7 +165,7 @@ const Dashboard = () => {
                         <NavLink
                             to="/dashboard/admin/manage-users"
                             className={({ isActive }) =>
-                                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
                             }
                         >
                             <FaUsersCog className="text-2xl" />
@@ -175,7 +176,7 @@ const Dashboard = () => {
                         <NavLink
                             to="/dashboard/admin/manage-applications"
                             className={({ isActive }) =>
-                                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-teal-600 text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
                             }
                         >
                             <HiMiniListBullet className="text-2xl" />
@@ -192,7 +193,7 @@ const Dashboard = () => {
                 {/* //outlet */}
                 <main className="flex-1 w-full p-2 md:p-10  overflow-y-auto">
                     <div className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 p-10 min-h-screen">
-                        <Outlet />
+                        <Fade><Outlet /></Fade>
                     </div>
                 </main>
 

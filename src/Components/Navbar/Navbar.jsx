@@ -82,17 +82,17 @@ const Navbar = () => {
 
                             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box w-52 p-2 shadow">
 
-                                <li className="text-center py-2 text-xl font-medium border-b border-gray-200 mb-2">
+                                <li className="text-center py-2 text-xl font-medium border-b border-gray-600/50 mb-2">
                                     {user.displayName}</li>
 
                                 <li><a
                                     onClick={() => navigate("/dashboard")}
-                                    className="btn btn-ghost justify-center">
+                                    className="rounded w-full hover:bg-teal-500 hover:text-black flex justify-center">
                                     Dashboard</a></li>
 
                                 <li><button
                                     onClick={handleLogOut}
-                                    className="btn btn-ghost justify-center text-red-600">
+                                    className="rounded w-full hover:bg-teal-500 hover:text-red-600 flex justify-center">
                                     Logout</button></li>
                             </ul>
 

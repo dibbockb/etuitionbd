@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router';
 import axios from 'axios';
@@ -6,6 +6,7 @@ import useAuth from '../Hooks/useAuth';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import SocialLogin from './SocialLogin';
 import Swal from 'sweetalert2';
+import { Fade } from "react-awesome-reveal";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -13,9 +14,13 @@ const Register = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
+        const [isClicked, setIsClicked] = useState(false);
+    
 
 
     const handleRegistration = async (data) => {
+        setIsClicked(true);
+
         try {
             const profileImg = data.photo?.[0];
             const userPhone = data.userPhone || null;
@@ -84,11 +89,14 @@ const Register = () => {
                 title: 'Registration failed',
                 text: error.response?.data?.error?.message || error.message || 'Please try again'
             });
+            setIsClicked(true);
+        } finally {
+            setIsClicked(false);
         }
     }
 
     return (
-        <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
+        <Fade className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
             <h3 className="text-3xl text-center">Welcome to eTuition!</h3>
             <p className='text-center'>Please Register</p>
             <form className="card-body" onSubmit={handleSubmit(handleRegistration)}>
@@ -145,7 +153,17 @@ const Register = () => {
                     <input type="file" {...register('photo', { required: false })} className="file-input" placeholder="Your Photo" />
 
                     <div><a className="link link-hover flex justify-center mt-2">Forgot password?</a></div>
-                    <button className="btn btn-neutral mt-4">Register</button>
+                    <button
+                        className="btn btn-neutral mt-4 rounded-2xl bg-teal-500 text-black hover:bg-teal-300/50"
+                        disabled={isClicked} 
+                    >
+                        {isClicked ? (
+                            <span className="loading loading-spinner loading-xs"></span>
+                        ) : (
+                            'Register'
+                        )}
+                    </button>
+                    {/* <button className="btn btn-neutral mt-4 rounded-2xl bg-teal-500 text-black hover:bg-teal-300/50">Register</button> */}
                 </fieldset>
 
                 <p className="flex justify-center gap-2">Already have an account? <Link
@@ -154,7 +172,7 @@ const Register = () => {
                     to="/login">Login</Link></p>
             </form>
             <SocialLogin></SocialLogin>
-        </div>
+        </Fade>
     );
 };
 

@@ -45,7 +45,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="footer-info font-light text-white pt-10">Copyright 2025 - Dibbo Chakraborty</div>
+                <div className="footer-info font-light text-white pt-10">Copyright 2025 - DivyaJit Chakraborty</div>
             </footer>
         </>
     );

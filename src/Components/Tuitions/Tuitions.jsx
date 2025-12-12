@@ -41,10 +41,10 @@ const Tuitions = () => {
                     <h3 className="text-4xl text-white text-center pt-15">All Tuitions</h3>
 
                     <Link
-                        className="btn btn-ghost w-[20rem] h-20 mt-5 rounded-2xl bg-gray-900 text-2xl hover:scale-103"
-                        to={'/dashboard/newtuition'}
+                        className="btn w-[20rem] h-20 mt-5 rounded-4xl text-2xl hover:scale-103  btn-neutral bg-teal-500 text-black hover:bg-teal-300/50"
+                        to={'/dashboard/new-tuition'}
                     >
-                        <IoMdAdd className="scale-120" /> Post a Tuition</Link>
+                    <IoMdAdd className="scale-120" /> Post a Tuition</Link>
 
                 </div>
 

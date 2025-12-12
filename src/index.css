@@ -8,6 +8,11 @@
   font-style: normal;
 }
 
+.btn-ghost {
+  @apply hover:bg-white/10;
+  @apply rounded
+}
+
 
 @import "tailwindcss";
 @plugin "daisyui";
@@ -62,3 +67,4 @@
   --depth: 1;
   --noise: 0;
 }
+

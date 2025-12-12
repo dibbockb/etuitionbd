@@ -29,7 +29,7 @@ const PostTuition = () => {
         showConfirmButton: false,
         timer: 2000
       });
-      navigate("/tuitions");
+      navigate("/dashboard/my-tuitions");
     } catch (err) {
       Swal.fire("Error", "Failed to submit tuition", "error");
     }
@@ -100,7 +100,7 @@ const PostTuition = () => {
 
             <button
               type="submit"
-              className="w-full py-5 bg-[#009689] text-white text-2xl rounded-2xl transform hover:scale-105 transition duration-100"
+              className="w-full py-5 bg-[#00bba7] text-black text-2xl rounded-2xl transform hover:scale-105 transition duration-100"
             >
               Submit
             </button>

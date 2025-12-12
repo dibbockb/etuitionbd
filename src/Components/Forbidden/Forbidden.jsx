@@ -1,33 +1,56 @@
 import Lottie from "react-lottie";
 import forbiddenAnimation from "../../assets/json/forbidden.json";
-import { Link } from "react-router";
+import Logo from "../Logo/Logo";
+import { NavLink } from "react-router";
+import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from "react-icons/md";
+
 const Forbidden = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <Lottie
-        options={{
-          loop: false,
-          autoplay: true,
-          animationData: forbiddenAnimation,
-        }}
-        height={200}
-        width={200}
-      ></Lottie>
-      <h1 className="text-3xl font-bold text-red-500">
-        You Are Forbidden to Access This Page
-      </h1>
-      <p className="text-lg text-gray-600 mt-2">
-        Please contact the administrator if you believe this is an error.
-      </p>
-      <div className="my-3 space-x-3">
-        <Link to="/" className="btn btn-primary text-black">
-          {" "}
-          Go to Home
-        </Link>
-        <Link className="btn btn-secondary" to="/dashboard">
-          {" "}
-          Go to Dashboard
-        </Link>
+    <div className="min-h-screen flex flex-col justify-center items-center px-4 pt-10">
+      <Logo />
+      <br />
+      <div className="flex flex-col items-center justify-center max-w-4xl w-full">
+        <div className="hidden md:block">
+          <Lottie
+            options={{
+              loop: true,
+              autoplay: true,
+              animationData: forbiddenAnimation,
+            }}
+            height={400}
+            width={400}
+          />
+        </div>
+        <div className="block md:hidden">
+          <Lottie
+            options={{
+              loop: true,
+              autoplay: true,
+              animationData: forbiddenAnimation,
+            }}
+            height={250}
+            width={250}
+          />
+        </div>
+
+        <h1 className="text-3xl md:text-5xl font-bold text-red-500 text-center mt-8 md:mt-12 px-4">
+          Sorry, You can't access this page
+        </h1>
+
+        <div className="mt-15 flex flex-col sm:flex-row gap-1 w-full max-w-md">
+          <NavLink
+            to="/"
+            className="btn btn-ghost btn-lg text-lg flex-1 justify-center"
+          >
+            <MdOutlineArrowBackIos /> Back to home
+          </NavLink>
+          <NavLink
+            to="/dashboard"
+            className="btn btn-ghost btn-lg text-lg flex-1 justify-center"
+          >
+            Dashboard <MdOutlineArrowForwardIos />
+          </NavLink>
+        </div>
       </div>
     </div>
   );
