@@ -20,6 +20,8 @@ import MyTutors from "../Layouts/Dashboard/MyTutors";
 import AppliedTuitions from "../Layouts/Dashboard/AppliedTuitions";
 import ApprovedTuitoins from "../Layouts/Dashboard/ApprovedTuitoins";
 import Revenue from "../Layouts/Dashboard/Revenue";
+import AdminManageUser from "../Layouts/Dashboard/AdminManageUser";
+import AdminManageApplications from "../Layouts/Dashboard/AdminManageApplications";
 
 
 export const router = createBrowserRouter([
@@ -54,6 +56,8 @@ export const router = createBrowserRouter([
             { path: "applied-tuitions", element: <Private> <AppliedTuitions /></Private> },
             { path: "approved-tuitions", element: <Private> <ApprovedTuitoins /></Private> },
             { path: "revenue", element: <Private> <Revenue /></Private> },
+            { path: "admin/manage-users", element: <Private> <AdminManageUser /></Private> },
+            { path: "admin/manage-applications", element: <Private> <AdminManageApplications /></Private> },
             
         ],
     },

@@ -58,7 +58,7 @@ const PostTuition = () => {
                 {...register('subject', { required: true })}
                 type="text"
                 placeholder="Physics, ICT, English"
-                className="w-full px-6 py-4 bg-white/10 border-1 border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
               {errors.subject && <p className="text-red">Subject is required</p>}
             </div>
