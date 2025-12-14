@@ -14,7 +14,7 @@ const Register = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
-        const [isClicked, setIsClicked] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
     
 
 

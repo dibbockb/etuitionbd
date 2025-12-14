@@ -61,7 +61,7 @@ const Navbar = () => {
                 </div>
 
                 {user ? (
-                    <div >
+                    <div className="">
                         <div className="dropdown dropdown-bottom dropdown-center rounded-full flex justify-center items-center ">
                             <div
                                 tabIndex={0}
@@ -92,7 +92,7 @@ const Navbar = () => {
 
                                 <li><button
                                     onClick={handleLogOut}
-                                    className="rounded w-full hover:bg-teal-500 hover:text-red-600 flex justify-center">
+                                    className="rounded w-full hover:bg-red-500/80 hover:text-white flex justify-center">
                                     Logout</button></li>
                             </ul>
 

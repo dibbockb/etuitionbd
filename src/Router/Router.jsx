@@ -24,6 +24,7 @@ import AdminManageUser from "../Layouts/Dashboard/AdminManageUser";
 import AdminManageApplications from "../Layouts/Dashboard/AdminManageApplications";
 import Forbidden from "../Components/Forbidden/Forbidden";
 import { Fade } from "react-awesome-reveal";
+import PaymentSuccess from "../Layouts/Dashboard/PaymentSuccess";
 
 
 export const router = createBrowserRouter([
@@ -53,6 +54,7 @@ export const router = createBrowserRouter([
             { path: "profile", element: <Private> <Fade> <MyProfile /></Fade> </Private> },
             { path: "new-tuition", element: <Private> <Fade> <PostTuition /></Fade> </Private> },
             { path: "my-payments", element: <Private> <Fade> <MyPayments /></Fade> </Private> },
+            { path: "payment-success", element: <Private> <Fade> <PaymentSuccess /></Fade> </Private> },
             { path: "my-tuitions", element: <Private> <Fade> <MyTuitions /></Fade> </Private> },
             { path: "my-tutors", element: <Private> <Fade> <MyTutors /></Fade> </Private> },
             { path: "applied-tuitions", element: <Private> <Fade> <AppliedTuitions /></Fade> </Private> },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -20,6 +20,8 @@ const TuitionInfo = () => {
   const isAdmin = role === "Admin";
   const isTutor = role === "Tutor";
   const isStudent = role === "Student";
+  const [isClicked, setIsClicked] = useState(false);
+
 
   const { data: users = [], isLoading: usersLoading } = useQuery({
     queryKey: ["users"],
@@ -90,6 +92,8 @@ const TuitionInfo = () => {
 
   //handle payment
   const handlePayment = async () => {
+    setIsClicked(true);
+
     const paymentInfo = {
       fee: tuition.fee * 100,
       tuitionId: tuition._id,
@@ -103,6 +107,8 @@ const TuitionInfo = () => {
     }
     else {
       Swal.fire("Error", "Failed to initiate payment.", "error");
+      setIsClicked(false);
+
     }
 
   }
@@ -170,6 +176,7 @@ const TuitionInfo = () => {
           }
 
           const application = {
+            creatorEmail: tuition.creatorEmail,
             tuitionId: tuition._id,
             tuitionTitle: tuition.title,
             applicationStatus: 'Pending',
@@ -201,6 +208,7 @@ const TuitionInfo = () => {
   const toUSD = (tuition.fee / 125).toFixed(2);
   const isCreator = user?.email === tuition?.creatorEmail;
   const currentDBUser = users.find((u) => u.email === user?.email);
+  
 
   return (
     <div className="flex justify-center py-10 bg-gray-900 ">
@@ -212,7 +220,7 @@ const TuitionInfo = () => {
             className="w-full h-50 object-cover"
           />
         </div>
-        
+
         <div className="card-body p-8">
           <h2 className="card-title text-6xl font-bold mb-2 text-white flex flex-col">
             {tuition.subject}
@@ -261,25 +269,31 @@ const TuitionInfo = () => {
               <FiEdit></FiEdit>
               Edit Tuition
             </button>}
-            
+
 
 
             {isCreator && <button
               onClick={handlePayment}
+              disabled={isClicked}
               className="btn btn-neutral rounded-2xl bg-teal-500 text-black hover:bg-teal-300/50 w-1/3 h-12 text-xl">
-              Pay Now
-              <IoArrowForward></IoArrowForward>
+
+              {isClicked ? (
+                <span className="loading loading-spinner loading-xs"></span>
+              ) : (
+                <div className="flex justify-center items-center">Pay now <IoArrowForward></IoArrowForward></div>
+              )}
+
             </button>}
 
-            {isTutor && 
-            <button
-              onClick={handleApplyasTutor}
-              disabled={!isTutor}
-              className="btn btn-neutral rounded-2xl bg-teal-500 text-black hover:bg-teal-300/50 w-1/3 h-12 text-xl"
-            >
-              Apply as Tutor
-              <GrFormNext></GrFormNext>
-            </button>}
+            {isTutor &&
+              <button
+                onClick={handleApplyasTutor}
+                disabled={!isTutor}
+                className="btn btn-neutral rounded-2xl bg-teal-500 text-black hover:bg-teal-300/50 w-1/3 h-12 text-xl"
+              >
+                Apply as Tutor
+                <GrFormNext></GrFormNext>
+              </button>}
 
 
 
