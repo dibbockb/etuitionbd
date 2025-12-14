@@ -4,13 +4,15 @@ import useAuth from "../../Components/Hooks/useAuth";
 import { useNavigate } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { MdDelete } from "react-icons/md";
-import { FiEdit } from "react-icons/fi";
+import { FiEdit, FiEdit3 } from "react-icons/fi";
+import Swal from "sweetalert2";
+import { GrView } from "react-icons/gr";
+
 
 const AppliedTuitions = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const tutorEmail = user?.email;
-    const navigate = useNavigate();
 
     const { data: myApplications = [], refetch } = useQuery({
         queryKey: ["my-applications", tutorEmail],
@@ -19,6 +21,86 @@ const AppliedTuitions = () => {
             return res.data;
         },
     });
+
+    const navigate = useNavigate();
+
+    const handleUpdateApplication = async (application) => {
+        const updateId = application._id;
+
+        const updateForm = await Swal.fire(
+            {
+                title: "Update Application",
+                html:
+                    `<input readOnly id="tutorname" class="swal2-input font-light bg-gray-900 border hover:cursor-none border-gray-600 text-gray-500/50" placeholder="name" value="${user.email}">
+            <input required id="tutorqual" class="swal2-input bg-gray-900 border border-gray-600 text-white" placeholder="Qualification" value="${application.tutorQualifications}">
+            <input required id="tutorexperience" class="swal2-input bg-gray-900 border border-gray-600 text-white" placeholder="Experience" value="${application.tutorExperience}">
+            <input required id="tutorsalary" type="number" class="swal2-input bg-gray-900 border border-gray-600 text-white" placeholder="Expected Salary" value="${application.tutorSalary}">`,
+                showCancelButton: true,
+                confirmButtonText: "Update",
+
+                preConfirm: () => {
+                    const tutorQual = document.getElementById("tutorqual").value.trim();
+                    const tutorExp = document.getElementById("tutorexperience").value.trim();
+                    const tutorSalaryInput = document.getElementById("tutorsalary").value;
+
+                    if (!tutorQual || !tutorExp || !tutorSalaryInput) {
+                        Swal.showValidationMessage('Please enter all fields');
+                        return false;
+                    }
+
+                    const updateData = {
+                        tutorEmail: user?.email,
+                        tutorQualifications: tutorQual,
+                        tutorExperience: tutorExp,
+                        tutorSalary: Number(tutorSalaryInput),
+                        editTime: new Date(),
+                    };
+
+                    return updateData;
+                }
+            }
+        );
+        if (updateForm.isConfirmed) {
+            try {
+                await axiosSecure.patch(`/update-application/${updateId}`, updateForm.value);
+                Swal.fire("Success!", "Your application has been updated!", "success");
+                refetch();
+            } catch (error) {
+                const msg = error.response?.data?.message || "Failed to update application.";
+                Swal.fire("Error", msg, "error");
+            }
+        }
+    }
+
+    const handleDeleteApplication = (application) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    axiosSecure.delete(`/applications/delete/${application._id}`)
+                        .then(() => {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your application has been deleted.',
+                                'success'
+                            );
+                            refetch();
+                        })
+                        .catch(() => {
+                            Swal.fire("Error", "Unable to delete", "error")
+                        })
+                }
+            })
+    }
+
+
 
     return (
         <div>
@@ -46,9 +128,9 @@ const AppliedTuitions = () => {
                                 <td className="text-center">{application.tuitionSubject}</td>
 
                                 <td className="text-center">
-                                    {application.applicationStatus === "Pending"
-                                        ? "Pending Approval"
-                                        : "Approved"}
+                                    {application.applicationStatus === "Approved"
+                                        ? "Approved"
+                                        : "Pending Approval"}
                                 </td>
 
                                 <td className="text-center">৳ {application.tutorSalary}</td>
@@ -60,23 +142,23 @@ const AppliedTuitions = () => {
                                     <button
                                         onClick={() =>
                                             navigate(`/tuitions/${application.tuitionId}`)}
-                                        className="btn btn-sm btn-neutral bg-teal-500 hover:bg-teal-600 text-black">
-                                        View</button>
+                                        className="btn btn-sm btn-neutral bg-teal-500 hover:bg-teal-600 text-black ">
+                                        <GrView /></button>
+
+                                    <button
+                                        onClick={() => 
+                                            handleUpdateApplication(application)
+                                        }
+                                        className="btn btn-sm btn-neutral bg-teal-500 hover:bg-teal-600 text-black" >
+                                        <FiEdit3 /></button>
+
 
                                     <button
                                         onClick={() =>
-                                            console.log(`clicked update button`)
+                                            handleDeleteApplication(application)
                                         }
-                                        className="btn btn-sm btn-neutral bg-teal-500 hover:bg-teal-600 text-black" >
-                                        Update</button>
-
-
-                                    <button
-                                        onClick={() =>
-                                            console.log(`clicked delete button`)
-                                        }
-                                        className="btn btn-sm btn-neutral bg-teal-500 hover:bg-teal-600 text-black" >
-                                        Delete</button>
+                                        className="btn btn-sm btn-neutral bg-teal-500 hover:bg-red-600/70 text-black" >
+                                        <MdDelete /></button>
                                 </td>
 
                             </tr>

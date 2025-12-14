@@ -130,7 +130,7 @@ const Dashboard = () => {
                                 }
                             >
                                 <PiListDashesFill className="text-2xl" />
-                                <span className="text-lg font-medium">Applications</span>
+                                <span className="text-lg font-medium">My Applications</span>
                             </NavLink>
                         }
 
@@ -142,7 +142,7 @@ const Dashboard = () => {
                                 }
                             >
                                 <BsCheckAll className="text-2xl" />
-                                <span className="text-lg font-medium">Approved Tuitions</span>
+                                <span className="text-lg font-medium">Ongoing Tuitions</span>
                             </NavLink>
                         }
 
