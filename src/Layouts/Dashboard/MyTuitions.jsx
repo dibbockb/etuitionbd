@@ -16,12 +16,8 @@ const MyTuitions = () => {
     const navigate = useNavigate();
     const [isClicked, setIsClicked] = useState(false);
 
-    const {
-        data: myTuitions = [],
-        refetch
-    } = useQuery({
-        queryKey: ['my-tuitions', currentUserEmail],
-        queryFn: async () => {
+    const {data: myTuitions = [],refetch} = 
+    useQuery({queryKey: ['my-tuitions', currentUserEmail],queryFn: async () => {
             const res = await axiosSecure.get(`/tuitions/creator/${user.email}`);
             return res.data;
         }
@@ -97,8 +93,7 @@ const MyTuitions = () => {
         });
 
 
-    }
-
+    };
     const handlePayment = async (tuition) => {
         setIsClicked(true);
 
@@ -119,7 +114,7 @@ const MyTuitions = () => {
 
         }
 
-    }
+    };
 
     return (
         <div>

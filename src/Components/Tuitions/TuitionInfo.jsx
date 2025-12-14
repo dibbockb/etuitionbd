@@ -177,6 +177,7 @@ const TuitionInfo = () => {
 
           const application = {
             creatorEmail: tuition.creatorEmail,
+            tuitionSubject: tuition.subject,
             tuitionId: tuition._id,
             tuitionTitle: tuition.title,
             applicationStatus: 'Pending',
