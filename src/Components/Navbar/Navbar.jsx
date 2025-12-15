@@ -86,9 +86,15 @@ const Navbar = () => {
                                     {user.displayName}</li>
 
                                 <li><a
+                                    onClick={() => navigate("/dashboard/profile")}
+                                    className="rounded w-full hover:bg-teal-500 hover:text-black flex justify-center">
+                                    Profile</a></li>
+                                    
+                                <li><a
                                     onClick={() => navigate("/dashboard")}
                                     className="rounded w-full hover:bg-teal-500 hover:text-black flex justify-center">
                                     Dashboard</a></li>
+
 
                                 <li><button
                                     onClick={handleLogOut}

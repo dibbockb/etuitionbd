@@ -15,7 +15,6 @@ const SocialLogin = () => {
     const handleGoogleSignIn = () => {
         signInGoogle()
             .then(result => {
-                console.log(result.user);
 
                 const userInfo = {
                     email: result.user.email,
@@ -35,12 +34,10 @@ const SocialLogin = () => {
 
                 axiosSecure.post('/users', userInfo)
                     .then(res => {
-                        console.log('user data has been stored to database...', res.data)
                     })
 
             })
             .catch(error => {
-                console.log(error)
             })
     }
 

@@ -11,7 +11,6 @@ const Tuitions = () => {
     const navigate = useNavigate();
 
     const handlePostTuition = () => {
-        console.log(`clicked`);
     }
 
     useEffect(() => {
@@ -23,7 +22,6 @@ const Tuitions = () => {
                 setLoading(false);
             })
             .catch((err) => {
-                console.log(err);
                 setLoading(false);
             });
     }, [axiosSecure]);

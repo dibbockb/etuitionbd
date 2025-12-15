@@ -17,18 +17,37 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { HiMiniListBullet } from "react-icons/hi2";
 import { Fade } from "react-awesome-reveal";
 import { LiaHistorySolid } from 'react-icons/lia';
+import { FiPower } from 'react-icons/fi';
+import Swal from 'sweetalert2';
 
 const Dashboard = () => {
-    const { user } = useAuth();
+    const { user, logOut } = useAuth();
     const { role } = useRole();
 
     const isAdmin = role === "Admin";
     const isTutor = role === "Tutor";
     const isStudent = role === "Student";
 
+    const handleLogOut = () => {
+            logOut()
+                .then((result) => {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Logged Out",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+                    navigate("/");
+                })
+                .catch((error) => {
+                    console.error("error");
+                });
+        };
+
     return (
-        <div className="bg-linear-to-br from-[#0f172a] via-[#101828] to-[#1e293b] min-h-screen">
-            <div className="flex flex-col md:flex-row max-w-7xl mx-auto h-screen">
+        <div className="bg-linear-to-br from-[#0f172a] via-[#101828] to-[#1e293b] ">
+            <div className="flex flex-col md:flex-row max-w-7xl mx-auto max-h-screen">
 
                 {/* //panel  */}
                 <aside className="w-full md:w-80 border-r border-black/30 flex flex-col">
@@ -109,17 +128,9 @@ const Dashboard = () => {
                             </NavLink>
                         }
 
-                        {isStudent &&
-                            <NavLink
-                                to="/dashboard/profile"
-                                className={({ isActive }) =>
-                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
-                                }
-                            >
-                                <IoIosSettings className="text-2xl" />
-                                <span className="text-lg font-medium">Profile</span>
-                            </NavLink>
-                        }
+                        
+                            
+                        
 
                         {/* ------------------------------------------------------- */}
                         {/* //tutor dashboard buttons */}
@@ -159,6 +170,16 @@ const Dashboard = () => {
                             </NavLink>
                         }
 
+                        <NavLink
+                                to="/dashboard/profile"
+                                className={({ isActive }) =>
+                                    `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
+                                }
+                            >
+                                <IoIosSettings className="text-2xl" />
+                                <span className="text-lg font-medium">Profile</span>
+                            </NavLink>  
+
 
                         {/* ------------------------------------------------------- */}
                         {/* //admin dashboard buttons */}
@@ -184,11 +205,24 @@ const Dashboard = () => {
                             <span className="text-lg font-medium">Manage Applications</span>
                         </NavLink>}
                     </div>
-                    
+
+                    <div className="flex justify-around items-center text-center">
+
                     <NavLink to='/' className="w-50 flex justify-center items-center gap-4 rounded-xl transition-all mx-auto  mb-3 text-gray-300 hover:bg-white/10 py-3" > 
-                        <MdOutlineArrowBackIos className="text-2xl" /> 
+                        <MdOutlineArrowBackIos className="" /> 
                         <span className="text-lg font-medium">Back to home</span>
                     </NavLink>
+
+                    
+                    <button 
+                    onClick={handleLogOut}
+                    className="w-12 h-12 rounded-full flex justify-center items-center text-center gap-4  transition-all mx-auto mb-3 text-gray-300 hover:bg-red-500/80 hover:text-black py-3" > 
+                        <FiPower  className="mx-auto" /> 
+                    </button>
+
+                    </div>
+
+                    
                 </aside>
 
                 {/* //outlet */}
