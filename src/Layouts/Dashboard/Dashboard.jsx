@@ -16,6 +16,7 @@ import { BsCheckAll } from "react-icons/bs";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { HiMiniListBullet } from "react-icons/hi2";
 import { Fade } from "react-awesome-reveal";
+import { LiaHistorySolid } from 'react-icons/lia';
 
 const Dashboard = () => {
     const { user } = useAuth();
@@ -103,8 +104,8 @@ const Dashboard = () => {
                                     `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all  ${isActive ? "bg-[#00bba7] text-black shadow-lg" : "text-gray-300 hover:bg-white/10"}`
                                 }
                             >
-                                <MdOutlineAttachMoney className="text-2xl" />
-                                <span className="text-lg font-medium">Payments</span>
+                                <LiaHistorySolid className="text-2xl" />
+                                <span className="text-lg font-medium">Payment History</span>
                             </NavLink>
                         }
 
