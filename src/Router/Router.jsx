@@ -16,7 +16,6 @@ import Private from "../Components/AuthLayout/Private";
 import MyProfile from "../Layouts/Dashboard/MyProfile";
 import MyTuitions from "../Layouts/Dashboard/MyTuitions";
 import MyPayments from "../Layouts/Dashboard/MyPayments";
-import MyTutors from "../Layouts/Dashboard/MyTutors";
 import AppliedTuitions from "../Layouts/Dashboard/AppliedTuitions";
 import ApprovedTuitoins from "../Layouts/Dashboard/ApprovedTuitoins";
 import Revenue from "../Layouts/Dashboard/Revenue";
@@ -25,6 +24,8 @@ import AdminManageApplications from "../Layouts/Dashboard/AdminManageApplication
 import Forbidden from "../Components/Forbidden/Forbidden";
 import { Fade } from "react-awesome-reveal";
 import PaymentSuccess from "../Layouts/Dashboard/PaymentSuccess";
+import Applicants from "../Layouts/Dashboard/Applicants";
+import TutorPaymentSuccess from "../Layouts/Dashboard/TutorPaymentSuccess";
 
 
 export const router = createBrowserRouter([
@@ -53,10 +54,11 @@ export const router = createBrowserRouter([
         children: [
             { path: "profile", element: <Private> <Fade> <MyProfile /></Fade> </Private> },
             { path: "new-tuition", element: <Private> <Fade> <PostTuition /></Fade> </Private> },
+            { path: "my-tuitions", element: <Private> <Fade> <MyTuitions /></Fade> </Private> },
             { path: "my-payments", element: <Private> <Fade> <MyPayments /></Fade> </Private> },
             { path: "payment-success", element: <Private> <Fade> <PaymentSuccess /></Fade> </Private> },
-            { path: "my-tuitions", element: <Private> <Fade> <MyTuitions /></Fade> </Private> },
-            { path: "my-tutors", element: <Private> <Fade> <MyTutors /></Fade> </Private> },
+            { path: "tutor-payment-success", element: <Private> <Fade> <TutorPaymentSuccess /></Fade> </Private> },
+            { path: "applicants", element: <Private> <Fade> <Applicants /></Fade> </Private> },
             { path: "applied-tuitions", element: <Private> <Fade> <AppliedTuitions /></Fade> </Private> },
             { path: "approved-tuitions", element: <Private> <Fade> <ApprovedTuitoins /></Fade> </Private> },
             { path: "revenue", element: <Private> <Fade> <Revenue /></Fade> </Private> },

@@ -11,21 +11,31 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const handleLogOut = () => {
-        logOut()
-            .then((result) => {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Logged Out",
-                    showConfirmButton: false,
-                    timer: 1000,
-                });
-                navigate("/");
-            })
-            .catch((error) => {
-                console.error("error");
+        Swal.fire({
+          title: "Are you Sure want to Log Out",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Logout",
+        })
+          .then((result) => {
+            if (result.isConfirmed) {
+              logOut();
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Logged Out",
+              showConfirmButton: false,
+              timer: 1000,
             });
-    };
+            navigate("/");
+            }
+          })
+          .catch((error) => {
+            console.error("error");
+          });
+      };
 
     return (
         <div>

@@ -93,14 +93,14 @@ const MyTuitions = () => {
 
 
     };
-    const handlePayment = async (tuition) => {
+    
+    const handlePayment = async (application) => {
         setIsClicked(true);
-
         const paymentInfo = {
-            fee: tuition.fee * 100,
-            _id: tuition._id,
-            creatorEmail: tuition.creatorEmail,
-            subject: tuition.subject,
+            fee: application.fee * 100,
+            _id: application._id,
+            creatorEmail: application.creatorEmail,
+            tutorName: application.tutorName,
         }
         const res = await axiosSecure.post(`/checkout`, paymentInfo)
 
@@ -110,7 +110,6 @@ const MyTuitions = () => {
         else {
             Swal.fire("Error", "Failed to initiate payment.", "error");
             setIsClicked(false);
-
         }
 
     };
@@ -125,7 +124,7 @@ const MyTuitions = () => {
                             <th className="text-gray-500">#</th>
                             <th className="text-center">Subject</th>
                             <th className="text-center">Location</th>
-                            <th className="text-center">Status</th>
+                            {/* <th className="text-center">Status</th> */}
                             <th className="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -139,7 +138,7 @@ const MyTuitions = () => {
                                 <th className="text-gray-500">{index + 1}</th>
                                 <td className="font-normal text-center">{tuition.subject}</td>
                                 <td className="text-center">{tuition.location} ({tuition.mode})</td>
-                                <td className="text-center">
+                                {/* <td className="text-center">
                                     <span className={` ${tuition.paymentStatus === 'Paid' ? 'text-green-500' : 'badge-warning'}`}>
 
                                         {tuition.paymentStatus === 'Paid' ? 'Paid' : 
@@ -153,7 +152,7 @@ const MyTuitions = () => {
                                                           )}
                                             </div>}
                                     </span>
-                                </td>
+                                </td> */}
                                 <td className="flex justify-center items-center gap-2">
 
                                     <button

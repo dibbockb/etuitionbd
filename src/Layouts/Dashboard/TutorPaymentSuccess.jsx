@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react';
-import { MdOutlineArrowForwardIos } from 'react-icons/md';
-import { Link, useSearchParams } from 'react-router';
-import { NavLink } from 'react-router';
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure';
+import { Link, useSearchParams } from 'react-router';
+import { MdOutlineArrowForwardIos } from 'react-icons/md';
 
-const PaymentSuccess = () => {
+const TutorPaymentSuccess = () => {
     const axiosSecure = useAxiosSecure()
     const [searchParams] = useSearchParams();
     const sessionId = searchParams.get('session_id');
 
-
     useEffect(() => {
       if (sessionId) {
-        axiosSecure.post(`/payment-success`, {session_id: sessionId})
+        axiosSecure.post(`/tutor-payment-success`, {session_id: sessionId})
       }
     
     }, [sessionId, axiosSecure])
@@ -32,4 +30,4 @@ const PaymentSuccess = () => {
     );
 };
 
-export default PaymentSuccess;
+export default TutorPaymentSuccess;
