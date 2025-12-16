@@ -11,6 +11,7 @@ const MyPayments = () => {
     const currentUserEmail = user.enail;
     const navigate = useNavigate();
 
+
     const { data: myPayments = [], refetch } =
         useQuery({
             queryKey: ['my-payments', currentUserEmail],
@@ -28,11 +29,11 @@ const MyPayments = () => {
                     <thead>
                         <tr>
                             <th className="text-gray-500">#</th>
-                            <th className="text-center">Subject</th>
-                            <th className="text-center">Payment</th>
+                            <th className="text-center">Tutor</th>
+                            <th className="text-center">E-mail</th>
                             <th className="text-center">Status</th>
+                            <th className="text-center">Amount</th>
                             <th className="text-center">Date</th>
-                            <th className="text-center">Actions</th>
                         </tr>
                     </thead>
 
@@ -40,30 +41,21 @@ const MyPayments = () => {
                         {myPayments.map((tuition, index) => (
                             <tr
                                 key={tuition._id}
-                                className="hover:bg-white/5 transition-all duration-150 "
-                                onClick={() => navigate(`/tuitions/${tuition._id}`)}>
+                                className="hover:bg-white/5 transition-all duration-150 text-center ">
+
                                 <th className="text-gray-500">{index + 1}</th>
-                                <td className="font-normal text-center">{tuition.subject}</td>
-                                <td className="text-center">৳{tuition.fee.toLocaleString()}</td>
+                                <td className="font-normal text-center">{tuition.tutorName}</td>
+                                <td className="text-center">৳{tuition.tutorEmail}</td>
                                 <td className="text-center">
                                     <span className={` ${tuition.paymentStatus === 'Paid' ? 'text-green-500' : 'badge-warning'} `}>
-
-                                        {tuition.paymentStatus === 'Paid' ? 'Completed' :
-                                            <div
-                                                onClick={(e) => { e.stopPropagation(); handlePayment(tuition); }}
-                                                className="flex justify-center items-center btn bg-green-500 text-sm break-none text-black hover:bg-green-300/50 gap-2">
-                                                {isClicked ? (
-                                                    <span className="loading loading-spinner loading-xs"></span>
-                                                ) : (
-                                                    <div className="flex justify-center items-center">Pay</div>
-                                                )}
-                                            </div>}
+                                        {tuition.paymentStatus}
                                     </span>
                                 </td>
+                                <td className="">{tuition.tutorSalary}</td>
 
                                 <td className="text-center">
-                                    {tuition.paymentDate
-                                        ? new Date(tuition.paymentDate).toLocaleDateString('en', {
+                                    {tuition.paidAt
+                                        ? new Date(tuition.paidAt).toLocaleDateString('en', {
                                             day: 'numeric',
                                             month: 'short',
                                             year: 'numeric',
@@ -73,13 +65,7 @@ const MyPayments = () => {
                                         })
                                         : 'N/A'}
                                 </td>
-                                <td className="flex justify-center items-center gap-2">
 
-                                    <button
-                                        onClick={(e) => { e.stopPropagation(); navigate(`/tuitions/${tuition._id}`) }}
-                                        className=" btn btn-neutral rounded-2xl bg-teal-500 text-black hover:bg-teal-300/50">View</button>
-
-                                </td>
                             </tr>
                         ))}
                     </tbody>

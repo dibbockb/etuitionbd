@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useAuth from "../../Components/Hooks/useAuth";
 import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
 import { useNavigate } from "react-router";
@@ -13,6 +13,7 @@ const Applicants = () => {
   const axiosSecure = useAxiosSecure();
   const currentUserEmail = user.email;
   const navigate = useNavigate();
+  const [clickedAppId, setClickedAppId] = useState(null);
 
   const {
     data: myTutors = [],
@@ -41,6 +42,8 @@ const Applicants = () => {
   }
 
   const handleAcceptApplicant = (app) => {
+    setClickedAppId(app._id);
+
     const handlePayment = async (app) => {
       try {
         const paymentInfo = {
@@ -76,18 +79,20 @@ const Applicants = () => {
             (other) =>
               other.tuitionId === app.tuitionId && other._id !== app._id
           );
-
-          // for (const tutor of otherApplicants) {
-          //   await axiosSecure.patch(`/applications/${tutor._id}`, {
-          //     applicationStatus: "Rejected",
-          //   });
-          // }
+          for (const tutor of otherApplicants) {
+            await axiosSecure.patch(`/applications/reject/${tutor._id}`, {
+              applicationStatus: "Rejected",
+            });
+          }
 
           await handlePayment(app);
         } catch (error) {
           Swal.fire("Error", "Failed to process.", "error");
           console.error(error);
+          setClickedAppId(null);
         }
+      } else {
+        setClickedAppId(null);
       }
     });
   };
@@ -97,19 +102,22 @@ const Applicants = () => {
       title: "Reject this Tutor?",
       text: "",
       icon: "warning",
-      showCancelButton: false,
+      showCancelButton: true,
       confirmButtonColor: "#d33",
       confirmButtonText: "Reject",
     }).then((result) => {
       if (result.isConfirmed) {
+
+        axiosSecure.patch(`/applications/reject/${app._id}`)
+
         Swal.fire({
           title: "Rejected!",
           text: "This Tutor has been Rejected",
           icon: "success",
         });
+        refetch();
       }
     });
-    // console.log(myTutors);
   };
 
   return (
@@ -141,13 +149,14 @@ const Applicants = () => {
               <td className="text-center">{app.tutorExperience}</td>
               <td className="text-center">{app.tutorSalary}</td>
               <td>{new Date(app.appliedAt).toLocaleDateString()}</td>
-              <td>
+              <td className="text-center">
                 <span
-                  className={` ${
-                    app.applicationStatus === "Approved"
+                  className={`font-medium ${app.applicationStatus === "Approved"
                       ? "text-green-500"
-                      : app.applicationStatus && "text-yellow-500"
-                  }`}
+                      : app.applicationStatus === "Rejected"
+                        ? "text-red-500"
+                        : "text-yellow-500"
+                    }`}
                 >
                   {app.applicationStatus}
                 </span>
@@ -158,14 +167,18 @@ const Applicants = () => {
                   onClick={() => handleAcceptApplicant(app)}
                   className="btn btn-xs h-7 btn-neutral bg-teal-500 hover:bg-teal-600 text-black/80"
                 >
-                  <TiTick className="w-5 h-3 " />
+                  {clickedAppId === app._id ? (
+                    <span className="loading loading-spinner loading-xs"></span>
+                  ) : (
+                    <TiTick className="w-4 scale-180" />
+                  )}
                 </button>
 
                 <button
                   onClick={() => handleRejectApplicant(app)}
                   className="btn btn-xs h-7 btn-neutral bg-teal-500 hover:bg-red-600/70 text-black/80"
                 >
-                  <ImCross className="w-2 h-3 " />
+                  <ImCross className="w-5" />
                 </button>
               </td>
             </tr>
