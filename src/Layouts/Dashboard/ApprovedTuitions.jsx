@@ -4,7 +4,7 @@ import useAxiosSecure from '../../Components/Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
-const ApprovedTuitoins = () => {
+const ApprovedTuitions = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const tutorEmail = user.email;
@@ -72,4 +72,4 @@ const ApprovedTuitoins = () => {
     );
 };
 
-export default ApprovedTuitoins;
+export default ApprovedTuitions;

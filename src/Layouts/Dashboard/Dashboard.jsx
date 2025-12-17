@@ -88,7 +88,7 @@ const Dashboard = () => {
 
           <div className="flex flex-col items-center gap-3 mt-3 px-3 flex-1">
             <NavLink
-              to="/dashboard/home"
+              to="/dashboard"
               end
               className={({ isActive }) =>
                 `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive

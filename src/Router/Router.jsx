@@ -17,7 +17,7 @@ import MyProfile from "../Layouts/Dashboard/MyProfile";
 import MyTuitions from "../Layouts/Dashboard/MyTuitions";
 import MyPayments from "../Layouts/Dashboard/MyPayments";
 import AppliedTuitions from "../Layouts/Dashboard/AppliedTuitions";
-import ApprovedTuitoins from "../Layouts/Dashboard/ApprovedTuitoins";
+import ApprovedTuitions from "../Layouts/Dashboard/ApprovedTuitions";
 import Revenue from "../Layouts/Dashboard/Revenue";
 import AdminManageUser from "../Layouts/Dashboard/AdminManageUser";
 import AdminManageApplications from "../Layouts/Dashboard/AdminManageApplications";
@@ -53,7 +53,10 @@ export const router = createBrowserRouter([
         path: "dashboard",
         element: <Private> <Fade> <Dashboard /> </Fade> </Private>,
         children: [
-            { path: "home", element: <Private> <Fade> <DashboardHome /></Fade> </Private> },
+            { 
+            index: true, 
+            element: <Private> <Fade> <DashboardHome /></Fade> </Private> 
+        },
             { path: "profile", element: <Private> <Fade> <MyProfile /></Fade> </Private> },
             { path: "new-tuition", element: <Private> <Fade> <PostTuition /></Fade> </Private> },
             { path: "my-tuitions", element: <Private> <Fade> <MyTuitions /></Fade> </Private> },
@@ -62,11 +65,11 @@ export const router = createBrowserRouter([
             { path: "tutor-payment-success", element: <Private> <Fade> <TutorPaymentSuccess /></Fade> </Private> },
             { path: "applicants", element: <Private> <Fade> <Applicants /></Fade> </Private> },
             { path: "applied-tuitions", element: <Private> <Fade> <AppliedTuitions /></Fade> </Private> },
-            { path: "approved-tuitions", element: <Private> <Fade> <ApprovedTuitoins /></Fade> </Private> },
+            { path: "approved-tuitions", element: <Private> <Fade> <ApprovedTuitions /></Fade> </Private> },
             { path: "revenue", element: <Private> <Fade> <Revenue /></Fade> </Private> },
             { path: "admin/manage-users", element: <Private> <Fade> <AdminManageUser /></Fade> </Private> },
             { path: "admin/manage-applications", element: <Private> <Fade> <AdminManageApplications /></Fade> </Private> },
-            
+
         ],
     },
     {
@@ -74,7 +77,7 @@ export const router = createBrowserRouter([
         element: <Fade><Error></Error></Fade>
     },
     { path: "newtutor", element: <Private> <Fade><BecomeTutor /></Fade>  </Private> },
-    { path: "forbidden", element: <Fade><Forbidden/></Fade> },
-    
+    { path: "forbidden", element: <Fade><Forbidden /></Fade> },
+
 
 ]);

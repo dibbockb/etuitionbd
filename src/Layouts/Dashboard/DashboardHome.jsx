@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 import useRole from '../../Components/Hooks/useRole';
 import { GiHand } from 'react-icons/gi';
 
-const ApprovedTuitoins = () => {
+const DashboardHome = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const tutorEmail = user.email;
@@ -165,4 +165,4 @@ const ApprovedTuitoins = () => {
 };
 
 
-export default ApprovedTuitoins;
+export default DashboardHome;
