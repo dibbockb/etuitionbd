@@ -10,6 +10,8 @@ const ApprovedTuitoins = () => {
     const tutorEmail = user.email;
     const navigate = useNavigate();
 
+    
+
     const {
         data: myApprovedApplications = [],
         refetch
