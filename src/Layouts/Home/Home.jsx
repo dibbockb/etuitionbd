@@ -1,22 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Loading from '../../Components/Loading/Loading';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Navbar from '../../Components/Navbar/Navbar';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../../Components/Hooks/useAxiosSecure';
 
 const Home = () => {
+
+    const [latestTuitions, setLatestTuitions] = useState([]);
+    const [latestTutors, setLatestTutors] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchLatestData = async () => {
+            setLoading(true);
+            try {
+                const tuitionsResponse = await axiosSecure.get('/tuitions/limited');
+                const tutorsResponse = await axiosSecure.get('/tutors/limited');
+
+                setLatestTuitions(tuitionsResponse.data);
+                setLatestTutors(tutorsResponse.data);
+            } catch (error) {
+                console.error('Failed to fetch data:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchLatestData();
+    }, [axiosSecure]);
+
+    if (loading) {
+        return <Loading />;
+    }
+
 
     return (
 
         <div>
-            
-            {/* hero section */}
-            <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
-                {/* <img
-                    src="/globe.jpg"
-                    alt="Global tutors at eTuition"
-                    className="absolute inset-0 w-full h-full object-cover object-center"
-                /> */}
-                <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+            <div className="relative w-full h-screen min-h-[600px] overflow-hidden bg-linear-to-br from-gray-900 via-teal-900 to-cyan-900">
+                <div className="absolute inset-0 bg-black/40"></div>
+
                 <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 sm:px-10 md:px-16 lg:px-24">
                     <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-2xl">
                         Find Your Tutor From<br />
@@ -26,19 +52,18 @@ const Home = () => {
                         1000+ verified tutors • 10+ countries • From ৳6,000/month
                     </p>
                     <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                        <Link to={'/tutors'} className=" h-15 px-10 py-4 bg-teal-500 hover:bg-teal-400 text-black font-bold text-lg rounded-2xl shadow-xl transition transform hover:scale-105 transition-all hover:rounded-xl">
+                        <Link to={'/tutors'} className="px-10 py-4 bg-teal-500 hover:bg-teal-400 text-black ease-in font-bold text-lg rounded-2xl shadow-xl transition transform hover:scale-105">
                             Find a Tutor Now
                         </Link>
-                        <Link to={'/dashboard/new-tuition'} className=" h-15 px-10 py-4 bg-white bg-opacity-20 backdrop-blur-md hover:bg-opacity-30 text-black font-semibold text-lg rounded-2xl border border-white border-opacity-40 transition hover:scale-105">
+                        <Link to={'/dashboard/new-tuition'} className="px-10 py-4 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white font-semibold text-lg rounded-2xl   transition ease-in hover:scale-105">
                             Add a Tuition
                         </Link>
                     </div>
                 </div>
-            </section>
+            </div>
 
 
-            {/* steps section */}
-            <section className="py-16 md:py-24 bg-gray-50">
+            <div className="py-16 md:py-24 bg-gray-50">
                 <div className="max-w-6xl mx-auto px-6">
                     <h2 className="text-center text-3xl md:text-5xl font-bold text-gray-900 mb-4">
                         Get Your Tutor in <span className="text-teal-500">3 Simple Steps</span>
@@ -94,10 +119,108 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            {/* 3rd section */}
-            <section className="py-16 md:py-24 bg-white">
+
+            <div className="py-16 md:py-24 bg-gray-900 text-center">
+                <div className="max-w-7xl mx-auto px-6 text-center">
+                    <div className="flex justify-between items-center mb-12 text-center">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white text-center">
+                            Latest <span className="text-teal-400">Tuitions</span>
+                        </h2>
+                        <Link
+                            to="/tuitions"
+                            className="text-teal-400 hover:text-teal-300 text-lg font-medium flex items-center gap-2"
+                        >
+                            View All →
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {latestTuitions.map((tuition) => (
+                            <div
+                                key={tuition._id}
+                                onClick={() => navigate(`/tuitions/${tuition._id}`)}
+                                className="card bg-gray-800 shadow-xl rounded-xl hover:scale-105 transition  duration-125 ease-in cursor-pointer"
+                            >
+                                <div className="h-48 text-center rounded-t-xl overflow-hidden">
+                                    <img
+                                        src={tuition.image}
+                                        alt={tuition.subject}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+
+                                <div className="card-body p-6 ">
+                                    <h3 className="text-white font-bold text-2xl mb-2">
+                                        {tuition.subject}
+                                    </h3>
+                                    <p className="text-gray-400 text-sm mb-4">
+                                        {tuition.location} • {tuition.mode}
+                                    </p>
+
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <div className="py-16 md:py-24 bg-gray-800/10">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="flex justify-between items-center mb-12">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white">
+                            Latest <span className="text-teal-400">Tutors</span>
+                        </h2>
+                        <Link
+                            to="/tutors"
+                            className="text-teal-400 hover:text-teal-300 text-lg font-medium flex items-center gap-2"
+                        >
+                            View All →
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 ">
+                        {latestTutors.map((tutor) => (
+                            <div
+                                key={tutor._id}
+                                onClick={() => navigate(`/tutors/${tutor._id}`)}
+                                className="card bg-gray-700 shadow-xl rounded-xl hover:scale-105 transition duration-125 ease-in cursor-pointer"
+                            >
+                                <div className="h-64 rounded-t-xl overflow-hidden">
+                                    <img
+                                        src={tutor.photoURL}
+                                        alt={tutor.displayName}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="card-body p-6">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <h3 className="text-white font-bold text-2xl">
+                                            {tutor.displayName}
+                                        </h3>
+
+                                    </div>
+                                    <p className="text-gray-300 font-medium mb-4">
+                                        {tutor.subject}
+                                    </p>
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-xl font-bold text-teal-400">
+                                            ৳{Number(tutor.salary).toLocaleString()}/mo
+                                        </span>
+                                        <span className="badge badge-accent">
+                                            {tutor.mode}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+
+            <div className="py-16 md:py-24 bg-white">
                 <div className="max-w-6xl mx-auto px-6 text-center">
                     <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
                         Why choose <span className="text-teal-500">eTuition?</span>
@@ -170,7 +293,11 @@ const Home = () => {
 
                     </div>
                 </div>
-            </section>
+            </div>
+
+
+
+
         </div>
     );
 };

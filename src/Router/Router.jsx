@@ -27,6 +27,7 @@ import PaymentSuccess from "../Layouts/Dashboard/PaymentSuccess";
 import Applicants from "../Layouts/Dashboard/Applicants";
 import TutorPaymentSuccess from "../Layouts/Dashboard/TutorPaymentSuccess";
 import DashboardHome from "../Layouts/Dashboard/DashboardHome";
+import Contact from "../Components/Contact/Contact";
 
 
 export const router = createBrowserRouter([
@@ -35,10 +36,11 @@ export const router = createBrowserRouter([
         element: <RootLayout />,
         children: [
             { index: true, element: <Fade> <Home /> </Fade> },
-            { path: "tutors", element: <Private> <Fade><Tutors /></Fade>  </Private> },
+            { path: "tutors", element: <Fade><Tutors /></Fade> },
             { path: "tutors/:id", element: <Private> <Fade><Tutorinfo /></Fade>  </Private> },
-            { path: "tuitions", element: <Private> <Fade><Tuitions /></Fade>  </Private> },
+            { path: "tuitions", element: <Fade><Tuitions /></Fade> },
             { path: "tuitions/:id", element: <Private> <Fade><TuitionInfo /></Fade>  </Private> },
+            { path: "contact", element: <Fade><Contact /></Fade> },
         ],
     },
     {
@@ -53,22 +55,22 @@ export const router = createBrowserRouter([
         path: "dashboard",
         element: <Private> <Fade> <Dashboard /> </Fade> </Private>,
         children: [
-            { 
-            index: true, 
-            element: <Private> <Fade> <DashboardHome /></Fade> </Private> 
-        },
-            { path: "profile", element: <Private> <Fade> <MyProfile /></Fade> </Private> },
-            { path: "new-tuition", element: <Private> <Fade> <PostTuition /></Fade> </Private> },
-            { path: "my-tuitions", element: <Private> <Fade> <MyTuitions /></Fade> </Private> },
-            { path: "my-payments", element: <Private> <Fade> <MyPayments /></Fade> </Private> },
-            { path: "payment-success", element: <Private> <Fade> <PaymentSuccess /></Fade> </Private> },
-            { path: "tutor-payment-success", element: <Private> <Fade> <TutorPaymentSuccess /></Fade> </Private> },
-            { path: "applicants", element: <Private> <Fade> <Applicants /></Fade> </Private> },
-            { path: "applied-tuitions", element: <Private> <Fade> <AppliedTuitions /></Fade> </Private> },
-            { path: "approved-tuitions", element: <Private> <Fade> <ApprovedTuitions /></Fade> </Private> },
-            { path: "revenue", element: <Private> <Fade> <Revenue /></Fade> </Private> },
-            { path: "admin/manage-users", element: <Private> <Fade> <AdminManageUser /></Fade> </Private> },
-            { path: "admin/manage-applications", element: <Private> <Fade> <AdminManageApplications /></Fade> </Private> },
+            {
+                index: true,
+                element: <Private> <Fade> <DashboardHome /></Fade> </Private>
+            },
+            { path: "profile", element: <MyProfile /> },
+            { path: "new-tuition", element: <PostTuition /> },
+            { path: "my-tuitions", element: <MyTuitions /> },
+            { path: "my-payments", element: <MyPayments /> },
+            { path: "payment-success", element: <PaymentSuccess /> },
+            { path: "tutor-payment-success", element: <TutorPaymentSuccess /> },
+            { path: "applicants", element: <Applicants /> },
+            { path: "applied-tuitions", element: <AppliedTuitions /> },
+            { path: "approved-tuitions", element: <ApprovedTuitions /> },
+            { path: "revenue", element: <Revenue /> },
+            { path: "admin/manage-users", element: <AdminManageUser /> },
+            { path: "admin/manage-applications", element: <AdminManageApplications /> },
 
         ],
     },
