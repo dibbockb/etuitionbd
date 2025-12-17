@@ -137,7 +137,9 @@ const Applicants = () => {
         </thead>
         <tbody className="">
           {myTutors.map((app, index) => (
-            <tr key={app._id} className="hover:bg-white/10 ">
+            <tr key={app._id} className="hover:bg-white/10"
+            // onClick={() => navigate(`/tutors/${app.tutorEmail}`)}
+            >
               <th className="text-gray-400">{index + 1}</th>
               <td className="font-medium">{app.tuitionSubject}</td>
               <td>
@@ -152,10 +154,10 @@ const Applicants = () => {
               <td className="text-center">
                 <span
                   className={`font-medium ${app.applicationStatus === "Approved"
-                      ? "text-green-500"
-                      : app.applicationStatus === "Rejected"
-                        ? "text-red-500"
-                        : "text-yellow-500"
+                    ? "text-green-500"
+                    : app.applicationStatus === "Rejected"
+                      ? "text-red-500"
+                      : "text-yellow-500"
                     }`}
                 >
                   {app.applicationStatus}
