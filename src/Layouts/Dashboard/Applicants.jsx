@@ -109,7 +109,6 @@ const Applicants = () => {
       if (result.isConfirmed) {
 
         axiosSecure.patch(`/applications/reject/${app._id}`)
-
         Swal.fire({
           title: "Rejected!",
           text: "This Tutor has been Rejected",

@@ -211,18 +211,7 @@ const Dashboard = () => {
               </NavLink>
             )}
 
-            <NavLink
-              to="/dashboard/profile"
-              className={({ isActive }) =>
-                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
-                  ? "bg-[#00bba7] text-black shadow-lg"
-                  : "text-gray-300 hover:bg-white/10"
-                }`
-              }
-            >
-              <TbUserFilled className="text-2xl" />
-              <span className="text-lg font-medium">Profile</span>
-            </NavLink>
+
 
             {/* ------------------------------------------------------- */}
             {/* //admin dashboard buttons */}
@@ -243,6 +232,21 @@ const Dashboard = () => {
 
             {isAdmin && (
               <NavLink
+                to="/dashboard/admin/manage-tuitions"
+                className={({ isActive }) =>
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                    ? "bg-[#00bba7] text-black shadow-lg"
+                    : "text-gray-300 hover:bg-white/10"
+                  }`
+                }
+              >
+                <HiMiniListBullet className="text-2xl" />
+                <span className="text-lg font-medium">Manage Tuitions</span>
+              </NavLink>
+            )}
+
+            {isAdmin && (
+              <NavLink
                 to="/dashboard/admin/manage-applications"
                 className={({ isActive }) =>
                   `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
@@ -255,7 +259,22 @@ const Dashboard = () => {
                 <span className="text-lg font-medium">Manage Applications</span>
               </NavLink>
             )}
+
+            <NavLink
+              to="/dashboard/profile"
+              className={({ isActive }) =>
+                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                  ? "bg-[#00bba7] text-black shadow-lg"
+                  : "text-gray-300 hover:bg-white/10"
+                }`
+              }
+            >
+              <TbUserFilled className="text-2xl" />
+              <span className="text-lg font-medium">Profile</span>
+            </NavLink>
           </div>
+
+
 
           <div className="flex justify-around items-center text-center">
             <NavLink
@@ -272,12 +291,14 @@ const Dashboard = () => {
             >
               <FiPower className="mx-auto" />
             </button>
+
+
           </div>
         </aside>
 
         {/* //outlet */}
-        <main className="flex-1 w-full p-2 md:p-10  overflow-y-auto">
-          <div className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 p-10 min-h-screen">
+        <main className="flex-1 w-full p-2 overflow-y-auto">
+          <div className="backdrop-blur-xl  rounded-3xl shadow-xl border-white/10 min-h-screen min-w-fit">
             <Fade>
               <Outlet />
             </Fade>

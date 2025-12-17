@@ -28,6 +28,7 @@ import Applicants from "../Layouts/Dashboard/Applicants";
 import TutorPaymentSuccess from "../Layouts/Dashboard/TutorPaymentSuccess";
 import DashboardHome from "../Layouts/Dashboard/DashboardHome";
 import Contact from "../Components/Contact/Contact";
+import AdminManageTuitions from "../Layouts/Dashboard/AdminManageTuitions";
 
 
 export const router = createBrowserRouter([
@@ -71,6 +72,7 @@ export const router = createBrowserRouter([
             { path: "revenue", element: <Revenue /> },
             { path: "admin/manage-users", element: <AdminManageUser /> },
             { path: "admin/manage-applications", element: <AdminManageApplications /> },
+            { path: "admin/manage-tuitions", element: <AdminManageTuitions /> },
 
         ],
     },

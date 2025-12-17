@@ -50,7 +50,7 @@ const MyProfile = () => {
               Swal.fire("Updated!", "Tuition updated successfully.", "success");
             }).catch((err) => {
               Swal.fire("Error", "Failed to update tuition.", "error");
-              
+
             });
         }
       })
@@ -77,12 +77,12 @@ const MyProfile = () => {
                 <span className="badge bg-teal-400 text-black">
                   {profile.userRole === "tutor" ? "Tutor" : profile.userRole === "admin" ? "Admin" : "Student"}
                 </span>
-                {profile.isAdmin && <span className="badge badge-error badge-lg">Admin</span>}
+
               </div>
 
               <div className="mt-12 text-center flex ">
                 <button
-                  onClick={() => {handleEditProfile(profile)}}
+                  onClick={() => { handleEditProfile(profile) }}
                   className="btn btn-neutral mt-4  bg-teal-500 text-black hover:bg-teal-300/50
                 
 "><FaUserEdit />
