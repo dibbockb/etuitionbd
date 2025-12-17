@@ -4,6 +4,7 @@ import useAxiosSecure from '../../Components/Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { FaUserEdit } from 'react-icons/fa';
+import { HiUserCircle } from 'react-icons/hi2';
 
 const MyProfile = () => {
   const { user } = useAuth();
@@ -64,7 +65,7 @@ const MyProfile = () => {
         <div className="bg-white/5 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/10 p-10 text-white flex flex-col justify-center items-center text-center">
           <div className="flex flex-col md:flex-row items-center gap-10">
             <img
-              src={profile.photoURL}
+              src={profile.photoURL || <HiUserCircle />}
               alt={profile.displayName}
               className="w-48 h-48 rounded-full object-cover border-2 border-teal-500 shadow-xl"
             />

@@ -26,6 +26,7 @@ import { Fade } from "react-awesome-reveal";
 import PaymentSuccess from "../Layouts/Dashboard/PaymentSuccess";
 import Applicants from "../Layouts/Dashboard/Applicants";
 import TutorPaymentSuccess from "../Layouts/Dashboard/TutorPaymentSuccess";
+import DashboardHome from "../Layouts/Dashboard/DashboardHome";
 
 
 export const router = createBrowserRouter([
@@ -52,6 +53,7 @@ export const router = createBrowserRouter([
         path: "dashboard",
         element: <Private> <Fade> <Dashboard /> </Fade> </Private>,
         children: [
+            { path: "home", element: <Private> <Fade> <DashboardHome /></Fade> </Private> },
             { path: "profile", element: <Private> <Fade> <MyProfile /></Fade> </Private> },
             { path: "new-tuition", element: <Private> <Fade> <PostTuition /></Fade> </Private> },
             { path: "my-tuitions", element: <Private> <Fade> <MyTuitions /></Fade> </Private> },

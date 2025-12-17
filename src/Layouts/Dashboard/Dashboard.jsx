@@ -19,6 +19,7 @@ import { Fade } from "react-awesome-reveal";
 import { LiaHistorySolid } from "react-icons/lia";
 import { FiPower } from "react-icons/fi";
 import Swal from "sweetalert2";
+import { TbUserFilled } from "react-icons/tb";
 
 const Dashboard = () => {
   const { user, logOut } = useAuth();
@@ -40,14 +41,14 @@ const Dashboard = () => {
       .then((result) => {
         if (result.isConfirmed) {
           logOut();
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Logged Out",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-        navigate("/");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Logged Out",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          navigate("/");
         }
       })
       .catch((error) => {
@@ -87,13 +88,12 @@ const Dashboard = () => {
 
           <div className="flex flex-col items-center gap-3 mt-3 px-3 flex-1">
             <NavLink
-              to="/dashboard"
+              to="/dashboard/home"
               end
               className={({ isActive }) =>
-                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${
-                  isActive
-                    ? "bg-[#00bba7] text-black shadow-lg"
-                    : "text-gray-300 hover:bg-white/10"
+                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                  ? "bg-[#00bba7] text-black shadow-lg"
+                  : "text-gray-300 hover:bg-white/10"
                 }`
               }
             >
@@ -108,10 +108,9 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/new-tuition"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${
-                    isActive
-                      ? "bg-[#00bba7] text-black shadow-lg"
-                      : "text-gray-300 hover:bg-white/10"
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                    ? "bg-[#00bba7] text-black shadow-lg"
+                    : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
@@ -124,10 +123,9 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/my-tuitions"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${
-                    isActive
-                      ? "bg-[#00bba7] text-black shadow-lg"
-                      : "text-gray-300 hover:bg-white/10"
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                    ? "bg-[#00bba7] text-black shadow-lg"
+                    : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
@@ -140,10 +138,9 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/applicants"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${
-                    isActive
-                      ? "bg-[#00bba7] text-black shadow-lg"
-                      : "text-gray-300 hover:bg-white/10"
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                    ? "bg-[#00bba7] text-black shadow-lg"
+                    : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
@@ -156,10 +153,9 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/my-payments"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all  ${
-                    isActive
-                      ? "bg-[#00bba7] text-black shadow-lg"
-                      : "text-gray-300 hover:bg-white/10"
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all  ${isActive
+                    ? "bg-[#00bba7] text-black shadow-lg"
+                    : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
@@ -174,10 +170,9 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/applied-tuitions"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${
-                    isActive
-                      ? "bg-[#00bba7] text-black shadow-lg"
-                      : "text-gray-300 hover:bg-white/10"
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                    ? "bg-[#00bba7] text-black shadow-lg"
+                    : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
@@ -190,10 +185,9 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/approved-tuitions"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${
-                    isActive
-                      ? "bg-[#00bba7] text-black shadow-lg"
-                      : "text-gray-300 hover:bg-white/10"
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                    ? "bg-[#00bba7] text-black shadow-lg"
+                    : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
@@ -206,10 +200,9 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/revenue"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${
-                    isActive
-                      ? "bg-[#00bba7] text-black shadow-lg"
-                      : "text-gray-300 hover:bg-white/10"
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                    ? "bg-[#00bba7] text-black shadow-lg"
+                    : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
@@ -221,14 +214,13 @@ const Dashboard = () => {
             <NavLink
               to="/dashboard/profile"
               className={({ isActive }) =>
-                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${
-                  isActive
-                    ? "bg-[#00bba7] text-black shadow-lg"
-                    : "text-gray-300 hover:bg-white/10"
+                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                  ? "bg-[#00bba7] text-black shadow-lg"
+                  : "text-gray-300 hover:bg-white/10"
                 }`
               }
             >
-              <IoIosSettings className="text-2xl" />
+              <TbUserFilled className="text-2xl" />
               <span className="text-lg font-medium">Profile</span>
             </NavLink>
 
@@ -238,10 +230,9 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/admin/manage-users"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${
-                    isActive
-                      ? "bg-[#00bba7] text-black shadow-lg"
-                      : "text-gray-300 hover:bg-white/10"
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                    ? "bg-[#00bba7] text-black shadow-lg"
+                    : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
@@ -254,10 +245,9 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/admin/manage-applications"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${
-                    isActive
-                      ? "bg-[#00bba7] text-black shadow-lg"
-                      : "text-gray-300 hover:bg-white/10"
+                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                    ? "bg-[#00bba7] text-black shadow-lg"
+                    : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
