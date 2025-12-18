@@ -5,6 +5,11 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 import useRole from '../../Components/Hooks/useRole';
 import { GiHand } from 'react-icons/gi';
+import AdminStatsInfograph from '../../Components/AdminStats/AdminStatsInfograph';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, BarController } from 'chart.js';
+import { Bar } from 'react-chartjs-2'
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const DashboardHome = () => {
     const { user } = useAuth();
@@ -22,6 +27,24 @@ const DashboardHome = () => {
         enabled: !!user?.email
     });
 
+    const { data: allTuitions = [] } =
+        useQuery({
+            queryKey: [`all-tuitions`],
+            queryFn: async () => {
+                const res = await axiosSecure.get(`/admin/tuitions/all`);
+                return res.data;
+            }
+        })
+
+    const { data: allUsers = [], } =
+        useQuery({
+            queryKey: [`all-users`],
+            queryFn: async () => {
+                const res = await axiosSecure.get(`/users`);
+                return res.data;
+            }
+        })
+
     const { data: myTuitions = [] } =
         useQuery({
             queryKey: ['my-tuitions', currentUserEmail], queryFn: async () => {
@@ -30,8 +53,7 @@ const DashboardHome = () => {
             }
         })
 
-    const {
-        data: myTutors = [],
+    const { data: myTutors = [],
     } = useQuery({
         queryKey: ["my-tutors", currentUserEmail],
         queryFn: async () => {
@@ -59,7 +81,6 @@ const DashboardHome = () => {
         },
     });
 
-
     const {
         data: myApprovedApplications = [],
         refetch
@@ -72,11 +93,24 @@ const DashboardHome = () => {
             }
         })
 
+    const { data: allPayments = [], } =
+        useQuery({
+            queryKey: ['all-payments'],
+            queryFn: async () => {
+                const res = await axiosSecure.get(`admin/payments-log`)
+                return res.data;
+            }
+        })
+
+    const totalPlatformRevenue = allPayments
+        .reduce((payment, log) => payment + log.tutorSalary, 0)
+
+
     const isUserStudent = profile.userRole === 'student';
     const isUserTutor = profile?.userRole === 'tutor';
-    const isUserAdmin = profile?.userRole === 'admin' && user?.isAdmin === true;
+    const isUserAdmin = profile?.userRole === 'admin';
 
-    const totalSpentByStudent = myPayments.reduce((spentAmount, tuition) => spentAmount + (tuition.tutorSalary), 0).toLocaleString();
+    const totalSpentByStudent = myPayments.reduce((spentAmount, tuition) => spentAmount + (tuition.tutorSalary), 0)
     const totalRevenue = myApprovedApplications.reduce((revenue, app) => revenue + (app.tutorSalary), 0).toLocaleString();
     const approvalRate = myApplications.length > 0
         ? ((myApprovedApplications.length / myApplications.length) * 100).toFixed(1)
@@ -84,18 +118,26 @@ const DashboardHome = () => {
 
     return (
         <div className="overflow-x-auto">
-            <div className="text-center flex flex-col justify-center items-center">
+            <div className="text-center flex flex-col justify-center items-center py-10">
                 <GiHand className="h-25 w-25" />
                 <h1 className="text-white text-medium text-4xl">Welcome back, <span className="text-[#00bba7]">{useRole().role} !</span></h1>
             </div>
             <br />
             <br />
 
-            {/* //dashboard stats for admin */}
-            {isUserAdmin ? (<div>this is admin</div>) : <></>}
+            {/* //dashboard for admin */}
+            {isUserAdmin ? (
+                <div className="px-4 md:px-4">
+                    <AdminStatsInfograph
+                        allTuitions={allTuitions}
+                        allUsers={allUsers}
+                        allPayments={allPayments}
+                    />
+                </div>
+            ) : <p className="text-center text-red-500 text-2xl">Not Authorized</p>}
 
 
-            {/* //dashboard stats for student */}
+            {/* //dashboard for student */}
             {isUserStudent ? (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
                     <div className="stats shadow bg-gray-900 text-white border border-white/10">

@@ -79,7 +79,6 @@ const AdminManageUser = () => {
         }
     }
 
-
     const handleDeleteUser = (user) => {
         Swal.fire({
             title: "Delete this User?",

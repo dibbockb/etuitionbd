@@ -14,7 +14,7 @@ import { BiSolidDashboard } from "react-icons/bi";
 import { PiListDashesFill } from "react-icons/pi";
 import { BsCheckAll } from "react-icons/bs";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
-import { HiMiniListBullet } from "react-icons/hi2";
+import { HiMiniCurrencyDollar, HiMiniListBullet } from "react-icons/hi2";
 import { Fade } from "react-awesome-reveal";
 import { LiaHistorySolid } from "react-icons/lia";
 import { FiPower } from "react-icons/fi";
@@ -57,14 +57,14 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="bg-linear-to-br from-[#0f172a] via-[#101828] to-[#1e293b] ">
+    <div className="bg-[#0f172a] ">
       <div className="flex flex-col md:flex-row max-w-7xl mx-auto max-h-screen">
         {/* //panel  */}
         <aside className="w-full md:w-80 border-r border-black/30 flex flex-col">
           <div className="p-8 text-center border-b border-black/30">
             <Logo />
             <br />
-            <h2 className="text-2xl font-bold text-white">
+            <h2 className="text-xl font-bold text-white">
               {user?.displayName}
             </h2>
             <p className="text-gray-200 text-lg mt-2 flex items-center justify-center gap-2">
@@ -247,7 +247,7 @@ const Dashboard = () => {
 
             {isAdmin && (
               <NavLink
-                to="/dashboard/admin/manage-applications"
+                to="/dashboard/admin/platform-revenue"
                 className={({ isActive }) =>
                   `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                     ? "bg-[#00bba7] text-black shadow-lg"
@@ -255,8 +255,8 @@ const Dashboard = () => {
                   }`
                 }
               >
-                <HiMiniListBullet className="text-2xl" />
-                <span className="text-lg font-medium">Manage Applications</span>
+                <HiMiniCurrencyDollar className="text-2xl" />
+                <span className="text-lg font-medium">Platform Revenue</span>
               </NavLink>
             )}
 
@@ -297,7 +297,7 @@ const Dashboard = () => {
         </aside>
 
         {/* //outlet */}
-        <main className="flex-1 w-full p-2 overflow-y-auto">
+        <main className="flex-1 w-full  overflow-y-auto">
           <div className="backdrop-blur-xl  rounded-3xl shadow-xl border-white/10 min-h-screen min-w-fit">
             <Fade>
               <Outlet />

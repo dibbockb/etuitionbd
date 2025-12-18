@@ -20,7 +20,6 @@ import AppliedTuitions from "../Layouts/Dashboard/AppliedTuitions";
 import ApprovedTuitions from "../Layouts/Dashboard/ApprovedTuitions";
 import Revenue from "../Layouts/Dashboard/Revenue";
 import AdminManageUser from "../Layouts/Dashboard/AdminManageUser";
-import AdminManageApplications from "../Layouts/Dashboard/AdminManageApplications";
 import Forbidden from "../Components/Forbidden/Forbidden";
 import { Fade } from "react-awesome-reveal";
 import PaymentSuccess from "../Layouts/Dashboard/PaymentSuccess";
@@ -30,6 +29,7 @@ import DashboardHome from "../Layouts/Dashboard/DashboardHome";
 import Contact from "../Components/Contact/Contact";
 import AdminManageTuitions from "../Layouts/Dashboard/AdminManageTuitions";
 import UserProfile from "../Components/Users/UserProfile";
+import AdminSiteRevenue from "../Layouts/Dashboard/AdminSiteRevenue";
 
 
 export const router = createBrowserRouter([
@@ -73,7 +73,7 @@ export const router = createBrowserRouter([
             { path: "approved-tuitions", element: <ApprovedTuitions /> },
             { path: "revenue", element: <Revenue /> },
             { path: "admin/manage-users", element: <AdminManageUser /> },
-            { path: "admin/manage-applications", element: <AdminManageApplications /> },
+            { path: "admin/platform-revenue", element: <AdminSiteRevenue /> },
             { path: "admin/manage-tuitions", element: <AdminManageTuitions /> },
 
         ],
