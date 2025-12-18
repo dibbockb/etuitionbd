@@ -18,7 +18,7 @@ const DashboardHome = () => {
     const currentUserEmail = user.email;
     const navigate = useNavigate();
 
-    const { data: profile = {}, isLoading } = useQuery({
+    const { data: profile = {} } = useQuery({
         queryKey: ['my-profile', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/users/${user?.email}`);
@@ -126,7 +126,7 @@ const DashboardHome = () => {
             <br />
 
             {/* //dashboard for admin */}
-            {isUserAdmin &&(
+            {isUserAdmin && (
                 <div className="px-4 md:px-4">
                     <AdminStatsInfograph
                         allTuitions={allTuitions}
@@ -134,7 +134,7 @@ const DashboardHome = () => {
                         allPayments={allPayments}
                     />
                 </div>
-            ) }
+            )}
 
 
             {/* //dashboard for student */}

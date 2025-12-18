@@ -4,7 +4,8 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router";
 
 const axiosSecure = axios.create({
-    baseURL: `http://localhost:3000`,
+    // baseURL: `http://localhost:3000`,
+    baseURL: `https://etuition-server.vercel.app`,
 });
 
 const useAxiosSecure = () => {
@@ -12,13 +13,11 @@ const useAxiosSecure = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        //intercept req
         const reqInterceptor = axiosSecure.interceptors.request.use((config) => {
             config.headers.Authorizations = `Bearer ${user?.accessToken}`;
             return config;
         });
 
-        //intercept response
         const resInterceptor = axiosSecure.interceptors.response.use(
             (response) => {
                 return response;

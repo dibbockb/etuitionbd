@@ -30,6 +30,7 @@ import Contact from "../Components/Contact/Contact";
 import AdminManageTuitions from "../Layouts/Dashboard/AdminManageTuitions";
 import UserProfile from "../Components/Users/UserProfile";
 import AdminSiteRevenue from "../Layouts/Dashboard/AdminSiteRevenue";
+import AdminRoute from "../Components/AuthLayout/AdminRoute";
 
 
 export const router = createBrowserRouter([

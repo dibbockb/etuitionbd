@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router';
 import Navbar from '../../Components/Navbar/Navbar';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure';
+import { motion } from "framer-motion";
 
 const Home = () => {
 
@@ -122,7 +123,7 @@ const Home = () => {
             </div>
 
 
-            <div className="py-16 md:py-24 bg-gray-900 text-center">
+            {/* <div className="py-16 md:py-24 bg-gray-900 text-center">
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <div className="flex justify-between items-center mb-12 text-center">
                         <h2 className="text-3xl md:text-5xl font-bold text-white text-center">
@@ -164,9 +165,9 @@ const Home = () => {
                         ))}
                     </div>
                 </div>
-            </div>
+            </div> */}
 
-            <div className="py-16 md:py-24 bg-gray-800/10">
+            {/* <div className="py-16 md:py-24 bg-gray-800/10">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex justify-between items-center mb-12">
                         <h2 className="text-3xl md:text-5xl font-bold text-white">
@@ -214,6 +215,120 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
+                        ))}
+                    </div>
+                </div>
+            </div> */}
+
+            {/* Latest Tuitions Section */}
+            <div className="py-16 md:py-24 bg-gray-900">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="flex justify-between items-center mb-12">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white">
+                            Latest <span className="text-teal-400">Tuitions</span>
+                        </h2>
+                        <Link
+                            to="/tuitions"
+                            className="text-teal-400 hover:text-teal-300 text-lg font-medium flex items-center gap-2"
+                        >
+                            View All →
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {latestTuitions.map((tuition, index) => (
+                            <motion.div
+                                key={tuition._id}
+                                initial={{ opacity: 0, x: -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{
+                                    duration: 0.6,
+                                    delay: index * 0.15,
+                                    ease: [0.4, 0, 0.2, 1]
+                                }}
+                                whileHover={{ scale: 1.05 }}
+                                onClick={() => navigate(`/tuitions/${tuition._id}`)}
+                                className="card bg-gray-800 shadow-xl rounded-xl cursor-pointer"
+                            >
+                                <div className="h-48 rounded-t-xl overflow-hidden">
+                                    <img
+                                        src={tuition.image}
+                                        alt={tuition.subject}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="card-body p-6">
+                                    <h3 className="text-white font-bold text-2xl mb-2">
+                                        {tuition.subject}
+                                    </h3>
+                                    <p className="text-gray-400 text-sm mb-4">
+                                        {tuition.location} • {tuition.mode}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Latest Tutors Section */}
+            <div className="py-16 md:py-24 bg-gray-800">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="flex justify-between items-center mb-12">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white">
+                            Latest <span className="text-teal-400">Tutors</span>
+                        </h2>
+                        <Link
+                            to="/tutors"
+                            className="text-teal-400 hover:text-teal-300 text-lg font-medium flex items-center gap-2"
+                        >
+                            View All →
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {latestTutors.map((tutor, index) => (
+                            <motion.div
+                                key={tutor._id}
+                                initial={{ opacity: 0, x: 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{
+                                    duration: 0.6,
+                                    delay: index * 0.15,
+                                    ease: [0.4, 0, 0.2, 1]
+                                }}
+                                whileHover={{ scale: 1.05 }}
+                                onClick={() => navigate(`/tutors/${tutor._id}`)}
+                                className="card bg-gray-700 shadow-xl rounded-xl cursor-pointer"
+                            >
+                                <div className="h-64 rounded-t-xl overflow-hidden">
+                                    <img
+                                        src={tutor.photoURL}
+                                        alt={tutor.displayName}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="card-body p-6">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <h3 className="text-white font-bold text-2xl">
+                                            {tutor.displayName}
+                                        </h3>
+                                    </div>
+                                    <p className="text-gray-300 font-medium mb-4">
+                                        {tutor.subject}
+                                    </p>
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-xl font-bold text-teal-400">
+                                            ৳{Number(tutor.salary).toLocaleString()}/mo
+                                        </span>
+                                        <span className="badge badge-accent">
+                                            {tutor.mode}
+                                        </span>
+                                    </div>
+                                </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
