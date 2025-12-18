@@ -26,7 +26,6 @@ const AppliedTuitions = () => {
 
     const handleUpdateApplication = async (application) => {
         const updateId = application._id;
-
         const updateForm = await Swal.fire(
             {
                 title: "Update Application",
@@ -66,7 +65,7 @@ const AppliedTuitions = () => {
                 Swal.fire("Success!", "Your application has been updated!", "success");
                 refetch();
             } catch (error) {
-                const msg = error.response?.data?.message || "Failed to update application.";
+                const msg = error.response?.data?.message
                 Swal.fire("Error", msg, "error");
             }
         }

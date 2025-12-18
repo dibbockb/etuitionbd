@@ -29,6 +29,7 @@ import TutorPaymentSuccess from "../Layouts/Dashboard/TutorPaymentSuccess";
 import DashboardHome from "../Layouts/Dashboard/DashboardHome";
 import Contact from "../Components/Contact/Contact";
 import AdminManageTuitions from "../Layouts/Dashboard/AdminManageTuitions";
+import UserProfile from "../Components/Users/UserProfile";
 
 
 export const router = createBrowserRouter([
@@ -37,6 +38,7 @@ export const router = createBrowserRouter([
         element: <RootLayout />,
         children: [
             { index: true, element: <Fade> <Home /> </Fade> },
+            { path: "users/profile/:id", element: <Fade><UserProfile /></Fade> },
             { path: "tutors", element: <Fade><Tutors /></Fade> },
             { path: "tutors/:id", element: <Private> <Fade><Tutorinfo /></Fade>  </Private> },
             { path: "tuitions", element: <Fade><Tuitions /></Fade> },
