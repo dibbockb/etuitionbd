@@ -57,7 +57,7 @@ const Tutors = () => {
 
               <div className="flex items-center gap-2 my-2">
                 <h2 className="text-2xl text-white">{tutor.displayName}</h2>
-                <span className="text-yellow-500">★</span>
+                <span className="text-amber-500">★</span>
                 <span className="text-white ml-[-5px]">4.8</span>
               </div>
 

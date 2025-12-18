@@ -60,12 +60,12 @@ const MyProfile = () => {
 
 
   return (
-    <div className="py-12 px-4 flex justify-center items-center">
+    <div className="py-12 px-0 flex justify-center items-center">
       <div className="max-w-4xl mx-auto flex justify-center items-center text-center">
-        <div className="bg-white/5 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/10 p-10 text-white flex flex-col justify-center items-center text-center">
-          <div className="flex flex-col md:flex-row items-center gap-10">
+        <div className=" backdrop-blur-lg rounded-3xl shadow-2xl border border-white/10 p-10 text-white flex flex-col justify-center items-center text-center ">
+          <div className="flex flex-col md:flex-row items-center gap-10 ">
             <img
-              src={profile.photoURL || <HiUserCircle />}
+              src={profile.photoURL || `https://dummyimage.com/2500x2500/1a1a2e/ffffff.png&text=${profile.displayName}`}
               alt={profile.displayName}
               className="w-48 h-48 rounded-full object-cover border-2 border-teal-500 shadow-xl"
             />

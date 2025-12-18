@@ -126,7 +126,7 @@ const DashboardHome = () => {
             <br />
 
             {/* //dashboard for admin */}
-            {isUserAdmin ? (
+            {isUserAdmin &&(
                 <div className="px-4 md:px-4">
                     <AdminStatsInfograph
                         allTuitions={allTuitions}
@@ -134,12 +134,12 @@ const DashboardHome = () => {
                         allPayments={allPayments}
                     />
                 </div>
-            ) : <p className="text-center text-red-500 text-2xl">Not Authorized</p>}
+            ) }
 
 
             {/* //dashboard for student */}
             {isUserStudent ? (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pl-4">
                     <div className="stats shadow bg-gray-900 text-white border border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Posted Tuitions</div>
@@ -173,7 +173,7 @@ const DashboardHome = () => {
 
             {/* // dashboard stats for tutor */}
             {isUserTutor ? (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pl-8">
                     <div className="stats shadow bg-gray-900 text-white border border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Total Revenue</div>

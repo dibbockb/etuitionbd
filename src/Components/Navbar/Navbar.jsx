@@ -39,7 +39,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="navbar bg-base-100 shadow-sm flex justify-between px-50">
+            <div className="navbar bg-base-100 shadow-sm flex justify-between px-4 md:px-10 lg:px-70">
                 <div className="">
                     <Logo></Logo>
                 </div>
@@ -90,7 +90,7 @@ const Navbar = () => {
                                 )}
                             </div>
 
-                            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box w-52 p-2 shadow">
+                            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box p-2 shadow w-fit">
 
                                 <li className="text-center py-2 text-xl font-medium border-b border-gray-600/50 mb-2">
                                     {user.displayName}</li>

@@ -7,6 +7,7 @@ import useAxiosSecure from '../Hooks/useAxiosSecure';
 import SocialLogin from './SocialLogin';
 import Swal from 'sweetalert2';
 import { Fade } from "react-awesome-reveal";
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -15,7 +16,8 @@ const Register = () => {
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
     const [isClicked, setIsClicked] = useState(false);
-    
+    const [isVisible, setIsVisible] = useState(false);
+
 
 
     const handleRegistration = async (data) => {
@@ -106,14 +108,14 @@ const Register = () => {
                     <label className="label">Name</label>
                     <input type="text"
                         {...register('name', { rekquired: true })}
-                        className="input"
+                        className="input w-full pr-8  border-gray-600 focus:border-teal-500"
                         placeholder="Your Name" />
                     {errors.name?.type === 'required' && <p className='text-red-500'>Name is required.</p>}
 
                     <label className="label">Phone Number</label>
                     <input type="text"
                         {...register('userPhone', { required: false })}
-                        className="input"
+                        className="input w-full pr-8  border-gray-600 focus:border-teal-500"
                         placeholder="Your Number" />
 
                     <div className="flex mt-2">
@@ -128,34 +130,36 @@ const Register = () => {
                     </div>
 
                     <label className="label">Email</label>
-                    <input type="email" {...register('email', { required: true })} className="input" placeholder="Email" />
+                    <input type="email" {...register('email', { required: true })} className="input w-full pr-8  border-gray-600 focus:border-teal-500" placeholder="Email" />
                     {errors.email?.type === 'required' && <p className='text-red-500'>Email is required.</p>}
 
                     <label className="label">Password</label>
-                    <input type="password" {...register('password', {
-                        required: true,
-                        minLength: 6,
-                        pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/
-                    })} className="input" placeholder="Password" />
-                    {
-                        errors.password?.type === 'required' && <p className='text-red-500'>Password is required.</p>
-                    }
-                    {
-                        errors.password?.type === 'minLength' && <p className='text-red-500'>
-                            Password must be 6 characters or longer
-                        </p>
-                    }
+                    <div className="relative w-full">
+                        <input
+                            type={isVisible ? "text" : "password"}
+                            {...register('password', { required: true, minLength: 6 })}
+                            className="input w-full pr-8  border-gray-600 focus:border-teal-500"
+                            placeholder="Password"
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setIsVisible(!isVisible)}
+                            className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-teal-500 transition-colors"
+                        >
+                            {isVisible ? <FaRegEyeSlash className="w-4 h-4" /> : <FaRegEye className="w-4 h-4" />}
+                        </button>
+                    </div>
                     {
                         errors.password?.type === 'pattern' && <p className='text-red-500'>Password must have at least one uppercase, at least one lowercase, at least one number, and at least one special characters</p>
                     }
 
                     <label className="label">Photo</label>
-                    <input type="file" {...register('photo', { required: false })} className="file-input" placeholder="Your Photo" />
+                    <input type="file" {...register('photo', { required: false })} className="file-input w-full pr-8  border-gray-600 focus:border-teal-500" placeholder="Your Photo" />
 
                     <div><a className="link link-hover flex justify-center mt-2">Forgot password?</a></div>
                     <button
                         className="btn btn-neutral mt-4 rounded-2xl bg-teal-500 text-black hover:bg-teal-300/50"
-                        disabled={isClicked} 
+                        disabled={isClicked}
                     >
                         {isClicked ? (
                             <span className="loading loading-spinner loading-xs"></span>

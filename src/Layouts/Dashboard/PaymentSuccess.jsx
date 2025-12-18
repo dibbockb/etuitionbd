@@ -20,12 +20,12 @@ const PaymentSuccess = () => {
     
 
     return (
-        <div className="mx-auto text-center">
+        <div className="mx-auto text-center pt-50">
             <p className="text-green-500 text-2xl">Payment Successfull!</p>
 
             <Link
             to="/dashboard/my-tuitions"
-            className="btn btn-ghost btn-lg text-lg flex-1 justify-center">
+            className="btn btn-ghost btn-lg text-lg flex-1 justify-center mt-5">
              My Tuitions <MdOutlineArrowForwardIos />
            </Link>
         </div>

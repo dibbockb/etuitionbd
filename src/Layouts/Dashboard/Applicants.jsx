@@ -156,7 +156,7 @@ const Applicants = () => {
                     ? "text-green-500"
                     : app.applicationStatus === "Rejected"
                       ? "text-red-500"
-                      : "text-yellow-500"
+                      : "text-amber-500"
                     }`}
                 >
                   {app.applicationStatus}

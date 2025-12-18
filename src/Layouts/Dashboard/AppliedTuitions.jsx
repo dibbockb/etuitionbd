@@ -126,10 +126,10 @@ const AppliedTuitions = () => {
 
                                 <td className="text-center">{application.tuitionSubject}</td>
 
-                                <td className={`text-center font-medium ${application.applicationStatus === `Approved` ? "text-green-500" : "text-yellow-500"}`} >
+                                <td className={`text-center font-medium ${application.applicationStatus === `Approved` ? "text-green-500" : "text-amber-500"}`} >
                                     {application.applicationStatus === "Approved"
                                         ? "Approved"
-                                        : "Pending Approval"}
+                                        : "Pending"}
                                 </td>
 
                                 <td className="text-center">৳ {application.tutorSalary}</td>

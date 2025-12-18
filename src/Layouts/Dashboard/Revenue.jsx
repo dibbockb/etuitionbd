@@ -32,7 +32,7 @@ const Revenue = () => {
                 <thead>
                     <tr className="">
                         <th>#</th>
-                        <th className="text-center">Tuition ID</th>
+                        <th className="text-center">Student E-mail</th>
                         <th className="text-center">Status</th>
                         <th className="text-center">Revenue</th>
                         <th className="text-center">Payment Time</th>
@@ -48,9 +48,9 @@ const Revenue = () => {
                         >
                             <th>{index + 1}</th>
 
-                            <td className="text-center">{application.tuitionId}</td>
+                            <td className="text-center">{application.creatorEmail}</td>
 
-                            <td className={`text-center font-medium ${application.applicationStatus === `Approved` ? "text-green-500" : "text-yellow-500"}`} >
+                            <td className={`text-center font-medium ${application.applicationStatus === `Approved` ? "text-green-500" : "text-amber-500"}`} >
                                 {application.applicationStatus === "Approved"
                                     ? "Paid"
                                     : "Unpaid"}
