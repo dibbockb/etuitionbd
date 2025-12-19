@@ -35,6 +35,22 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            if (currentUser) {
+                const loggedUser = { email: currentUser.email }
+                fetch('http://etuition-server.vercel.app/getToken', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': "application/json"
+                    },
+                    body: JSON.stringify(loggedUser)
+                }).then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('token', data.token)
+                    })
+            } else {
+                localStorage.removeItem('token')
+            }
+
             setLoading(false);
         })
         return () => {

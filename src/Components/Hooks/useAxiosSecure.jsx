@@ -9,26 +9,26 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
-    const { user, logOut } = useAuth();
-    const navigate = useNavigate();
+    const { user } = useAuth();
+    // console.log(user);
 
     useEffect(() => {
-        const reqInterceptor = axiosSecure.interceptors.request.use((config) => {
-            config.headers.Authorizations = `Bearer ${user?.accessToken}`;
-            return config;
-        });
+        const reqInterceptor = axiosSecure.interceptors.request.use(async config => {
+            config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+
+            return config
+        })
 
         const resInterceptor = axiosSecure.interceptors.response.use(
             (response) => {
                 return response;
             },
-            (error) => {
+            async (error) => {
+                const statusCode = error.response?.status;
 
-                const statusCode = error.status;
                 if (statusCode === 401 || statusCode === 403) {
-                    logOut().then(() => {
-                        navigate(`/login`);
-                    });
+                    // await logOut();
+                    // navigate('/login');
                 }
 
                 return Promise.reject(error);
@@ -39,7 +39,7 @@ const useAxiosSecure = () => {
             axiosSecure.interceptors.request.eject(reqInterceptor);
             axiosSecure.interceptors.response.eject(resInterceptor);
         };
-    }, [user, logOut, navigate]);
+    }, [user]);
 
     return axiosSecure;
 };

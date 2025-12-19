@@ -27,13 +27,21 @@ const DashboardHome = () => {
         enabled: !!user?.email
     });
 
+    const isUserStudent = profile?.userRole === 'student';
+    const isUserTutor = profile?.userRole === 'tutor';
+    const isUserAdmin = profile?.userRole === 'admin';
+
+
+
     const { data: allTuitions = [] } =
         useQuery({
             queryKey: [`all-tuitions`],
             queryFn: async () => {
                 const res = await axiosSecure.get(`/admin/tuitions/all`);
                 return res.data;
-            }
+
+            },
+            enabled: isUserAdmin
         })
 
     const { data: allUsers = [], } =
@@ -42,7 +50,8 @@ const DashboardHome = () => {
             queryFn: async () => {
                 const res = await axiosSecure.get(`/users`);
                 return res.data;
-            }
+            },
+            enabled: isUserAdmin
         })
 
     const { data: myTuitions = [] } =
@@ -50,7 +59,8 @@ const DashboardHome = () => {
             queryKey: ['my-tuitions', currentUserEmail], queryFn: async () => {
                 const res = await axiosSecure.get(`/tuitions/creator/${user.email}`);
                 return res.data;
-            }
+            },
+            enabled: isUserStudent
         })
 
     const { data: myTutors = [],
@@ -62,6 +72,7 @@ const DashboardHome = () => {
             );
             return res.data;
         },
+        enabled: isUserStudent
     });
 
     const { data: myPayments = [] } =
@@ -70,7 +81,8 @@ const DashboardHome = () => {
             queryFn: async () => {
                 const res = await axiosSecure.get(`/tuitions/payee/${user.email}`)
                 return res.data;
-            }
+            },
+            enabled: isUserStudent
         })
 
     const { data: myApplications = [] } = useQuery({
@@ -79,18 +91,19 @@ const DashboardHome = () => {
             const res = await axiosSecure.get(`/applications/creator/${tutorEmail}`);
             return res.data;
         },
+        enabled: isUserTutor
     });
 
     const {
-        data: myApprovedApplications = [],
-        refetch
+        data: myApprovedApplications = [], refetch
     } =
         useQuery({
             queryKey: [`my-approved-applications`, tutorEmail],
             queryFn: async () => {
                 const res = await axiosSecure.get(`/applications/approved/${tutorEmail}`)
                 return res.data;
-            }
+            },
+            enabled: isUserTutor
         })
 
     const { data: allPayments = [], } =
@@ -99,16 +112,12 @@ const DashboardHome = () => {
             queryFn: async () => {
                 const res = await axiosSecure.get(`admin/payments-log`)
                 return res.data;
-            }
+            },
+            enabled: isUserAdmin
         })
 
     const totalPlatformRevenue = allPayments
         .reduce((payment, log) => payment + log.tutorSalary, 0)
-
-
-    const isUserStudent = profile.userRole === 'student';
-    const isUserTutor = profile?.userRole === 'tutor';
-    const isUserAdmin = profile?.userRole === 'admin';
 
     const totalSpentByStudent = myPayments.reduce((spentAmount, tuition) => spentAmount + (tuition.tutorSalary), 0)
     const totalRevenue = myApprovedApplications.reduce((revenue, app) => revenue + (app.tutorSalary), 0).toLocaleString();

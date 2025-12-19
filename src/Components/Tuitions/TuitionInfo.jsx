@@ -50,6 +50,8 @@ const TuitionInfo = () => {
     return null;
   }
 
+  const isAdminApproved = tuition.isAdminApproved === true;
+
   //edit tuition
   const handleTuitionEdit = () => {
     Swal.fire({
@@ -209,7 +211,7 @@ const TuitionInfo = () => {
   const toUSD = (tuition.fee / 125).toFixed(2);
   const isCreator = user?.email === tuition?.creatorEmail;
   const currentDBUser = users.find((u) => u.email === user?.email);
-  
+
 
   return (
     <div className="flex justify-center py-10 bg-gray-900 ">
@@ -273,7 +275,7 @@ const TuitionInfo = () => {
 
 
 
-            {isCreator && <button
+            {/* {isCreator && <button
               onClick={handlePayment}
               disabled={isClicked}
               className="btn btn-neutral rounded-2xl bg-teal-500 text-black hover:bg-teal-300/50 w-1/3 h-12 text-xl">
@@ -284,9 +286,9 @@ const TuitionInfo = () => {
                 <div className="flex justify-center items-center">Pay now <IoArrowForward></IoArrowForward></div>
               )}
 
-            </button>}
+            </button>} */}
 
-            {isTutor &&
+            {isAdminApproved &&
               <button
                 onClick={handleApplyasTutor}
                 disabled={!isTutor}

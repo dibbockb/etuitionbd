@@ -73,9 +73,9 @@ export const router = createBrowserRouter([
             { path: "applied-tuitions", element: <AppliedTuitions /> },
             { path: "approved-tuitions", element: <ApprovedTuitions /> },
             { path: "revenue", element: <Revenue /> },
-            { path: "admin/manage-users", element: <AdminManageUser /> },
-            { path: "admin/platform-revenue", element: <AdminSiteRevenue /> },
-            { path: "admin/manage-tuitions", element: <AdminManageTuitions /> },
+            { path: "admin/manage-users", element: <AdminRoute> <AdminManageUser /> </AdminRoute> },
+            { path: "admin/platform-revenue", element: <AdminRoute> <AdminSiteRevenue /> </AdminRoute> },
+            { path: "admin/manage-tuitions", element: <AdminRoute> <AdminManageTuitions /> </AdminRoute> },
 
         ],
     },

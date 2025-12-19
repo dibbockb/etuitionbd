@@ -8,12 +8,13 @@ const BecomeTutor = () => {
 
         <div>
             <Navbar></Navbar>
-            
+
             <div className="flex flex-col justify-center items-center">
 
 
-            <h5 className="text-5xl flex text-center my-2 text-white">Become a Tutor!</h5>
-            <p>this is become tutor</p>
+                <h5 className="text-5xl flex text-center my-2 text-white">Become a Tutor!</h5>
+                <p>You are currently signed up as Student.</p>
+                <p>Please head to Register Page or Contact Admin.</p>
 
             </div>
         </div>
