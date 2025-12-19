@@ -12,30 +12,30 @@ const Navbar = () => {
 
     const handleLogOut = () => {
         Swal.fire({
-          title: "Are you Sure want to Log Out",
-          icon: "question",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Logout",
+            title: "Are you Sure want to Log Out",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Logout",
         })
-          .then((result) => {
-            if (result.isConfirmed) {
-              logOut();
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Logged Out",
-              showConfirmButton: false,
-              timer: 1000,
+            .then((result) => {
+                if (result.isConfirmed) {
+                    logOut();
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Logged Out",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+                    navigate("/");
+                }
+            })
+            .catch((error) => {
+                console.error("error");
             });
-            navigate("/");
-            }
-          })
-          .catch((error) => {
-            console.error("error");
-          });
-      };
+    };
 
     return (
         <div>
@@ -63,7 +63,7 @@ const Navbar = () => {
                             </NavLink>
                         )}
                         {user && (
-                            <NavLink className="btn btn-ghost" to={"/tuitions"}>
+                            <NavLink className="btn btn-ghost" to={"/tuitions?page=1&limit=5"}>
                                 Tuitions
                             </NavLink>
                         )}
@@ -99,7 +99,7 @@ const Navbar = () => {
                                     onClick={() => navigate("/dashboard/profile")}
                                     className="rounded w-full hover:bg-teal-500 hover:text-black flex justify-center">
                                     Profile</a></li>
-                                    
+
                                 <li><a
                                     onClick={() => navigate("/dashboard")}
                                     className="rounded w-full hover:bg-teal-500 hover:text-black flex justify-center">

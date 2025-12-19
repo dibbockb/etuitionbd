@@ -9,21 +9,25 @@ const Tuitions = () => {
   const [loading, setLoading] = useState(true);
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const limit = 12;
 
-  const handlePostTuition = () => {};
 
   useEffect(() => {
     setLoading(true);
     axiosSecure
-      .get(`/tuitions`)
+      .get(`/tuitions?page=${currentPage}&limit=${limit}`)
       .then((res) => {
-        setTuitions(res.data);
+        setTuitions(res.data.tuitions);
+        setTotalPages(res.data.totalPages || Math.ceil(res.data.totalCount / limit));
         setLoading(false);
       })
       .catch((err) => {
+        console.error(err);
         setLoading(false);
       });
-  }, [axiosSecure]);
+  }, [currentPage, axiosSecure]);
 
   if (loading) {
     return <Loading />;

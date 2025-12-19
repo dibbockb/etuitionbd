@@ -58,9 +58,8 @@ const Dashboard = () => {
 
   return (
     <div className="bg-[#0f172a] ">
-      <div className="flex flex-col md:flex-row max-w-7xl mx-auto max-h-screen">
-        {/* //panel  */}
-        <aside className="w-full md:w-80 border-r border-black/30 flex flex-col">
+      <div className="flex flex-col md:flex-row min-h-screen">
+        <aside className="w-full md:w-80 lg:w-96 border-r border-black/30 flex flex-col">
           <div className="p-8 text-center border-b border-black/30">
             <Logo />
             <br />
@@ -86,19 +85,20 @@ const Dashboard = () => {
             </p>
           </div>
 
-          <div className="flex flex-col items-center gap-3 mt-3 px-3 flex-1">
+
+          <div className="flex flex-row md:flex-col gap-3 px-3 py-5 flex-1 overflow-x-auto md:overflow-visible">
             <NavLink
               to="/dashboard"
               end
               className={({ isActive }) =>
-                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                `w-full flex items-center justify-center md:justify-start gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                   ? "bg-[#00bba7] text-black shadow-lg"
                   : "text-gray-300 hover:bg-white/10"
                 }`
               }
             >
               <BiSolidDashboard className="text-2xl" />
-              <span className="text-lg font-medium">Dashboard</span>
+              <span className="text-lg font-medium hidden md:inline">Dashboard</span>
             </NavLink>
 
             {/* ------------------------------------------------------- */}
@@ -108,14 +108,14 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/new-tuition"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                  `w-full flex items-center justify-center md:justify-start gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                     ? "bg-[#00bba7] text-black shadow-lg"
                     : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
                 <IoAddOutline className="text-3xl" />
-                <span className="text-lg font-medium">Add Tuition</span>
+                <span className="text-lg font-medium hidden md:inline">Add Tuition</span>
               </NavLink>
             )}
 
@@ -123,14 +123,14 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/my-tuitions"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                  `w-full flex items-center justify-center md:justify-start gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                     ? "bg-[#00bba7] text-black shadow-lg"
                     : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
                 <FaListUl className="text-2xl shrink-0" />
-                <span className="text-lg font-medium">My Tuitions</span>
+                <span className="text-lg font-medium hidden md:inline">My Tuitions</span>
               </NavLink>
             )}
 
@@ -138,14 +138,14 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/applicants"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                  `w-full flex items-center justify-center md:justify-start gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                     ? "bg-[#00bba7] text-black shadow-lg"
                     : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
                 <RiGraduationCapFill className="text-2xl" />
-                <span className="text-lg font-medium">Applicants</span>
+                <span className="text-lg font-medium hidden md:inline">Applicants</span>
               </NavLink>
             )}
 
@@ -153,14 +153,14 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/my-payments"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all  ${isActive
+                  `w-full flex items-center justify-center md:justify-start gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                     ? "bg-[#00bba7] text-black shadow-lg"
                     : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
                 <LiaHistorySolid className="text-2xl" />
-                <span className="text-lg font-medium">Payment History</span>
+                <span className="text-lg font-medium hidden md:inline">Payment History</span>
               </NavLink>
             )}
 
@@ -170,14 +170,14 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/applied-tuitions"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                  `w-full flex items-center justify-center md:justify-start gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                     ? "bg-[#00bba7] text-black shadow-lg"
                     : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
                 <PiListDashesFill className="text-2xl" />
-                <span className="text-lg font-medium">My Applications</span>
+                <span className="text-lg font-medium hidden md:inline">My Applications</span>
               </NavLink>
             )}
 
@@ -185,14 +185,14 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/approved-tuitions"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                  `w-full flex items-center justify-center md:justify-start gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                     ? "bg-[#00bba7] text-black shadow-lg"
                     : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
                 <BsCheckAll className="text-2xl" />
-                <span className="text-lg font-medium">Ongoing Tuitions</span>
+                <span className="text-lg font-medium hidden md:inline">Ongoing Tuitions</span>
               </NavLink>
             )}
 
@@ -200,14 +200,14 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/revenue"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                  `w-full flex items-center justify-center md:justify-start gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                     ? "bg-[#00bba7] text-black shadow-lg"
                     : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
                 <RiMoneyDollarCircleLine className="text-2xl" />
-                <span className="text-lg font-medium">Revenue</span>
+                <span className="text-lg font-medium hidden md:inline">Revenue</span>
               </NavLink>
             )}
 
@@ -219,14 +219,14 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/admin/manage-users"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                  `w-full flex items-center justify-center md:justify-start gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                     ? "bg-[#00bba7] text-black shadow-lg"
                     : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
                 <FaUsersCog className="text-2xl" />
-                <span className="text-lg font-medium">Manage Users</span>
+                <span className="text-lg font-medium hidden md:inline">Manage Users</span>
               </NavLink>
             )}
 
@@ -234,14 +234,14 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/admin/manage-tuitions"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                  `w-full flex items-center justify-center md:justify-start gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                     ? "bg-[#00bba7] text-black shadow-lg"
                     : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
                 <HiMiniListBullet className="text-2xl" />
-                <span className="text-lg font-medium">Manage Tuitions</span>
+                <span className="text-lg font-medium hidden md:inline">Manage Tuitions</span>
               </NavLink>
             )}
 
@@ -249,40 +249,40 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/admin/platform-revenue"
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                  `w-full flex items-center justify-center md:justify-start gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                     ? "bg-[#00bba7] text-black shadow-lg"
                     : "text-gray-300 hover:bg-white/10"
                   }`
                 }
               >
                 <HiMiniCurrencyDollar className="text-2xl" />
-                <span className="text-lg font-medium">Platform Revenue</span>
+                <span className="text-lg font-medium hidden md:inline">Platform Revenue</span>
               </NavLink>
             )}
 
             <NavLink
               to="/dashboard/profile"
               className={({ isActive }) =>
-                `w-full flex items-center gap-4 px-6 py-4 rounded-xl transition-all ${isActive
+                `w-full flex items-center justify-center md:justify-start gap-4 px-6 py-4 rounded-xl transition-all ${isActive
                   ? "bg-[#00bba7] text-black shadow-lg"
                   : "text-gray-300 hover:bg-white/10"
                 }`
               }
             >
               <TbUserFilled className="text-2xl" />
-              <span className="text-lg font-medium">Profile</span>
+              <span className="text-lg font-medium hidden md:inline">Profile</span>
             </NavLink>
           </div>
 
 
 
-          <div className="flex justify-around items-center text-center">
+          <div className="flex md:hidden justify-around items-center text-center border-t border-black/30 pt-4 pb-6 px-4">
             <NavLink
               to="/"
               className="w-50 flex justify-center items-center gap-4 rounded-xl transition-all mx-auto  mb-3 text-gray-300 hover:bg-white/10 py-3"
             >
               <MdOutlineArrowBackIos className="" />
-              <span className="text-lg font-medium">Back to home</span>
+              <span className="text-lg font-medium hidden md:inline">Back to home</span>
             </NavLink>
 
             <button

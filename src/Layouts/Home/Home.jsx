@@ -145,8 +145,8 @@ const Home = () => {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{
-                                    duration: 0.6,
-                                    delay: index * 0.5,
+                                    duration: 1.6,
+                                    delay: index * 0.15,
                                     ease: [0.4, 0, 0.2, 1]
                                 }}
                                 whileHover={{ scale: 1.05 }}
@@ -197,7 +197,7 @@ const Home = () => {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{
-                                    duration: 0.6,
+                                    duration: 1.6,
                                     delay: index * 0.15,
                                     ease: [0.4, 0, 0.2, 1]
                                 }}

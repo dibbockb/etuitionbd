@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             if (currentUser) {
                 const loggedUser = { email: currentUser.email }
-                fetch('http://etuition-server.vercel.app/getToken', {
+                fetch('https://etuition-server.vercel.app/getToken', {
                     method: 'POST',
                     headers: {
                         'content-type': "application/json"
