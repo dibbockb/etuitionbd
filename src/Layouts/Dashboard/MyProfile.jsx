@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { FaUserEdit } from 'react-icons/fa';
 import { HiUserCircle } from 'react-icons/hi2';
+import Loading from '../../Components/Loading/Loading';
 
 const MyProfile = () => {
   const { user } = useAuth();
@@ -19,6 +20,9 @@ const MyProfile = () => {
     enabled: !!user?.email
   });
 
+  if (isLoading) {
+    return <Loading></Loading>
+  }
 
   const handleEditProfile = (profile) => {
     Swal.fire({

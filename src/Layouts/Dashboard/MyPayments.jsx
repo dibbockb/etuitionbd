@@ -3,6 +3,7 @@ import useAxiosSecure from '../../Components/Hooks/useAxiosSecure';
 import useAuth from '../../Components/Hooks/useAuth';
 import { useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
+import Loading from '../../Components/Loading/Loading';
 
 const MyPayments = () => {
 
@@ -12,7 +13,7 @@ const MyPayments = () => {
     const navigate = useNavigate();
 
 
-    const { data: myPayments = [], refetch } =
+    const { data: myPayments = [], refetch, isLoading } =
         useQuery({
             queryKey: ['my-payments', currentUserEmail],
             queryFn: async () => {
@@ -20,6 +21,12 @@ const MyPayments = () => {
                 return res.data;
             }
         })
+
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
 
     return (
         <div>

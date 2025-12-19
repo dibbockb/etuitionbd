@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import { FiEdit } from 'react-icons/fi';
 import { MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
+import Loading from '../../Components/Loading/Loading';
 
 const MyTuitions = () => {
 
@@ -15,7 +16,7 @@ const MyTuitions = () => {
     const navigate = useNavigate();
     const [isClicked, setIsClicked] = useState(false);
 
-    const { data: myTuitions = [], refetch } =
+    const { data: myTuitions = [], refetch, isLoading } =
         useQuery({
             queryKey: ['my-tuitions', currentUserEmail], queryFn: async () => {
                 const res = await axiosSecure.get(`/tuitions/creator/${user.email}`);
@@ -24,6 +25,9 @@ const MyTuitions = () => {
         })
 
 
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     const handleTuitionEdit = (tuition) => {
         Swal.fire({
@@ -141,7 +145,7 @@ const MyTuitions = () => {
                                 <td className="text-center">{tuition.location} ({tuition.mode})</td>
 
                                 <td className={`text-center font-medium ${tuition.isAdminApproved ? 'text-green-500' : 'text-amber-500'}`}>
-                                    {tuition.isAdminApproved===true ? `Approved` : `Pending`}</td>
+                                    {tuition.isAdminApproved === true ? `Approved` : `Pending`}</td>
                                 <td className="flex justify-center items-center gap-2">
 
                                     <button

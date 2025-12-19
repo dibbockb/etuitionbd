@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { FiEdit, FiEdit3 } from "react-icons/fi";
 import Swal from "sweetalert2";
 import { GrView } from "react-icons/gr";
+import Loading from "../../Components/Loading/Loading";
 
 
 const AppliedTuitions = () => {
@@ -14,13 +15,17 @@ const AppliedTuitions = () => {
     const axiosSecure = useAxiosSecure();
     const tutorEmail = user?.email;
 
-    const { data: myApplications = [], refetch } = useQuery({
+    const { data: myApplications = [], refetch, isLoading } = useQuery({
         queryKey: ["my-applications", tutorEmail],
         queryFn: async () => {
             const res = await axiosSecure.get(`/applications/creator/${tutorEmail}`);
             return res.data;
         },
     });
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     const navigate = useNavigate();
 
@@ -145,7 +150,7 @@ const AppliedTuitions = () => {
                                         <GrView /></button>
 
                                     <button
-                                        onClick={() => 
+                                        onClick={() =>
                                             handleUpdateApplication(application)
                                         }
                                         className="btn btn-sm btn-neutral bg-teal-500 hover:bg-teal-600 text-black" >

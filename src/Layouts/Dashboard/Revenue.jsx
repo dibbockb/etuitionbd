@@ -3,6 +3,7 @@ import useAuth from '../../Components/Hooks/useAuth';
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
+import Loading from '../../Components/Loading/Loading';
 
 const Revenue = () => {
     const { user } = useAuth();
@@ -10,11 +11,11 @@ const Revenue = () => {
     const tutorEmail = user.email;
     const navigate = useNavigate();
 
-    
+
 
     const {
         data: myApprovedApplications = [],
-        refetch
+        refetch, isLoading
     } =
         useQuery({
             queryKey: [`my-approved-applications`, tutorEmail],
@@ -24,10 +25,14 @@ const Revenue = () => {
             }
         })
 
-        
-        return (
-            <div className="overflow-x-auto">
-                
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+
+    return (
+        <div className="overflow-x-auto">
+
             <table className="table">
                 <thead>
                     <tr className="">
