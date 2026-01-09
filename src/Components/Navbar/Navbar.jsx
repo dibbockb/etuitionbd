@@ -5,10 +5,22 @@ import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaUserLarge } from "react-icons/fa6";
 import { useNavigate } from "react-router";
+import { GoSun } from "react-icons/go";
+import { GoMoon } from "react-icons/go";
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
     const navigate = useNavigate();
+    const [theme, setTheme] = React.useState(localStorage.getItem("theme") || "light");
+
+    React.useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme(theme === "light" ? "dark" : "light");
+    };
 
     const handleLogOut = () => {
         Swal.fire({
@@ -70,60 +82,70 @@ const Navbar = () => {
                     </ul>
                 </div>
 
-                {user ? (
-                    <div className="">
-                        <div className="dropdown dropdown-bottom dropdown-center rounded-full flex justify-center items-center ">
-                            <div
-                                tabIndex={0}
-                                role="button"
-                                className="btn btn-ghost rounded-full "
-                            >
-                                {user.photoURL ? (
-                                    <img
-                                        className="w-9 h-9 rounded-full "
-                                        src={user.photoURL}
-                                        alt="User Profile"
-                                        title={user.displayName}
-                                    />
-                                ) : (
-                                    <FaUserLarge />
-                                )}
+                <div className="flex items-center gap-4">
+                    <button
+                        onClick={toggleTheme}
+                        className="btn btn-ghost btn-circle text-xl"
+                        aria-label="Toggle Theme"
+                    >
+                        {theme === "light" ? <GoMoon /> : <GoSun />}
+                    </button>
+
+                    {user ? (
+                        <div className="">
+                            <div className="dropdown dropdown-bottom dropdown-center rounded-full flex justify-center items-center ">
+                                <div
+                                    tabIndex={0}
+                                    role="button"
+                                    className="btn btn-ghost rounded-full "
+                                >
+                                    {user.photoURL ? (
+                                        <img
+                                            className="w-9 h-9 rounded-full "
+                                            src={user.photoURL}
+                                            alt="User Profile"
+                                            title={user.displayName}
+                                        />
+                                    ) : (
+                                        <FaUserLarge />
+                                    )}
+                                </div>
+
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box p-2 shadow w-fit">
+
+                                    <li className="text-center py-2 text-xl font-medium border-b border-gray-600/50 mb-2">
+                                        {user.displayName}</li>
+
+                                    <li><a
+                                        onClick={() => navigate("/dashboard/profile")}
+                                        className="rounded w-full hover:bg-teal-500 hover:text-black flex justify-center">
+                                        Profile</a></li>
+
+                                    <li><a
+                                        onClick={() => navigate("/dashboard")}
+                                        className="rounded w-full hover:bg-teal-500 hover:text-black flex justify-center">
+                                        Dashboard</a></li>
+
+
+                                    <li><button
+                                        onClick={handleLogOut}
+                                        className="rounded w-full hover:bg-red-500/80 hover:text-white flex justify-center">
+                                        Logout</button></li>
+                                </ul>
+
                             </div>
-
-                            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box p-2 shadow w-fit">
-
-                                <li className="text-center py-2 text-xl font-medium border-b border-gray-600/50 mb-2">
-                                    {user.displayName}</li>
-
-                                <li><a
-                                    onClick={() => navigate("/dashboard/profile")}
-                                    className="rounded w-full hover:bg-teal-500 hover:text-black flex justify-center">
-                                    Profile</a></li>
-
-                                <li><a
-                                    onClick={() => navigate("/dashboard")}
-                                    className="rounded w-full hover:bg-teal-500 hover:text-black flex justify-center">
-                                    Dashboard</a></li>
-
-
-                                <li><button
-                                    onClick={handleLogOut}
-                                    className="rounded w-full hover:bg-red-500/80 hover:text-white flex justify-center">
-                                    Logout</button></li>
-                            </ul>
-
                         </div>
-                    </div>
-                ) : (
-                    <div className="">
-                        <NavLink className="btn btn-ghost" to={"/login"}>
-                            Login
-                        </NavLink>
-                        <NavLink className="btn btn-ghost" to={"/register"}>
-                            Register
-                        </NavLink>
-                    </div>
-                )}
+                    ) : (
+                        <div className="flex items-center">
+                            <NavLink className="btn btn-ghost" to={"/login"}>
+                                Login
+                            </NavLink>
+                            <NavLink className="btn btn-ghost" to={"/register"}>
+                                Register
+                            </NavLink>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

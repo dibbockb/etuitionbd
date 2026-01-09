@@ -16,55 +16,36 @@
 
 @import "tailwindcss";
 @plugin "daisyui";
+
 @plugin "daisyui/theme" {
-  name: "mytheme";
-  default: true; 
-  prefersdark: true; 
+  name: "light";
+  default: true;
   color-scheme: light;
-
---color-base-100: oklch(18% 0.02 240); 
---color-base-200: oklch(22% 0.03 240);     
---color-base-300: oklch(28% 0.04 240);     
---color-base-content: oklch(90% 0.02 240); 
-
---color-primary: #00d4aa;                 
---color-primary-content: oklch(20% 0.02 180);
-
---color-secondary: #ff2d92;               
---color-secondary-content: oklch(95% 0.01 340);
-
---color-accent: #7c3aed;                   
---color-accent-content: oklch(95% 0.01 280);
-
---color-neutral: oklch(30% 0.04 240);
---color-neutral-content: oklch(85% 0.01 240);
-
---color-info: #0ea5e9;                     
---color-info-content: oklch(20% 0.01 220);
-
---color-success: #22c55e;                  
---color-success-content: oklch(20% 0.01 140);
-
---color-warning: #f59e0b;                 
---color-warning-content: oklch(20% 0.05 80);
-
---color-error: #ef4444;                    
---color-error-content: oklch(95% 0.01 30);
-
-  /* border radius */
+  --color-primary: #00d4aa;
+  --color-secondary: #ff2d92;
+  --color-accent: #7c3aed;
   --radius-selector: 1rem;
-  --radius-field: 0.25rem;
   --radius-box: 0.5rem;
+}
 
-  /* base sizes */
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
+@plugin "daisyui/theme" {
+  name: "dark";
+  prefersdark: true;
+  color-scheme: dark;
+  
+  --color-base-100: oklch(18% 0.02 240); 
+  --color-base-200: oklch(22% 0.03 240);     
+  --color-base-300: oklch(28% 0.04 240);     
+  --color-base-content: oklch(90% 0.02 240); 
+  
+  --color-primary: #00d4aa;                 
+  --color-secondary: #ff2d92;               
+  --color-accent: #7c3aed;
+  
+  --color-neutral: oklch(30% 0.04 240);
+  --color-neutral-content: oklch(85% 0.01 240);
 
-  /* border size */
-  --border: 1px;
-
-  /* effects */
-  --depth: 1;
-  --noise: 0;
+  --radius-selector: 1rem;
+  --radius-box: 0.5rem;
 }
 

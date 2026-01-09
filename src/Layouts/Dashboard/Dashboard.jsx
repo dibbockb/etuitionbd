@@ -276,7 +276,7 @@ const Dashboard = () => {
 
 
 
-          <div className="flex md:hidden justify-around items-center text-center border-t border-black/30 pt-4 pb-6 px-4">
+          <div className="flex justify-around items-center text-center border-t border-black/30 pt-4 pb-6 px-4">
             <NavLink
               to="/"
               className="w-50 flex justify-center items-center gap-4 rounded-xl transition-all mx-auto  mb-3 text-gray-300 hover:bg-white/10 py-3"
