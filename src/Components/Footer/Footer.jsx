@@ -9,8 +9,8 @@ import { PiPhoneFill } from "react-icons/pi";
 const Footer = () => {
     return (
         <>
-            <footer className="footer-container bg-base-100 text-base-content pt-16 pb-6 px-6 md:px-12 flex flex-col w-full text-center md:rounded-[3.125rem] md:rounded-b-none border-t border-base-300">
-                <div className="flex flex-col md:flex-row justify-evenly items-start md:items-center text-center md:text-left gap-10 md:gap-0">
+            <footer className="footer-container bg-base-100 text-base-content pt-16 pb-6 px-4 md:px-8 lg:px-20 flex flex-col w-full text-center border-t border-base-300">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center text-center md:text-left gap-10 md:gap-0">
                     <div className="footer-left flex flex-col justify-center items-center md:items-start text-center md:text-left gap-2 w-full md:w-auto">
                         <img className="w-20 theme-icon-white" src="/icon.svg" alt="eTuition Logo" />
                         <h4 className="font-bold text-3xl tracking-tight">eTuition</h4>

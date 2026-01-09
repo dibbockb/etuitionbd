@@ -114,9 +114,9 @@ const AdminManageUser = () => {
                     <tr>
                         <th className="text-center">#</th>
                         <th className="text-center">Name</th>
-                        <th className="text-center">Email</th>
-                        <th className="text-center">Phone</th>
-                        <th className="text-center">Created At</th>
+                        <th className="text-center hidden md:table-cell">Email</th>
+                        <th className="text-center hidden lg:table-cell">Phone</th>
+                        <th className="text-center hidden xl:table-cell">Created At</th>
                         <th className="text-center">Role</th>
                         <th className="text-center">Actions</th>
                     </tr>
@@ -129,23 +129,18 @@ const AdminManageUser = () => {
                             onClick={() => navigate(`/users/profile/${user.email}`)}
                         >
                             <th className="text-gray-400 ">{index + 1}</th>
-                            <td className="text-center">{user.displayName}</td>
-                            <td>
-                                <div>
-                                    <p className="text-center">{user.email}</p>
-                                </div>
+                            <td className="text-center font-medium">{user.displayName}</td>
+                            <td className="hidden md:table-cell">
+                                <div className="text-xs lg:text-sm text-center">{user.email}</div>
                             </td>
-                            <td className="text-center text-green-400">
+                            <td className="text-center text-green-400 hidden lg:table-cell">
                                 {(user.userPhone)}
                             </td>
-                            <td className="text-center">
+                            <td className="text-center hidden xl:table-cell text-xs">
                                 {new Date(user.createdAt).toLocaleDateString('en-GB', {
                                     day: 'numeric',
                                     month: 'short',
-                                    year: 'numeric',
-                                    hour: '2-digit',
-                                    minute: '2-digit',
-                                    hour12: true
+                                    year: 'numeric'
                                 })}
                             </td>
 

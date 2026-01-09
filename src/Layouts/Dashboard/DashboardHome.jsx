@@ -128,15 +128,14 @@ const DashboardHome = () => {
     return (
         <div className="overflow-x-auto">
             <div className="text-center flex flex-col justify-center items-center py-10 ">
-                <GiHand className="h-25 w-25" />
-                <h1 className="text-medium text-4xl ">Welcome back, <span className="text-[#00bba7]">{useRole().role} !</span></h1>
+                <GiHand className="h-20 w-20 md:h-24 md:w-24 mb-4" />
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">Welcome back, <span className="text-[#00bba7]">{useRole().role}!</span></h1>
             </div>
             <br />
             <br />
 
-            {/* //dashboard for admin */}
             {isUserAdmin && (
-                <div className="px-4 md:px-4">
+                <div className="px-2 md:px-4">
                     <AdminStatsInfograph
                         allTuitions={allTuitions}
                         allUsers={allUsers}
@@ -146,9 +145,8 @@ const DashboardHome = () => {
             )}
 
 
-            {/* //dashboard for student */}
             {isUserStudent ? (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pl-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 px-4">
                     <div className="stats shadow bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Posted Tuitions</div>
@@ -182,7 +180,7 @@ const DashboardHome = () => {
 
             {/* // dashboard stats for tutor */}
             {isUserTutor ? (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pl-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 px-4">
                     <div className="stats shadow bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Total Revenue</div>

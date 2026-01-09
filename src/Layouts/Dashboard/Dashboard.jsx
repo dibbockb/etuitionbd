@@ -64,45 +64,47 @@ const Dashboard = () => {
   return (
     <div className="bg-base-200 text-base-content md:h-screen md:overflow-hidden transition-colors duration-300">
       <div className="flex flex-col md:flex-row h-full">
-        <aside className="w-full md:w-80 lg:w-96 bg-base-100 border-r border-base-300 flex flex-col shadow-lg md:h-screen sticky top-0">
-          <div className="p-8 text-center border-b border-base-300">
-            <Logo />
+        <aside className="w-full md:w-80 lg:w-96 bg-[#f8fafc] dark:bg-base-100 border-r border-base-300 flex flex-col shadow-lg md:h-screen sticky top-0 md:relative z-20 transition-all duration-300">
+          <div className="p-4 md:p-8 text-center border-b border-base-300 flex md:flex-col items-center justify-between md:justify-center">
+            <Logo className="mx-auto"/>
             <br />
-            <h2 className="text-xl font-bold mt-2">
-              {user?.displayName}
-            </h2>
-            <p className="text-base-content/70 text-lg mt-2 flex items-center justify-center gap-2">
-              {isAdmin && (
-                <>
-                  <MdAdminPanelSettings className="text-primary" /> Admin
-                </>
-              )}
-              {isTutor && (
-                <>
-                  <FaUserGraduate className="text-primary" /> Tutor
-                </>
-              )}
-              {isStudent && (
-                <>
-                  <FaUserGraduate className="text-primary" /> Student
-                </>
-              )}
-            </p>
+            <div className="hidden md:block">
+              <h2 className="text-xl font-bold mt-2 ">
+                {user?.displayName}
+              </h2>
+              <p className="text-slate-500 dark:text-base-content/70 text-lg mt-2 flex items-center justify-center gap-2">
+                {isAdmin && (
+                  <>
+                    <MdAdminPanelSettings className="text-primary" /> Admin
+                  </>
+                )}
+                {isTutor && (
+                  <>
+                    <FaUserGraduate className="text-primary" /> Tutor
+                  </>
+                )}
+                {isStudent && (
+                  <>
+                    <FaUserGraduate className="text-primary" /> Student
+                  </>
+                )}
+              </p>
+            </div>
           </div>
 
-          <div className="flex flex-row md:flex-col gap-2 px-4 py-6 flex-1 overflow-x-auto md:overflow-y-auto custom-scrollbar">
+          <div className="flex flex-row md:flex-col gap-1 px-2 md:px-4 py-2 md:py-6 flex-1 overflow-x-auto md:overflow-y-auto custom-scrollbar no-scrollbar">
             <NavLink
               to="/dashboard"
               end
               className={({ isActive }) =>
-                `flex items-center justify-center md:justify-start gap-3 px-4 py-3 rounded-xl transition-all whitespace-nowrap ${isActive
-                  ? "bg-primary text-primary-content font-bold shadow-md scale-[1.02]"
-                  : "text-base-content/70 hover:bg-base-content/10 hover:text-base-content"
+                `flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all whitespace-nowrap ${isActive
+                  ? "bg-primary text-slate-900 dark:text-white font-bold shadow-md scale-[1.02]"
+                  : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content"
                 }`
-              }
+              } 
             >
               <BiSolidDashboard className="text-xl" />
-              <span className="text-lg font-medium hidden md:inline">Dashboard</span>
+              <span className="text-sm md:text-lg font-medium">Dashboard</span>
             </NavLink>
 
             {isStudent && (
@@ -110,50 +112,50 @@ const Dashboard = () => {
                 <NavLink
                   to="/dashboard/new-tuition"
                   className={({ isActive }) =>
-                    `flex items-center justify-center md:justify-start gap-3 px-4 py-3 rounded-xl transition-all whitespace-nowrap ${isActive
-                      ? "bg-primary text-primary-content font-bold shadow-md scale-[1.02]"
-                      : "text-base-content/70 hover:bg-base-content/10 hover:text-base-content"
+                    `flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all whitespace-nowrap ${isActive
+                      ? "bg-primary text-slate-900 dark:text-white font-bold shadow-md scale-[1.02]"
+                      : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content"
                     }`
                   }
                 >
                   <IoAddOutline className="text-2xl" />
-                  <span className="text-lg font-medium hidden md:inline">Add Tuition</span>
+                  <span className="text-sm md:text-lg font-medium">Add Tuition</span>
                 </NavLink>
                 <NavLink
                   to="/dashboard/my-tuitions"
                   className={({ isActive }) =>
-                    `flex items-center justify-center md:justify-start gap-3 px-4 py-3 rounded-xl transition-all whitespace-nowrap ${isActive
-                      ? "bg-primary text-primary-content font-bold shadow-md scale-[1.02]"
-                      : "text-base-content/70 hover:bg-base-content/10 hover:text-base-content"
+                    `flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all whitespace-nowrap ${isActive
+                      ? "bg-primary text-slate-900 dark:text-white font-bold shadow-md scale-[1.02]"
+                      : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content"
                     }`
                   }
                 >
                   <FaListUl className="text-xl shrink-0" />
-                  <span className="text-lg font-medium hidden md:inline">My Tuitions</span>
+                  <span className="text-sm md:text-lg font-medium">My Tuitions</span>
                 </NavLink>
                 <NavLink
                   to="/dashboard/applicants"
                   className={({ isActive }) =>
-                    `flex items-center justify-center md:justify-start gap-3 px-4 py-3 rounded-xl transition-all whitespace-nowrap ${isActive
-                      ? "bg-primary text-primary-content font-bold shadow-md scale-[1.02]"
-                      : "text-base-content/70 hover:bg-base-content/10 hover:text-base-content"
+                    `flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all whitespace-nowrap ${isActive
+                      ? "bg-primary text-slate-900 dark:text-white font-bold shadow-md scale-[1.02]"
+                      : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content"
                     }`
                   }
                 >
                   <RiGraduationCapFill className="text-xl" />
-                  <span className="text-lg font-medium hidden md:inline">Applicants</span>
+                  <span className="text-sm md:text-lg font-medium">Applicants</span>
                 </NavLink>
                 <NavLink
                   to="/dashboard/my-payments"
                   className={({ isActive }) =>
-                    `flex items-center justify-center md:justify-start gap-3 px-4 py-3 rounded-xl transition-all whitespace-nowrap ${isActive
-                      ? "bg-primary text-primary-content font-bold shadow-md scale-[1.02]"
-                      : "text-base-content/70 hover:bg-base-content/10 hover:text-base-content"
+                    `flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all whitespace-nowrap ${isActive
+                      ? "bg-primary text-slate-900 dark:text-white font-bold shadow-md scale-[1.02]"
+                      : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content"
                     }`
                   }
                 >
                   <LiaHistorySolid className="text-xl" />
-                  <span className="text-lg font-medium hidden md:inline">Payment History</span>
+                  <span className="text-sm md:text-lg font-medium">Payment History</span>
                 </NavLink>
               </>
             )}
@@ -163,38 +165,38 @@ const Dashboard = () => {
                 <NavLink
                   to="/dashboard/applied-tuitions"
                   className={({ isActive }) =>
-                    `flex items-center justify-center md:justify-start gap-3 px-4 py-3 rounded-xl transition-all whitespace-nowrap ${isActive
-                      ? "bg-primary text-primary-content font-bold shadow-md scale-[1.02]"
-                      : "text-base-content/70 hover:bg-base-content/10 hover:text-base-content"
+                    `flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all whitespace-nowrap ${isActive
+                      ? "bg-primary text-slate-900 dark:text-white font-bold shadow-md scale-[1.02]"
+                      : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content"
                     }`
                   }
                 >
                   <PiListDashesFill className="text-xl" />
-                  <span className="text-lg font-medium hidden md:inline">My Applications</span>
+                  <span className="text-sm md:text-lg font-medium">My Applications</span>
                 </NavLink>
                 <NavLink
                   to="/dashboard/approved-tuitions"
                   className={({ isActive }) =>
-                    `flex items-center justify-center md:justify-start gap-3 px-4 py-3 rounded-xl transition-all whitespace-nowrap ${isActive
-                      ? "bg-primary text-primary-content font-bold shadow-md scale-[1.02]"
-                      : "text-base-content/70 hover:bg-base-content/10 hover:text-base-content"
+                    `flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all whitespace-nowrap ${isActive
+                      ? "bg-primary text-slate-900 dark:text-white font-bold shadow-md scale-[1.02]"
+                      : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content"
                     }`
                   }
                 >
                   <BsCheckAll className="text-xl" />
-                  <span className="text-lg font-medium hidden md:inline">Ongoing Tuitions</span>
+                  <span className="text-sm md:text-lg font-medium">Ongoing Tuitions</span>
                 </NavLink>
                 <NavLink
                   to="/dashboard/revenue"
                   className={({ isActive }) =>
-                    `flex items-center justify-center md:justify-start gap-3 px-4 py-3 rounded-xl transition-all whitespace-nowrap ${isActive
-                      ? "bg-primary text-primary-content font-bold shadow-md scale-[1.02]"
-                      : "text-base-content/70 hover:bg-base-content/10 hover:text-base-content"
+                    `flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all whitespace-nowrap ${isActive
+                      ? "bg-primary text-slate-900 dark:text-white font-bold shadow-md scale-[1.02]"
+                      : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content"
                     }`
                   }
                 >
                   <RiMoneyDollarCircleLine className="text-xl" />
-                  <span className="text-lg font-medium hidden md:inline">Revenue</span>
+                  <span className="text-sm md:text-lg font-medium">Revenue</span>
                 </NavLink>
               </>
             )}
@@ -204,38 +206,38 @@ const Dashboard = () => {
                 <NavLink
                   to="/dashboard/admin/manage-users"
                   className={({ isActive }) =>
-                    `flex items-center justify-center md:justify-start gap-3 px-4 py-3 rounded-xl transition-all whitespace-nowrap ${isActive
-                      ? "bg-primary text-primary-content font-bold shadow-md scale-[1.02]"
-                      : "text-base-content/70 hover:bg-base-content/10 hover:text-base-content"
+                    `flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all whitespace-nowrap ${isActive
+                      ? "bg-primary text-slate-900 dark:text-white font-bold shadow-md scale-[1.02]"
+                      : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content"
                     }`
                   }
                 >
                   <FaUsersCog className="text-xl" />
-                  <span className="text-lg font-medium hidden md:inline">Manage Users</span>
+                  <span className="text-sm md:text-lg font-medium">Manage Users</span>
                 </NavLink>
                 <NavLink
                   to="/dashboard/admin/manage-tuitions"
                   className={({ isActive }) =>
-                    `flex items-center justify-center md:justify-start gap-3 px-4 py-3 rounded-xl transition-all whitespace-nowrap ${isActive
-                      ? "bg-primary text-primary-content font-bold shadow-md scale-[1.02]"
-                      : "text-base-content/70 hover:bg-base-content/10 hover:text-base-content"
+                    `flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all whitespace-nowrap ${isActive
+                      ? "bg-primary text-slate-900 dark:text-white font-bold shadow-md scale-[1.02]"
+                      : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content"
                     }`
                   }
                 >
                   <HiMiniListBullet className="text-xl" />
-                  <span className="text-lg font-medium hidden md:inline">Manage Tuitions</span>
+                  <span className="text-sm md:text-lg font-medium">Manage Tuitions</span>
                 </NavLink>
                 <NavLink
                   to="/dashboard/admin/platform-revenue"
                   className={({ isActive }) =>
-                    `flex items-center justify-center md:justify-start gap-3 px-4 py-3 rounded-xl transition-all whitespace-nowrap ${isActive
-                      ? "bg-primary text-primary-content font-bold shadow-md scale-[1.02]"
-                      : "text-base-content/70 hover:bg-base-content/10 hover:text-base-content"
+                    `flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all whitespace-nowrap ${isActive
+                      ? "bg-primary text-slate-900 dark:text-white font-bold shadow-md scale-[1.02]"
+                      : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content"
                     }`
                   }
                 >
                   <HiMiniCurrencyDollar className="text-xl" />
-                  <span className="text-lg font-medium hidden md:inline">Platform Revenue</span>
+                  <span className="text-sm md:text-lg font-medium">Platform Revenue</span>
                 </NavLink>
               </>
             )}
@@ -243,24 +245,24 @@ const Dashboard = () => {
             <NavLink
               to="/dashboard/profile"
               className={({ isActive }) =>
-                `flex items-center justify-center md:justify-start gap-3 px-4 py-3 rounded-xl transition-all whitespace-nowrap ${isActive
-                  ? "bg-primary text-primary-content font-bold shadow-md scale-[1.02]"
-                  : "text-base-content/70 hover:bg-base-content/10 hover:text-base-content"
+                `flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all whitespace-nowrap ${isActive
+                  ? "bg-primary text-slate-900 dark:text-white font-bold shadow-md scale-[1.02]"
+                  : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content"
                 }`
               }
             >
               <TbUserFilled className="text-xl" />
-              <span className="text-lg font-medium hidden md:inline">Profile</span>
+              <span className="text-sm md:text-lg font-medium">Profile</span>
             </NavLink>
           </div>
 
-          <div className="flex flex-row md:flex-col justify-around items-center text-center border-t border-base-300 py-4 px-4 gap-2">
+          <div className="flex flex-row md:flex-col justify-around items-center text-center border-t border-base-300 py-4 px-4 gap-2 hidden md:flex">
             <NavLink
               to="/"
-              className="flex justify-center items-center gap-3 rounded-xl transition-all text-base-content/70 hover:bg-base-content/10 hover:text-base-content px-4 py-3 flex-1 md:w-full"
+              className="flex justify-center items-center gap-2 md:gap-3 rounded-xl transition-all text-slate-600 hover:bg-slate-200/50 hover:text-slate-900 dark:text-base-content/70 dark:hover:bg-base-content/10 dark:hover:text-base-content px-3 md:px-4 py-2 md:py-3 flex-1 md:w-full whitespace-nowrap"
             >
               <RiHome7Fill className="text-xl" />
-              <span className="text-lg font-medium hidden md:inline">Back Home</span>
+              <span className="text-sm md:text-lg font-medium">Home</span>
             </NavLink>
 
             <div className="flex items-center gap-2">
@@ -284,8 +286,8 @@ const Dashboard = () => {
         </aside>
 
         <main className="flex-1 w-full overflow-y-auto bg-base-200">
-          <div className="p-4 md:p-8 lg:p-12 min-h-screen">
-            <div className="bg-base-100 rounded-3xl shadow-xl border border-base-300 p-6 md:p-10 min-h-[calc(100vh-8rem)]">
+          <div className="p-3 md:p-8 lg:p-12 min-h-screen">
+            <div className="bg-white dark:bg-base-100 rounded-2xl md:rounded-3xl shadow-xl border border-base-300 p-4 md:p-10 min-h-[calc(100vh-6rem)] md:min-h-[calc(100vh-8rem)]">
               <Fade>
                 <Outlet />
               </Fade>
