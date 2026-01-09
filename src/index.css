@@ -9,8 +9,8 @@
 }
 
 .btn-ghost {
-  @apply hover:bg-white/10;
-  @apply rounded
+  @apply hover:bg-base-content/10;
+  @apply rounded;
 }
 
 
@@ -18,18 +18,8 @@
 @plugin "daisyui";
 
 @plugin "daisyui/theme" {
-  name: "light";
-  default: true;
-  color-scheme: light;
-  --color-primary: #00d4aa;
-  --color-secondary: #ff2d92;
-  --color-accent: #7c3aed;
-  --radius-selector: 1rem;
-  --radius-box: 0.5rem;
-}
-
-@plugin "daisyui/theme" {
   name: "dark";
+  default: true;
   prefersdark: true;
   color-scheme: dark;
   
@@ -49,3 +39,21 @@
   --radius-box: 0.5rem;
 }
 
+@plugin "daisyui/theme" {
+  name: "light";
+  color-scheme: light;
+  --color-primary: #00d4aa;
+  --color-secondary: #ff2d92;
+  --color-accent: #7c3aed;
+  --radius-selector: 1rem;
+  --radius-box: 0.5rem;
+}
+
+
+.theme-icon-white {
+  transition: filter 0.3s ease;
+}
+
+[data-theme='dark'] .theme-icon-white {
+  filter: brightness(0) invert(1);
+}

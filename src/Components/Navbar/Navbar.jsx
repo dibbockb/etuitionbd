@@ -11,7 +11,7 @@ import { GoMoon } from "react-icons/go";
 const Navbar = () => {
     const { user, logOut } = useAuth();
     const navigate = useNavigate();
-    const [theme, setTheme] = React.useState(localStorage.getItem("theme") || "light");
+    const [theme, setTheme] = React.useState(localStorage.getItem("theme") || "dark");
 
     React.useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
@@ -111,25 +111,25 @@ const Navbar = () => {
                                     )}
                                 </div>
 
-                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box p-2 shadow w-fit">
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box p-2 shadow-xl w-fit border border-base-content/10">
 
-                                    <li className="text-center py-2 text-xl font-medium border-b border-gray-600/50 mb-2">
+                                    <li className="text-center py-2 text-xl font-medium border-b border-base-content/10 mb-2 px-4">
                                         {user.displayName}</li>
 
                                     <li><a
                                         onClick={() => navigate("/dashboard/profile")}
-                                        className="rounded w-full hover:bg-teal-500 hover:text-black flex justify-center">
+                                        className="rounded w-full hover:bg-primary hover:text-primary-content transition-colors flex justify-center px-6">
                                         Profile</a></li>
 
                                     <li><a
                                         onClick={() => navigate("/dashboard")}
-                                        className="rounded w-full hover:bg-teal-500 hover:text-black flex justify-center">
+                                        className="rounded w-full hover:bg-primary hover:text-primary-content transition-colors flex justify-center px-6">
                                         Dashboard</a></li>
 
 
                                     <li><button
                                         onClick={handleLogOut}
-                                        className="rounded w-full hover:bg-red-500/80 hover:text-white flex justify-center">
+                                        className="rounded w-full hover:bg-error hover:text-error-content transition-colors flex justify-center px-6">
                                         Logout</button></li>
                                 </ul>
 

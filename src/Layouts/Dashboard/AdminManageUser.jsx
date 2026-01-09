@@ -94,7 +94,7 @@ const AdminManageUser = () => {
                         axiosSecure.delete(`/admin/users/delete/${user._id}`)
                         Swal.fire({
                             title: "Deleted!",
-                            text: "This Tuition has been Deleted",
+                            text: "User Deleted",
                             icon: "success",
                         });
                         refetch();

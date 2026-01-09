@@ -9,10 +9,10 @@ import { PiPhoneFill } from "react-icons/pi";
 const Footer = () => {
     return (
         <>
-            <footer className="footer-container bg-base-200 text-base-content pt-16 pb-6 px-6 md:px-12 flex flex-col w-full text-center md:rounded-[3.125rem] md:rounded-b-none border-t border-base-300">
+            <footer className="footer-container bg-base-100 text-base-content pt-16 pb-6 px-6 md:px-12 flex flex-col w-full text-center md:rounded-[3.125rem] md:rounded-b-none border-t border-base-300">
                 <div className="flex flex-col md:flex-row justify-evenly items-start md:items-center text-center md:text-left gap-10 md:gap-0">
                     <div className="footer-left flex flex-col justify-center items-center md:items-start text-center md:text-left gap-2 w-full md:w-auto">
-                        <img className="w-20" src="/icon.png" alt="eTuition Logo" />
+                        <img className="w-20 theme-icon-white" src="/icon.svg" alt="eTuition Logo" />
                         <h4 className="font-bold text-3xl tracking-tight">eTuition</h4>
                         <p className="max-w-xs font-light opacity-70">Find a Teacher! Without any headache! Connecting students with the best tutors globally.</p>
                     </div>
@@ -23,8 +23,8 @@ const Footer = () => {
                         <a href="#" className="font-light opacity-70 hover:opacity-100 hover:text-primary transition-all">Services</a>
                         <a href="#" className="font-light opacity-70 hover:opacity-100 hover:text-primary transition-all">Careers</a>
                         <div className="flex flex-col items-center md:items-start mt-2 space-y-2">
-                            <p className="font-light opacity-70 flex items-center gap-2"> <IoMail className="text-primary" /> divyajitchakraborty@gmail.com</p>
-                            <p className="font-light opacity-70 flex items-center gap-2"><PiPhoneFill className="text-primary" /> +01 234 567 890</p>
+                            <p className="font-light opacity-70 flex items-center gap-2"> <IoMail /> divyajitchakraborty@gmail.com</p>
+                            <p className="font-light opacity-70 flex items-center gap-2"><PiPhoneFill /> +01 234 567 890</p>
                         </div>
                     </div>
 

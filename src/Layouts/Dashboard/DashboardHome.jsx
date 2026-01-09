@@ -127,9 +127,9 @@ const DashboardHome = () => {
 
     return (
         <div className="overflow-x-auto">
-            <div className="text-center flex flex-col justify-center items-center py-10">
+            <div className="text-center flex flex-col justify-center items-center py-10 ">
                 <GiHand className="h-25 w-25" />
-                <h1 className="text-white text-medium text-4xl">Welcome back, <span className="text-[#00bba7]">{useRole().role} !</span></h1>
+                <h1 className="text-medium text-4xl ">Welcome back, <span className="text-[#00bba7]">{useRole().role} !</span></h1>
             </div>
             <br />
             <br />
@@ -149,7 +149,7 @@ const DashboardHome = () => {
             {/* //dashboard for student */}
             {isUserStudent ? (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pl-4">
-                    <div className="stats shadow bg-gray-900 text-white border border-white/10">
+                    <div className="stats shadow bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Posted Tuitions</div>
                             <div className="stat-value text-[#00bba7]">{myTuitions.length}</div>
@@ -158,7 +158,7 @@ const DashboardHome = () => {
                         </div>
                     </div>
 
-                    <div className="stats shadow bg-gray-900 text-white border border-white/10">
+                    <div className="stats shadow bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Applicants</div>
                             <div className="stat-value text-blue-500">{myTutors.length}</div>
@@ -166,7 +166,7 @@ const DashboardHome = () => {
                         </div>
                     </div>
 
-                    <div className="stats shadow bg-gray-900 text-white border border-white/10">
+                    <div className="stats shadow bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Total Spent</div>
                             <div className="stat-value text-green-500">{totalSpentByStudent}</div>
@@ -183,7 +183,7 @@ const DashboardHome = () => {
             {/* // dashboard stats for tutor */}
             {isUserTutor ? (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pl-8">
-                    <div className="stats shadow bg-gray-900 text-white border border-white/10">
+                    <div className="stats shadow bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Total Revenue</div>
                             <div className="stat-value text-[#00bba7]">৳ {totalRevenue}</div>
@@ -192,7 +192,7 @@ const DashboardHome = () => {
                         </div>
                     </div>
 
-                    <div className="stats shadow bg-gray-900 text-white border border-white/10">
+                    <div className="stats shadow bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Total Applications</div>
                             <div className="stat-value text-blue-500">{myApplications.length}</div>
@@ -200,7 +200,7 @@ const DashboardHome = () => {
                         </div>
                     </div>
 
-                    <div className="stats shadow bg-gray-900 text-white border border-white/10">
+                    <div className="stats shadow bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Approval Rate</div>
                             <div className="stat-value text-green-500">{approvalRate}%</div>
