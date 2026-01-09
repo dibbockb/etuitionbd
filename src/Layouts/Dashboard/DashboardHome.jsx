@@ -181,7 +181,7 @@ const DashboardHome = () => {
             {/* // dashboard stats for tutor */}
             {isUserTutor ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 px-4">
-                    <div className="stats shadow bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-white/10">
+                    <div className="stats shadow  text-black dark:text-white border border-gray-200 dark:border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Total Revenue</div>
                             <div className="stat-value text-[#00bba7]">৳ {totalRevenue}</div>
@@ -190,7 +190,7 @@ const DashboardHome = () => {
                         </div>
                     </div>
 
-                    <div className="stats shadow bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-white/10">
+                    <div className="stats shadow text-black dark:text-white border border-gray-200 dark:border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Total Applications</div>
                             <div className="stat-value text-blue-500">{myApplications.length}</div>
@@ -198,7 +198,7 @@ const DashboardHome = () => {
                         </div>
                     </div>
 
-                    <div className="stats shadow bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-white/10">
+                    <div className="stats shadow  text-black dark:text-white border border-gray-200 dark:border-white/10">
                         <div className="stat">
                             <div className="stat-title text-gray-400">Approval Rate</div>
                             <div className="stat-value text-green-500">{approvalRate}%</div>

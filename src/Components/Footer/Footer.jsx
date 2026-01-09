@@ -19,7 +19,7 @@ const Footer = () => {
 
                     <div className="footer-middle flex flex-col justify-center items-center md:items-start text-center md:text-left gap-3 w-full md:w-auto">
                         <h4 className="font-semibold text-xl mb-2">Quick Links</h4>
-                        <a href="#" className="font-light opacity-70 hover:opacity-100 hover:text-primary transition-all">Dashboard</a>
+                        <a href="/dashboard" className="font-light opacity-70 hover:opacity-100 hover:text-primary transition-all">Dashboard</a>
                         <a href="#" className="font-light opacity-70 hover:opacity-100 hover:text-primary transition-all">Services</a>
                         <a href="#" className="font-light opacity-70 hover:opacity-100 hover:text-primary transition-all">Careers</a>
                         <div className="flex flex-col items-center md:items-start mt-2 space-y-2">
