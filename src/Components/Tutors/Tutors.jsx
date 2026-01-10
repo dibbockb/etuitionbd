@@ -33,7 +33,7 @@ const Tutors = () => {
   return (
     <>
       <div className="flex justify-center items-center text-center flex-col">
-        <h3 className="text-4xl text-white text-center pt-15">All Tutors</h3>
+        <h3 className="text-4xl text-center pt-15">All Tutors</h3>
       <Link 
       className="btn w-[20rem] h-20 mt-5 rounded-4xl text-2xl hover:scale-103  btn-neutral bg-teal-500 text-black hover:bg-teal-300/50"
     to={'/newtutor'}>
@@ -45,7 +45,7 @@ const Tutors = () => {
           <div
           key={tutor._id}
           onClick={() => navigate(`/tutors/${tutor._id}`)}
-            className="card bg-gray-800 shadow rounded-xl hover:scale-103 transition"
+            className="card bg-gray-800/20 shadow rounded-xl hover:scale-103 transition duration-300 cursor-pointer"
           >
             <div className="h-64 rounded-2xl">
               <img
@@ -56,9 +56,7 @@ const Tutors = () => {
             <div className="card-body">
 
               <div className="flex items-center gap-2 my-2">
-                <h2 className="text-2xl text-white">{tutor.displayName}</h2>
-                <span className="text-amber-500">★</span>
-                <span className="text-white ml-[-5px]">4.8</span>
+                <h2 className="text-2xl">{tutor.displayName}</h2>
               </div>
 
               <p className="text-white font-medium">{tutor.subject}</p>
@@ -67,7 +65,7 @@ const Tutors = () => {
                 <span className="text-xl font-bold">
                   ৳ {tutor.salary}
                 </span>
-                <span className="badge badge-accent">{tutor.mode}</span>
+                <span className="badge">{tutor.mode}</span>
               </div>
             </div>
           </div>

@@ -55,7 +55,7 @@ const Tuitions = () => {
     <>
       <div>
         <div className="flex justify-center items-center text-center flex-col">
-          <h3 className="text-4xl text-white text-center pt-15">
+          <h3 className="text-4xl  text-center pt-15">
             All Tuitions
           </h3>
 
@@ -69,22 +69,22 @@ const Tuitions = () => {
 
         <div className="flex flex-col md:flex-row gap-4 w-full max-w-4xl mt-8 px-4 mx-auto justify-center items-center">
           <div className="relative flex-1 group max-w-sm">
-            <IoIosSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-2xl" />
+            <IoIosSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-2xl" />
             <input
               type="text"
               placeholder="Search Class, Subject, Location..."
-              className="w-full bg-gray-800 text-white pl-12 pr-4 py-4 rounded-2xl border border-gray-700 focus:border-teal-500 outline-none"
+              className="w-full bg-gray-800/20  pl-12 pr-4 py-4 rounded-2xl border border-gray-700 focus:border-teal-500 outline-none"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
 
           <select
-            className="bg-gray-800 text-white px-6 py-4 rounded-2xl border border-gray-700 outline-none focus:border-teal-500 cursor-pointer"
+            className="bg-gray-800/20 px-6 py-4 rounded-2xl border border-gray-700 outline-none focus:border-teal-500 cursor-pointer"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
-            <option value="newest">Latest </option>
+            <option value="newest ">Latest </option>
             <option value="budget-high">Budget: Higher to Lower</option>
             <option value="budget-low">Budget: Lower to Higher</option>
           </select>
@@ -96,17 +96,17 @@ const Tuitions = () => {
               <div
                 key={tuition._id}
                 onClick={() => navigate(`/tuitions/${tuition._id}`)}
-                className="card bg-gray-800 shadow rounded-xl hover:scale-103 transition duration-300 cursor-pointer"
+                className="card bg-gray-800/20 shadow rounded-xl hover:scale-103 transition duration-300 cursor-pointer"
               >
                 <div className="h-64 rounded-t-xl overflow-hidden">
                   <img src={tuition.image} className="w-full h-full object-cover" />
                 </div>
                 <div className="card-body p-5">
-                  <p className="text-white font-medium text-xl">{tuition.subject}</p>
-                  <p className="text-gray-400 text-sm">{tuition.location}</p>
+                  <p className=" font-medium text-xl">{tuition.subject}</p>
+                  <p className=" text-sm">{tuition.location}</p>
                   <div className="flex justify-between items-center mt-4">
-                    <span className="text-2xl font-bold text-white">৳ {tuition.fee}</span>
-                    <span className="badge badge-accent badge-sm">{tuition.mode}</span>
+                    <span className="text-2xl font-bold ">৳ {tuition.fee}</span>
+                    <span className="badge">{tuition.mode}</span>
                   </div>
                 </div>
               </div>
