@@ -2,7 +2,7 @@
 
 A modern, full-stack tutoring platform connecting students with verified tutors across the globe. Built with React, Firebase, and a robust backend API.
 
-**Live Platform:** [https://etuition-1e987.web.app/](https://etuition-1e987.web.app/)
+**Live Platform:** [https://etuition.dibbockb.com/](https://etuition.dibbockb.com/)
 
 ---
 
@@ -353,7 +353,7 @@ firebase deploy     # Deploy to Firebase Hosting
 For issues, suggestions, or feature requests:
 - Email: support@etuition.com
 - GitHub Issues: [Create an issue](https://github.com/yourusername/etuition/issues)
-- Live Chat: Available on [etuition.com](https://etuition-1e987.web.app/)
+- Live Chat: Available on [etuition.com](https://etuition.dibbockb.com/)
 
 ---
 

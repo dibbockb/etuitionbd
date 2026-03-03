@@ -45,7 +45,7 @@ const Footer = () => {
                 </div>
 
                 <div className="footer-info font-light opacity-50 text-sm pt-12 border-t border-base-300 mt-10">
-                    &copy; 2026 - eTuition platform. Created by <a href="https://dibbockb.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors underline decoration-dotted">DivyaJit Chakraborty</a>
+                    &copy; 2026 - eTuition platform. Created by <a href="https://dibbockb.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors underline decoration-dotted">DivyaJit Chakraborty</a>
                 </div>
             </footer>
         </>
