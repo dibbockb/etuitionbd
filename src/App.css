@@ -1,8 +1,21 @@
-*{
-  font-family: 'Lexend Deca', Tahoma;
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+
+.red-hat-display {
+  font-family: "Red Hat Display", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
-*, *::before, *::after {
+* {
+  font-family: "Red Hat Display";
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -32,38 +45,56 @@ a:focus-visible {
   color: currentColor;
   aspect-ratio: 1;
   border-radius: 50%;
-  box-shadow: 
+  box-shadow:
     19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px,
-    19px 0     0 5px, 38px 0     0 5px, 57px 0     0 5px,
-    19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 0px;
+    19px 0 0 5px, 38px 0 0 5px, 57px 0 0 5px,
+    19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px;
   transform: translateX(-38px);
   animation: l26 2s infinite linear;
 }
+
 @keyframes l26 {
-  12.5% {box-shadow: 
-    19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 5px,
-    19px 0     0 5px, 38px 0     0 0px, 57px 0     0 5px,
-    19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 0px}
-  25%   {box-shadow: 
-    19px -19px 0 5px, 38px -19px 0 0px, 57px -19px 0 5px,
-    19px 0     0 0px, 38px 0     0 0px, 57px 0     0 0px,
-    19px 19px  0 0px, 38px 19px  0 5px, 57px 19px  0 0px}
-  50%   {box-shadow: 
-    19px -19px 0 5px, 38px -19px 0 5px, 57px -19px 0 0px,
-    19px 0     0 0px, 38px 0     0 0px, 57px 0     0 0px,
-    19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 5px}
-  62.5% {box-shadow: 
-    19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px,
-    19px 0     0 5px, 38px 0     0 0px, 57px 0     0 0px,
-    19px 19px  0 0px, 38px 19px  0 5px, 57px 19px  0 5px}
-  75%   {box-shadow: 
-    19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px,
-    19px 0     0 0px, 38px 0     0 0px, 57px 0     0 5px,
-    19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 5px}
-  87.5% {box-shadow: 
-    19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px,
-    19px 0     0 0px, 38px 0     0 5px, 57px 0     0 0px,
-    19px 19px  0 5px, 38px 19px  0 0px, 57px 19px  0 0px}
+  12.5% {
+    box-shadow:
+      19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 5px,
+      19px 0 0 5px, 38px 0 0 0px, 57px 0 0 5px,
+      19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px
+  }
+
+  25% {
+    box-shadow:
+      19px -19px 0 5px, 38px -19px 0 0px, 57px -19px 0 5px,
+      19px 0 0 0px, 38px 0 0 0px, 57px 0 0 0px,
+      19px 19px 0 0px, 38px 19px 0 5px, 57px 19px 0 0px
+  }
+
+  50% {
+    box-shadow:
+      19px -19px 0 5px, 38px -19px 0 5px, 57px -19px 0 0px,
+      19px 0 0 0px, 38px 0 0 0px, 57px 0 0 0px,
+      19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 5px
+  }
+
+  62.5% {
+    box-shadow:
+      19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px,
+      19px 0 0 5px, 38px 0 0 0px, 57px 0 0 0px,
+      19px 19px 0 0px, 38px 19px 0 5px, 57px 19px 0 5px
+  }
+
+  75% {
+    box-shadow:
+      19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px,
+      19px 0 0 0px, 38px 0 0 0px, 57px 0 0 5px,
+      19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 5px
+  }
+
+  87.5% {
+    box-shadow:
+      19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px,
+      19px 0 0 0px, 38px 0 0 5px, 57px 0 0 0px,
+      19px 19px 0 5px, 38px 19px 0 0px, 57px 19px 0 0px
+  }
 }
 
 
